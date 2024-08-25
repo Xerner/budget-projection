@@ -1,37 +1,4 @@
-<div class="p-3 bg-gradient-to-r from-red-100 via-yellow-100 to-cyan-100 border-b-2 border-slate-300">
-  <div class="flex gap-3 items-center text-lg mb-3">
-    <div class="h-8">
-      <mat-icon svgIcon="airtable" inline></mat-icon>
-    </div>
-    <span class="mt-2">API</span>
-  </div>
-  <div class="grid grid-cols-4 gap-3 w-full">
-    <mat-form-field>
-      <mat-label>Base name</mat-label>
-      <input
-        matInput
-        [formControl]="this.inputsService.form.controls.baseName"
-      />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Table name</mat-label>
-      <input
-        matInput
-        [formControl]="this.inputsService.form.controls.tableName"
-      />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Token</mat-label>
-      <input
-        matInput
-        [formControl]="this.inputsService.form.controls.tableName"
-      />
-    </mat-form-field>
-    <button mat-raised-button class="mt-2 !bg-gradient-to-r from-cyan-100 to-red-100">
-      Fetch
-    </button>
-  </div>
-</div>
+<app-api-inputs></app-api-inputs>
 
 @if (appStore.isLoading()) {
   <mat-progress-bar

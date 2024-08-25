@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
 
 export enum QueryParamKey {
   baseName = 'baseName',
@@ -12,41 +12,22 @@ export enum QueryParamKey {
   providedIn: 'root'
 })
 export class QueryParamsStore {
-  queryParams: Record<QueryParamKey, BehaviorSubject<any>> = {
-    [QueryParamKey.baseName]: new BehaviorSubject<string | null>(null),
-    [QueryParamKey.tableName]: new BehaviorSubject<string | null>(null),
-    [QueryParamKey.token]: new BehaviorSubject<string | null>(null),
+  queryParams: Record<QueryParamKey, Observable<string | null>> = {
+    [QueryParamKey.baseName]: this.createQueryParamObservable(QueryParamKey.baseName),
+    [QueryParamKey.tableName]: this.createQueryParamObservable(QueryParamKey.tableName),
+    [QueryParamKey.token]: this.createQueryParamObservable(QueryParamKey.token),
   }
 
   constructor(
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    for (const key in QueryParamKey) {
-      if (this.queryParams[key as keyof typeof QueryParamKey]) {
-        this.subscribeToKeepQueryParamsInUrlUpToDate(key as QueryParamKey);
-      }
-    }
+  ) { }
+
+  createQueryParamObservable(name: string): Observable<string | null> {
+    return this.route.queryParamMap.pipe(map<ParamMap, string | null>(params => params.get(name)));
   }
 
-  private subscribeToKeepQueryParamsInUrlUpToDate(queryParamKey: QueryParamKey) {
-    this.route.queryParamMap.subscribe((params) => {
-      const value = params.get(queryParamKey);
-      if (value == this.queryParams[queryParamKey].value) {
-        return;
-      }
-      this.queryParams[queryParamKey].next(value);
-    });
-    this.queryParams[queryParamKey].subscribe((value) => {
-      const urlValue = this.route.snapshot.queryParamMap.get(queryParamKey);
-      if (urlValue == value) {
-        return;
-      }
-      this.updateQueryParam(queryParamKey, value);
-    });
-  }
-
-  private updateQueryParam(queryParamKey: QueryParamKey, value: any) {
+  update(queryParamKey: QueryParamKey, value: any) {
     if (value == null) {
       return;
     }

@@ -10,7 +10,11 @@ export class AirtableApiService {
     private http: HttpClient
   ) { }
 
-  getRecords(baseId: string, tableIdOrName: string) {
+  getRecords(baseName: string, tableIdOrName: string) {
     return this.http.get(`https://api.airtable.com/v0/${baseId}/${tableIdOrName}`)
+  }
+
+  getBaseByName(baseName: string) {
+    return this.http.get(`https://api.airtable.com/v0/meta/bases`).pipe()
   }
 }
