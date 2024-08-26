@@ -1,5 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { concatMap, map, Observable, of } from 'rxjs';
+import { IBase } from '../interfaces/airtable/IBase';
+import { IRecords } from '../interfaces/airtable/IRecords';
 
 @Injectable({ providedIn: 'root' })
 export class AirtableApiService {
@@ -10,11 +13,20 @@ export class AirtableApiService {
     private http: HttpClient
   ) { }
 
-  getRecords(baseName: string, tableIdOrName: string) {
-    return this.http.get(`https://api.airtable.com/v0/${baseId}/${tableIdOrName}`)
+  getRecords<T>(baseName: string, tableIdOrName: string): Observable<IRecords<T>> {
+    return this.getBaseByName(baseName)
+    .pipe(
+      concatMap(base => base
+        ? this.http.get<IRecords<T>>(`https://api.airtable.com/v0/${base.id}/${tableIdOrName}`)
+        : of<IRecords<T>>({ records: [] })
+      )
+    )
   }
 
-  getBaseByName(baseName: string) {
-    return this.http.get(`https://api.airtable.com/v0/meta/bases`).pipe()
+  getBaseByName(baseName: string): Observable<IBase | undefined> {
+    return this.http.get<IBase[]>(`https://api.airtable.com/v0/meta/bases`)
+      .pipe(
+        map(bases => bases.find(base => base.name === baseName))
+      )
   }
 }
