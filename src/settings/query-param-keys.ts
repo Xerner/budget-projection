@@ -1,6 +1,12 @@
-import { QueryParamKeys } from "../../repos/common/angular/query-params/query-param-keys";
+import { QueryParamKeys } from "../../repos/common/angular/query-params";
 
-export const QueryParams: QueryParamKeys = {
+export interface IGlobalQueryParams {
+  baseName: string;
+  tableName: string;
+  token: string;
+} 
+
+export const QueryParams: QueryParamKeys<IGlobalQueryParams> = {
   baseName: 'baseName',
   tableName: 'tableName',
   token: 'token',

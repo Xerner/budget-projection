@@ -5,7 +5,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideQueryParams } from '../repos/common/angular/query-params/provider';
+import { provideQueryParams } from '../repos/common/angular/query-params';
 import { QueryParams } from './settings/query-param-keys';
 
 export const appConfig: ApplicationConfig = {
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideCharts(withDefaultRegisterables()),
     provideAnimationsAsync(),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
     provideQueryParams(QueryParams),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
   ]
 };

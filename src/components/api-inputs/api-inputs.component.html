@@ -10,21 +10,21 @@
       <mat-label>Base name</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.form.controls.baseName"
+        [formControl]="this.inputsService.form.controls[queryParams.baseName]"
       />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Table name</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.form.controls.tableName"
+        [formControl]="this.inputsService.form.controls[queryParams.tableName]"
       />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Token</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.form.controls.tableName"
+        [formControl]="this.inputsService.form.controls[queryParams.token]"
       />
     </mat-form-field>
     <button mat-raised-button class="mt-2 !bg-gradient-to-r from-cyan-100 to-red-100">
