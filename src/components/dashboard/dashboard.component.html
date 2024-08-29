@@ -1,0 +1,37 @@
+<div class="flex flex-col h-full">
+  <div class="grid grid-cols-4 gap-3 w-full p-3">
+    <mat-form-field>
+      <mat-label>Starting Balance</mat-label>
+      <input
+        matInput
+        [formControl]="
+          this.inputsService.dashboardForm.controls.startingBalance
+        "
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choose the starting date</mat-label>
+      <input matInput [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <!-- All Pull Requests -->
+  <!-- [data]="budgetService.getProjectedPlannedTransactions()" -->
+  <div class="p-3 grow flex justify-center">
+    <div class="h-full">
+      <canvas
+        class="h-full"
+        baseChart
+        [options]="
+          budgetService.getOptions('Budget Projection', 'Date', 'Balance')
+        "
+      ></canvas>
+    </div>
+  </div>
+</div>

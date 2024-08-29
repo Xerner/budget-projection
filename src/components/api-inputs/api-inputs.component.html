@@ -1,4 +1,6 @@
-<div class="p-3 bg-gradient-to-r from-red-100 via-yellow-100 to-cyan-100 border-b-2 border-slate-300">
+<div
+  class="p-3 bg-gradient-to-r from-red-100 via-yellow-100 to-cyan-100 border-b-2 border-slate-300"
+>
   <div class="flex gap-3 items-center text-lg mb-3">
     <div class="h-8">
       <mat-icon svgIcon="airtable" inline></mat-icon>
@@ -10,24 +12,29 @@
       <mat-label>Base name</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.form.controls.baseName"
+        [formControl]="this.inputsService.apiForm.controls.baseName"
       />
     </mat-form-field>
-    <mat-form-field>
+    <!-- <mat-form-field>
       <mat-label>Table name</mat-label>
       <input
-        matInput
-        [formControl]="this.inputsService.form.controls.tableName"
+      matInput
+      [formControl]="this.inputsService.apiForm.controls.tableName"
       />
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field>
       <mat-label>Token</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.form.controls.tableName"
+        [formControl]="this.inputsService.apiForm.controls.token"
       />
     </mat-form-field>
-    <button mat-raised-button class="mt-2 !bg-gradient-to-r from-cyan-100 to-red-100">
+    <div></div>
+    <button
+      mat-raised-button
+      class="mt-2 !bg-gradient-to-r from-cyan-500 via-yellow-500 to-red-500"
+      (click)="this.onFetchClicked()"
+    >
       Fetch
     </button>
   </div>

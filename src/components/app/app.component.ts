@@ -7,6 +7,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ApiInputsComponent } from "../api-inputs/api-inputs.component";
 import { AppStore } from '../../stores/app.store';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,11 @@ import { HttpErrorResponse } from '@angular/common/http';
     RouterOutlet,
     MatProgressBarModule,
     ApiInputsComponent,
-],
+    DashboardComponent,
+  ],
+  host: {
+    class: 'flex flex-col h-full',
+  },
   templateUrl: './app.component.html',
 })
 export class AppComponent {

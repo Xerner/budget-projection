@@ -4,17 +4,20 @@ import { QueryParamKey, QueryParamsStore } from '../stores/query-params.store';
 
 @Injectable({ providedIn: 'root' })
 export class InputsService {
-  form = new FormGroup({
+  apiForm = new FormGroup({
     [QueryParamKey.baseName]: new FormControl<string>('', Validators.required),
-    [QueryParamKey.tableName]: new FormControl<string>('', Validators.required),
     [QueryParamKey.token]: new FormControl<string>('', Validators.required),
+  });
+  dashboardForm = new FormGroup({
+    startingBalance: new FormControl<number>(0, Validators.required),
+    startingDate: new FormControl<number>(0, Validators.required),
   });
 
   constructor(
     private queryParamsStore: QueryParamsStore,
   ) {
-    for (const key in this.form.controls) {
-      this.subscribeToValueChanges(this.form.controls[key as keyof typeof this.form.controls]);
+    for (const key in this.apiForm.controls) {
+      this.subscribeToValueChanges(this.apiForm.controls[key as keyof typeof this.apiForm.controls]);
     }
   }
 

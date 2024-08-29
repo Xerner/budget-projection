@@ -6,10 +6,11 @@ export interface IPlannedTransaction {
     "Is Income": string;
     "Autopay?": boolean;
     Priority: string;
-    Monthly: number;
+    Amount: number;
     Category: string;
     "Day of month": number;
     Description: string;
-    Account: string;
+    Account: string[];
+    "Date Of Transaction": string;
   };
 }

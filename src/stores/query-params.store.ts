@@ -4,7 +4,6 @@ import { map, Observable } from 'rxjs';
 
 export enum QueryParamKey {
   baseName = 'baseName',
-  tableName = 'tableName',
   token = 'token',
 }
 
@@ -14,7 +13,6 @@ export enum QueryParamKey {
 export class QueryParamsStore {
   queryParams: Record<QueryParamKey, Observable<string | null>> = {
     [QueryParamKey.baseName]: this.createQueryParamObservable(QueryParamKey.baseName),
-    [QueryParamKey.tableName]: this.createQueryParamObservable(QueryParamKey.tableName),
     [QueryParamKey.token]: this.createQueryParamObservable(QueryParamKey.token),
   }
 
