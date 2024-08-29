@@ -12,21 +12,21 @@
       <mat-label>Base name</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.apiForm.controls.baseName"
+        [formControl]="this.inputsService.apiForm.controls[queryParams.baseName]"
       />
     </mat-form-field>
     <!-- <mat-form-field>
       <mat-label>Table name</mat-label>
       <input
-      matInput
-      [formControl]="this.inputsService.apiForm.controls.tableName"
+        matInput
+        [formControl]="this.inputsService.apiForm.controls[queryParams.tableName]"
       />
     </mat-form-field> -->
     <mat-form-field>
       <mat-label>Token</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.apiForm.controls.token"
+        [formControl]="this.inputsService.apiForm.controls[queryParams.token]"
       />
     </mat-form-field>
     <div></div>

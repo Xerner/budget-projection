@@ -6,6 +6,8 @@ import { routes } from './app.routes';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
+import { provideQueryParams } from '../repos/common/angular/query-params';
+import { QueryParams } from './settings/query-param-keys';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,5 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideCharts(withDefaultRegisterables()),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideAnimationsAsync(),
     provideLuxonDateAdapter()
+    provideAnimationsAsync(),
+    provideQueryParams(QueryParams),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ]
 };

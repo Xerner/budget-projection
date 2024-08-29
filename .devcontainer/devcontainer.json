@@ -1,29 +1,29 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
-	"name": "Alpine",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.20",
-	"features": {
-		"ghcr.io/cirolosapio/devcontainers-features/alpine-bash:0": {},
-		"ghcr.io/cirolosapio/devcontainers-features/alpine-curl:0": {},
-		"ghcr.io/cirolosapio/devcontainers-features/alpine-git:0": {},
-		"ghcr.io/cirolosapio/devcontainers-features/alpine-node:0": {},
-		"ghcr.io/cirolosapio/devcontainers-features/alpine-openssh:0": {}
-	}
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "initializeCommand": {
+    "POWERSHELL_SSH_SETUP": "powershell .devcontainer/setup-ssh-env.ps1"
+  },
+  "runArgs": ["--env-file", "${localWorkspaceFolder}/.devcontainer/.env"],
+  "build": {
+    "dockerfile": "./docker/Dockerfile.develop"
+  },
+  "containerEnv": {
+    "BUILD_CONFIGURATION": "DEVELOPMENT"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "PKief.material-icon-theme",
+        "usernamehw.errorlens",
+        "ms-azuretools.vscode-docker",
+        "cyrilletuzi.angular-schematics",
+        "Angular.ng-template"
+      ]
+    }
+  },
+  "portsAttributes": {
+    "4200": {
+      "label": "4200:4200"
+    }
+  }
 }
