@@ -1,6 +1,7 @@
 {
   "initializeCommand": {
-    "POWERSHELL_SSH_SETUP": "powershell .devcontainer/setup-ssh-env.ps1"
+    // "POWERSHELL_SSH_SETUP": "powershell .devcontainer/setup-ssh-env.ps1"
+    "BASH_SSH_SETUP": "bash .devcontainer/setup-ssh-env.sh"
   },
   "runArgs": ["--env-file", "${localWorkspaceFolder}/.devcontainer/.env"],
   "build": {
