@@ -2,3 +2,7 @@
 	path = src/common
 	url = git@github.com:Xerner/common-ts
 	branch = development
+[submodule ".devcontainer"]
+	path = .devcontainer
+	url = git@github.com:Xerner/.devcontainer
+	branch = main
