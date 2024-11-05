@@ -12,7 +12,7 @@
       <mat-label>Base name</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.apiForm.controls[queryParams.baseName]"
+        [formControl]="this.inputsService.apiForm.controls[queryParamService.keys.baseName]"
       />
     </mat-form-field>
     <!-- <mat-form-field>
@@ -26,7 +26,7 @@
       <mat-label>Token</mat-label>
       <input
         matInput
-        [formControl]="this.inputsService.apiForm.controls[queryParams.token]"
+        [formControl]="this.inputsService.apiForm.controls[queryParamService.keys.token]"
       />
     </mat-form-field>
     <div></div>

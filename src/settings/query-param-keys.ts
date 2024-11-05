@@ -1,4 +1,4 @@
-import { QueryParamKeys } from "../../repos/common/angular/query-params";
+import { QueryParamKeys } from "../common/angular/services/query-params/types/QueryParamKeys";
 
 export interface IGlobalQueryParams {
   baseName: string;

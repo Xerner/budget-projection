@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +8,7 @@ import { InputsService } from '../../services/inputs.service';
 import { BudgetService } from '../../services/budget.service';
 import { map, tap } from 'rxjs';
 import { IGlobalQueryParams } from '../../settings/query-param-keys';
+import { QueryParamsService } from '../../common/angular/services';
 
 @Component({
   selector: 'app-api-inputs',
@@ -25,7 +26,7 @@ export class ApiInputsComponent {
   constructor(
     protected inputsService: InputsService,
     private budgetService: BudgetService,
-    @Inject(QUERY_PARAM_KEYS) protected queryParams: QueryParamKeys<IGlobalQueryParams>
+    protected queryParamService: QueryParamsService<IGlobalQueryParams>,
   ) { }
 
   onFetchClicked() {

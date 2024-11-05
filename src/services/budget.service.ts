@@ -3,10 +3,11 @@ import { Injectable, signal } from '@angular/core';
 import { AirtableApiService } from './airtable-api.service';
 import { IPlannedTransaction } from '../interfaces/airtable/ITransaction';
 import { InputsService } from './inputs.service';
-import { QueryParamKey } from '../stores/query-params.store';
 import { ITransaction } from '../interfaces/ITransaction';
 import { DateTime } from 'luxon';
 import { map, Observable, of } from 'rxjs';
+import { IGlobalQueryParams } from '../settings/query-param-keys';
+import { QueryParamsService } from '../common/angular/services';
 
 export const TRANSACTIONS_TABLE_NAME = 'Transactions';
 export const PLANNED_TRANSACTIONS_TABLE_NAME = 'Planned Transactions';
@@ -19,6 +20,7 @@ export class BudgetService {
   constructor(
     private airtableApiService: AirtableApiService,
     private inputsService: InputsService,
+    private queryParamsService: QueryParamsService<IGlobalQueryParams>,
   ) {
     this.inputsService.dashboardForm.controls.startingBalance.valueChanges.subscribe(value => {
       this.startingBalance.set(value);
@@ -29,7 +31,7 @@ export class BudgetService {
   }
 
   getTransactions(): Observable<ITransaction[]> {
-    var baseName = this.inputsService.apiForm.controls[QueryParamKey.baseName].value;
+    var baseName = this.inputsService.apiForm.controls[this.queryParamsService.keys.baseName].value;
     if (!baseName) {
       return of([]);
     }
@@ -38,7 +40,7 @@ export class BudgetService {
   }
 
   getPlannedTransactions(): Observable<IPlannedTransaction[]> {
-    var baseName = this.inputsService.apiForm.controls[QueryParamKey.baseName].value;
+    var baseName = this.inputsService.apiForm.controls[this.queryParamsService.keys.baseName].value;
     if (!baseName) {
       return of([]);
     }
