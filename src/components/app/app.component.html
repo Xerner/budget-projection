@@ -1,19 +1,45 @@
 <div class="h-full flex flex-col">
   <div>
-    <app-api-inputs></app-api-inputs>
+    <mat-expansion-panel
+      [ngClass]="{
+        '!rounded-none !shadow-none !bg-gradient-to-r !from-red-100 !via-yellow-100 !to-cyan-100': true,
+        'border-b-4 border-blue-600': !appStore.isLoading()
+      }"
+      hideToggle=""
+    >
+      <mat-expansion-panel-header class="!px-3">
+        <div class="flex items-center justify-between gap-3 p-1 w-full" matTooltip="Show more">
+          <div class="flex items-center gap-3 text-xl">
+            <mat-icon svgIcon="airtable" inline class="!h-6"></mat-icon>
+            <div class="text-2xl font-light mt-1">Budget Dashboard</div>
+          </div>
+          <mat-icon>edit</mat-icon>
+        </div>
+      </mat-expansion-panel-header>
+      <app-inputs class="border-b"></app-inputs>
+    </mat-expansion-panel>
 
     @if (appStore.isLoading()) {
     <mat-progress-bar
       mode="query"
       class="!bg-gradient-to-r from-blue-600 to-purple-600"
     ></mat-progress-bar>
-    } @if (appStore.httpErrors()) {
+    } @if (errorsService.errors().length > 0) {
     <div class="flex flex-col gap-3 p-3 bg-red-200 divide-y">
-      @for (error of appStore.httpErrors(); track $index) {
-      <div>
-        <div>Error at {{ error[0] }}</div>
+      @for (error of errorsService.errors(); track $index) {
+      <div class="flex justify-between gap-3">
         <div>
-          {{ errorToString(error[1]) }}
+          @if (error.name !== null && error.name !== "") {
+            <div>Error: {{ error.name }}</div>
+          }
+          <div>
+            {{ error.message }}
+          </div>
+        </div>
+        <div>
+          <button mat-icon-button (click)="errorsService.removeError(error)">
+            <mat-icon>close</mat-icon>
+          </button>
         </div>
       </div>
       }

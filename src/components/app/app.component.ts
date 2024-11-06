@@ -2,12 +2,16 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { InputsService } from '../../services/inputs.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { ApiInputsComponent } from "../api-inputs/api-inputs.component";
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { InputsComponent } from "../inputs/inputs.component";
 import { AppStore } from '../../stores/app.store';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { ErrorsService } from '../../services/errors.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +19,12 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
   imports: [
     RouterOutlet,
     MatProgressBarModule,
-    ApiInputsComponent,
+    InputsComponent,
     DashboardComponent,
+    MatIconModule,
+    MatTooltipModule,
+    MatExpansionModule,
+    CommonModule,
   ],
   host: {
     class: 'flex flex-col h-full',
@@ -29,6 +37,7 @@ export class AppComponent {
     protected appStore: AppStore,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
+    protected errorsService: ErrorsService,
   ) {
     this.matIconRegistry.addSvgIcon(
       'airtable',

@@ -1,0 +1,43 @@
+<div class="grid grid-cols-3 gap-6 w-full">
+  <div class="font-medium font-xl col-span-3">API Inputs</div>
+
+  <mat-form-field>
+    <mat-label>Set token</mat-label>
+    <input
+      matInput
+      [formControl]="this.inputsService.apiForm.controls.token"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose base</mat-label>
+    <mat-select>
+      @for (base of airtableService.bases(); track $index) {
+        <mat-option [value]="base">{{base.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <div></div>
+</div>
+
+<div class="grid grid-cols-3 gap-6 w-full">
+  <div class="font-medium font-xl col-span-3">Budget Inputs</div>
+
+  <mat-form-field class="col-span-2">
+    <mat-label>Transaction table name</mat-label>
+    <input
+      matInput
+      [formControl]="this.inputsService.apiForm.controls.baseName"
+    />
+  </mat-form-field>
+  
+  <button
+    mat-raised-button
+    class="mt-2 !bg-gradient-to-r from-cyan-200 via-yellow-200 to-red-200"
+    (click)="this.onFetchClicked()"
+  >
+    Fetch Transactions
+  </button>
+</div>
+

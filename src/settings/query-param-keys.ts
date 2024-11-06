@@ -2,12 +2,12 @@ import { QueryParamKeys } from "../common/angular/services/query-params/types/Qu
 
 export interface IGlobalQueryParams {
   baseName: string;
-  tableName: string;
+  transactionTableName: string;
   token: string;
 } 
 
 export const QueryParams: QueryParamKeys<IGlobalQueryParams> = {
   baseName: 'baseName',
-  tableName: 'tableName',
+  transactionTableName: 'transactionTableName',
   token: 'token',
 }
