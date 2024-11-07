@@ -1,6 +1,6 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BearerTokenAuthInterceptor } from './common/angular/interceptors/auth/bearer-auth.interceptor';
+import { TokenAuthInterceptor } from './common/angular/interceptors/auth/token-auth.interceptor';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
@@ -9,7 +9,6 @@ import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { provideQueryParams } from './common/angular/services';
 import { QueryParams } from './models/query-param-keys';
 import { provideBearerTokenAuth } from './common/angular/interceptors';
-import { TokenService } from './services/token.service';
 import { LoadingService, provideLoadingTracking } from './common/angular/services/loading';
 import { provideNotificationPools } from './common/angular/services/notifications';
 import { NotificationTypes } from './models/NotificationTypes';
@@ -19,13 +18,13 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptorsFromDi()),
     provideCharts(withDefaultRegisterables()),
-    { provide: HTTP_INTERCEPTORS, useClass: BearerTokenAuthInterceptor, multi: true }, provideAnimationsAsync(),
+    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true }, provideAnimationsAsync(),
     provideLuxonDateAdapter(),
     provideAnimationsAsync(),
     provideQueryParams(QueryParams),
-    provideBearerTokenAuth(TokenService),
+    provideBearerTokenAuth(),
     provideLoadingTracking(LoadingService),
     provideNotificationPools(NotificationTypes.Errors),
-    { provide: HTTP_INTERCEPTORS, useClass: BearerTokenAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true },
   ]
 };

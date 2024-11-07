@@ -14,7 +14,7 @@
     <mat-select [formControl]="this.inputsService.apiForm.controls.baseName">
       <mat-option [value]=""></mat-option>
       @for (base of airtableService.bases(); track $index) {
-        <mat-option [value]="base">{{base.name}}</mat-option>
+        <mat-option [value]="base.id">{{base.name}}</mat-option>
       }
     </mat-select>
     <mat-hint>Enter the token to load possible options</mat-hint>
@@ -34,7 +34,7 @@
     <mat-select [formControl]="this.inputsService.apiForm.controls.transactionTableName">
       <mat-option [value]=""></mat-option>
       @for (table of selectedBasesTables(); track $index) {
-        <mat-option [value]="table">{{table.name}}</mat-option>
+        <mat-option [value]="table.id">{{table.name}}</mat-option>
       }
     </mat-select>
     @if (loadingService.isLoading(EndPoints.GET_BASESCHEMA)) {

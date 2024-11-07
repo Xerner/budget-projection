@@ -32,7 +32,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 export class InputsComponent {
   EndPoints = Endpoints;
   selectedBasesTables = computed(() => {
-    var selectedBaseSchema = this.airtableService.baseSchemas.find(schema => schema().baseId === this.inputsService.currentlySelectedBase());
+    var currentlySelectedBase = this.inputsService.currentlySelectedBase();
+    var selectedBaseSchema = this.airtableService.baseSchemas.find(schema => schema().baseId === currentlySelectedBase);
     if (selectedBaseSchema === undefined) {
       return [];
     }

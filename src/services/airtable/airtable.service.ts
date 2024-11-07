@@ -32,6 +32,9 @@ export class AirtableService {
   }
 
   fetchBaseSchema(baseId: string) {
+    if (!baseId) {
+      return;
+    }
     this.basesApi.getBaseSchema(baseId).subscribe(schemaResponse => {
       var baseSchema = this._baseSchemas.find(schema => schema().baseId === baseId);
       if (baseSchema === undefined) {
@@ -43,6 +46,9 @@ export class AirtableService {
   }
 
   fetchRecords<T>(baseId: string, tableIdOrName: string) {
+    if (!baseId || !tableIdOrName) {
+      return;
+    }
     this.recordsApi.getRecords<T>(baseId, tableIdOrName).subscribe(recordsResponse => {
       var records = this._records.find(records => records().baseId === baseId && records().tableIdOrName === tableIdOrName);
       if (records === undefined) {

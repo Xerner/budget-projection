@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { InputsService } from './inputs.service';
-import { IBearerTokenProvider } from '../common/angular/interceptors';
+import { Injectable, signal } from '@angular/core';
+import { ITokenService } from '../common/angular/interceptors';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class TokenService implements IBearerTokenProvider {
-  constructor(
-    private inputsService: InputsService
-  ) { }
+@Injectable()
+export class TokenService implements ITokenService {
+  token = signal<string>("");
 
   getToken() {
-    return this.inputsService.apiForm.controls.token.value ?? "";
+    return this.token();
+  }
+
+  setToken(token: string) {
+    this.token.set(token);
   }
 }
