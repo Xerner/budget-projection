@@ -22,7 +22,7 @@ export class AirtableService {
 
   constructor(
     private basesApi: BasesApiService,
-    private recordsApi: RecordsApiService
+    private recordsApi: RecordsApiService,
   ) { }
 
   fetchBases() {

@@ -10,8 +10,9 @@ import { InputsComponent } from "../inputs/inputs.component";
 import { AppStore } from '../../stores/app.store';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { ErrorsService } from '../../services/errors.service';
 import { CommonModule } from '@angular/common';
+import { NotificationPoolService } from '../../common/angular/services/notifications/notification-pool.service';
+import { NotificationTypes } from '../../models/NotificationTypes';
 
 @Component({
   selector: 'app-root',
@@ -32,12 +33,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  NotificationTypes = NotificationTypes;
+  
   constructor(
     protected inputsService: InputsService,
     protected appStore: AppStore,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    protected errorsService: ErrorsService,
+    protected notifications: NotificationPoolService<NotificationTypes>,
   ) {
     this.matIconRegistry.addSvgIcon(
       'airtable',

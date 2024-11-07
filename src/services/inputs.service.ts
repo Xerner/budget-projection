@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IGlobalQueryParams, QueryParams } from '../settings/query-param-keys';
+import { IGlobalQueryParams, QueryParams } from '../models/query-param-keys';
 import { QueryParamsService } from '../common/angular/services/query-params/query-params.service';
 import { QueryParamKeys } from '../common/angular/services/query-params/types/QueryParamKeys';
 import { InterfaceForm } from '../common/angular/types';
 import { AirtableService } from './airtable/airtable.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({ providedIn: 'root' })
 export class InputsService {
@@ -18,10 +19,12 @@ export class InputsService {
     startingDate: new FormControl<number>(0, Validators.required),
   });
 
+  currentlySelectedBase = toSignal(this.apiForm.controls.baseName.valueChanges);
+
   onControlChanges: Record<keyof IGlobalQueryParams, (value: any) => void> = {
+    token: (_) => this.airtableService.fetchBases(),
     baseName: (baseName) => this.airtableService.fetchBaseSchema(baseName),
-    token: (baseName) => this.airtableService.fetchBases(),
-    transactionTableName: (baseName) => null,
+    transactionTableName: (_) => null,
   };
 
   constructor(
