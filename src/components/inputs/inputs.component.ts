@@ -47,10 +47,6 @@ export class InputsComponent {
     protected loadingService: LoadingService,
   ) { }
 
-  ngOnInit(): void {
-    
-  }
-
   onFetchClicked() {
     this.budgetService.getPlannedTransactions()
     .pipe(

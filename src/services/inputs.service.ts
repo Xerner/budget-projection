@@ -33,20 +33,36 @@ export class InputsService {
   ) {
     for (const key in this.apiForm.controls) {
       var control = this.apiForm.controls[key as keyof typeof this.apiForm.controls];
-      control.valueChanges.subscribe(this.onControlChanges[key as keyof IGlobalQueryParams].bind(this));
-      this.subscribeToValueChanges(control);
+      var name = this.getControlName(control) as keyof IGlobalQueryParams;
+      this.subscribeToSpecificValueChanges(control, name);
+      this.subscribeToUniversalValueChanges(control, name);
     }
   }
 
-  private subscribeToValueChanges(control: FormControl) {
-    var name = this.getControlName(control) as keyof QueryParamKeys<IGlobalQueryParams>;
-    this.queryParams.observables[name]!.subscribe(queryParamValue => {
-      if (queryParamValue != control.value) {
-        control.setValue(queryParamValue, { emitEvent: false });
+  private subscribeToSpecificValueChanges(control: FormControl, key: keyof IGlobalQueryParams) {
+    control.valueChanges.subscribe(this.onControlChanges[key].bind(this));
+  }
+
+  private subscribeToUniversalValueChanges(control: FormControl, key: keyof IGlobalQueryParams) {
+    this.setControlValueToQueryParamSubscription(control, key);
+    this.setQueryParamToControlValueSubscription(control, key);
+  }
+
+  private setControlValueToQueryParamSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
+    return this.queryParams.observables[key]!.subscribe(queryParamValue => {
+      if (queryParamValue === control.value) {
+        return;
       }
+      control.setValue(queryParamValue);
     });
-    control.valueChanges.subscribe(value => {
-      this.queryParams.set(name, value);
+  }
+
+  private setQueryParamToControlValueSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
+    return control.valueChanges.subscribe(() => {
+      if (this.queryParams.params[key]() == control.value) {
+        return;
+      }
+      this.queryParams.set(key, control.value);
     });
   }
 
