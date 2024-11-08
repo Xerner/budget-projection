@@ -1,5 +1,5 @@
-<div class="grid grid-cols-3 gap-6 w-full">
-  <div class="font-medium font-xl col-span-3">API Inputs</div>
+<div class="grid grid-cols-4 gap-x-6 gap-y-3 w-full">
+  <div class="font-medium font-xl col-span-4">API Inputs</div>
 
   <mat-form-field>
     <mat-label>Set token</mat-label>
@@ -18,28 +18,62 @@
       }
     </mat-select>
     <mat-hint>Enter the token to load possible options</mat-hint>
-    @if (loadingService.isLoading(EndPoints.GET_BASES)) {
-      <mat-progress-bar mode="query"></mat-progress-bar>
-    }
   </mat-form-field>
 
-  <div></div>
-</div>
-
-<div class="grid grid-cols-3 gap-6 w-full">
-  <div class="font-medium font-xl col-span-3">Budget Inputs</div>
-
-  <mat-form-field class="col-span-2">
-    <mat-label>Choose Transaction tables name</mat-label>
+  <mat-form-field>
+    <mat-label>Choose Transactions tables name</mat-label>
     <mat-select [formControl]="this.inputsService.apiForm.controls.transactionTableName">
       <mat-option [value]=""></mat-option>
       @for (table of selectedBasesTables(); track $index) {
         <mat-option [value]="table.id">{{table.name}}</mat-option>
       }
     </mat-select>
-    @if (loadingService.isLoading(EndPoints.GET_BASESCHEMA)) {
-      <mat-progress-bar mode="query"></mat-progress-bar>
-    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose Planned Transactions tables name</mat-label>
+    <mat-select [formControl]="this.inputsService.apiForm.controls.transactionTableName">
+      <mat-option [value]=""></mat-option>
+      @for (table of selectedBasesTables(); track $index) {
+        <mat-option [value]="table.id">{{table.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="grid grid-cols-4 gap-x-6 gap-y-3 w-full">
+  <div class="font-medium font-xl col-span-4">Budget Inputs</div>
+
+  <mat-form-field>
+    <mat-label>Starting Balance</mat-label>
+    <input
+      matInput
+      [formControl]="
+        this.inputsService.dashboardForm.controls.startingBalance
+      "
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose the starting date</mat-label>
+    <input matInput [matDatepicker]="startDatePicker" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="startDatePicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose the ending date</mat-label>
+    <input matInput [matDatepicker]="endDatePicker" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="endDatePicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
   </mat-form-field>
   
   <button
@@ -50,4 +84,3 @@
     Fetch Transactions
   </button>
 </div>
-

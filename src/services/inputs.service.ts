@@ -3,9 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IGlobalQueryParams } from '../models/query-param-keys';
 import { QueryParamsService } from '../common/angular/services/query-params/query-params.service';
 import { InterfaceForm } from '../common/angular/types';
-import { AirtableService } from './airtable/airtable.service';
+import { AirtableService } from './airtable.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { TOKEN_SERVICE, ITokenService } from '../common/angular/interceptors';
+import { DateTime } from 'luxon';
+import { ITokenService, TOKEN_SERVICE } from '../common/angular/interceptors';
 
 @Injectable({ providedIn: 'root' })
 export class InputsService {
@@ -13,21 +14,24 @@ export class InputsService {
     token: new FormControl<string>('', Validators.required),
     baseName: new FormControl<string>('', Validators.required),
     transactionTableName: new FormControl<string>('', Validators.required),
+    plannedTransactionTableName: new FormControl<string>('', Validators.required),
   });
   dashboardForm = new FormGroup({
     startingBalance: new FormControl<number>(0, Validators.required),
-    startingDate: new FormControl<number>(0, Validators.required),
+    startingDate: new FormControl<DateTime>(DateTime.now(), Validators.required),
+    endingDate: new FormControl<DateTime>(DateTime.now(), Validators.required),
   });
 
-  currentlySelectedBase = toSignal(this.apiForm.controls.baseName.valueChanges);
+  currentlySelectedBase = toSignal(this.apiForm.controls.baseName!.valueChanges);
 
-  onControlChanges: Record<keyof IGlobalQueryParams, (value: any) => void> = {
+  onApiControlChanges: Record<keyof IGlobalQueryParams, (value: any) => void> = {
     token: (token) => {
       this.tokenService.setToken(token);
-      this.airtableService.fetchBases()
+      this.airtableService.fetchBases();
     },
     baseName: (baseName) => this.airtableService.fetchBaseSchema(baseName),
     transactionTableName: (_) => null,
+    plannedTransactionTableName: (_) => null,
   };
 
   constructor(
@@ -44,7 +48,7 @@ export class InputsService {
   }
 
   private subscribeToSpecificValueChanges(control: FormControl, key: keyof IGlobalQueryParams) {
-    control.valueChanges.subscribe(this.onControlChanges[key].bind(this));
+    control.valueChanges.subscribe(this.onApiControlChanges[key].bind(this));
   }
 
   private subscribeToUniversalValueChanges(control: FormControl, key: keyof IGlobalQueryParams) {
@@ -53,18 +57,17 @@ export class InputsService {
   }
 
   private setControlValueToQueryParamSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
-    return this.queryParams.observables[key]!.subscribe(paramValue => {
-      if (paramValue[0] === control.value) {
+    return this.queryParams.observables[key]!.subscribe(queryParamValue => {
+      if (queryParamValue === control.value) {
         return;
       }
-      control.setValue(paramValue);
+      control.setValue(queryParamValue);
     });
   }
 
   private setQueryParamToControlValueSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
     return control.valueChanges.subscribe(() => {
-      var paramValue = this.queryParams.params[key]()[0]
-      if (paramValue === control.value) {
+      if (this.queryParams.params[key]() == control.value) {
         return;
       }
       this.queryParams.set(key, control.value);

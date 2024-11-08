@@ -1,9 +1,9 @@
 import { Injectable, signal, Signal, WritableSignal } from '@angular/core';
-import { RecordsApiService } from './records.api.service';
-import { BasesApiService } from './bases.api.service';
-import { IBaseSchemaExt } from '../../models/airtable/api/IBaseSchema';
-import { IRecordsExt } from '../../models/airtable/api/IRecords';
-import { IBase } from '../../models/airtable/api/IBase';
+import { RecordsApiService } from './api/records.api.service';
+import { BasesApiService } from './api/bases.api.service';
+import { IBaseSchemaExt } from '../models/airtable/api/IBaseSchema';
+import { IRecordsExt } from '../models/airtable/api/IRecords';
+import { IBase } from '../models/airtable/api/IBase';
 
 @Injectable({ providedIn: 'root' })
 export class AirtableService {
@@ -14,11 +14,6 @@ export class AirtableService {
   baseSchemas: Signal<IBaseSchemaExt>[] = this._baseSchemas;
   /** table name to records */
   records: Signal<IRecordsExt<any>>[] = this._records
-
-  api = {
-    bases: this.basesApi,
-    records: this.recordsApi,
-  }
 
   constructor(
     private basesApi: BasesApiService,

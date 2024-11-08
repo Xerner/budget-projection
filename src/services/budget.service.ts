@@ -1,15 +1,11 @@
 import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { Injectable, signal } from '@angular/core';
-import { AirtableService } from './airtable/airtable.service';
 import { IPlannedTransaction } from '../models/airtable/ITransaction';
 import { InputsService } from './inputs.service';
 import { ITransaction } from '../models/ITransaction';
 import { DateTime } from 'luxon';
-import { map, Observable, of } from 'rxjs';
-import { IRecordsExt } from '../models/airtable/api/IRecords';
-
-export const TRANSACTIONS_TABLE_NAME = 'Transactions';
-export const PLANNED_TRANSACTIONS_TABLE_NAME = 'Planned Transactions';
+import { AirtableService } from './airtable.service';
+import { forkJoin } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class BudgetService {
@@ -17,32 +13,23 @@ export class BudgetService {
   startingDate = signal<DateTime | null>(DateTime.now());
 
   constructor(
-    private airtableService: AirtableService,
     private inputsService: InputsService,
+    private airtableService: AirtableService,
   ) {
     this.inputsService.dashboardForm.controls.startingBalance.valueChanges.subscribe(value => {
       this.startingBalance.set(value);
     });
-    this.inputsService.dashboardForm.controls.startingBalance.valueChanges.subscribe(date => {
-      this.startingBalance.set(date);
+    this.inputsService.dashboardForm.controls.startingDate.valueChanges.subscribe(date => {
+      this.startingDate.set(date);
     });
   }
 
-  fetchTransactions(): Observable<IRecordsExt<ITransaction>> {
-    var baseName = this.inputsService.apiForm.controls.baseName.value;
-    if (!baseName) {
-      return of();
-    }
-    return this.airtableService.api.records.getRecords<ITransaction>(baseName, TRANSACTIONS_TABLE_NAME)
-  }
-
-  getPlannedTransactions(): Observable<IPlannedTransaction[]> {
-    var baseName = this.inputsService.apiForm.controls.baseName.value;
-    if (!baseName) {
-      return of([]);
-    }
-    return this.airtableService.api.records.getRecords<IPlannedTransaction>(baseName, PLANNED_TRANSACTIONS_TABLE_NAME)
-      .pipe(map(response => response.records));
+  fetchAll() {
+    var baseId = this.inputsService.apiForm.controls.baseName.value;
+    var transactionsTableName = this.inputsService.apiForm.controls.transactionTableName.value;
+    var plannedTransactionsTableName = this.inputsService.apiForm.controls.plannedTransactionTableName.value;
+    this.airtableService.fetchRecords<IPlannedTransaction>(baseId, plannedTransactionsTableName);
+    this.airtableService.fetchRecords<ITransaction>(baseId, transactionsTableName);
   }
 
   getProjectedPlannedTransactions(plannedTransactions: IPlannedTransaction[]): ITransaction[] {
