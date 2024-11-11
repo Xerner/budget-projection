@@ -13,6 +13,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { NotificationPoolService } from '../../common/angular/services/notifications/notification-pool.service';
 import { NotificationTypes } from '../../models/NotificationTypes';
+import { TablesComponent } from '../tables/tables.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { NotificationTypes } from '../../models/NotificationTypes';
     MatTooltipModule,
     MatExpansionModule,
     CommonModule,
+    TablesComponent,
   ],
   host: {
     class: 'flex flex-col h-full',
@@ -34,7 +36,7 @@ import { NotificationTypes } from '../../models/NotificationTypes';
 })
 export class AppComponent {
   NotificationTypes = NotificationTypes;
-  
+
   constructor(
     protected inputsService: InputsService,
     protected appStore: AppStore,

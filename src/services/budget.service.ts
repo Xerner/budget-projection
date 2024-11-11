@@ -1,11 +1,10 @@
 import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { Injectable, signal } from '@angular/core';
-import { IPlannedTransaction } from '../models/airtable/ITransaction';
 import { InputsService } from './inputs.service';
-import { ITransaction } from '../models/ITransaction';
+import { Transaction } from '../models/records/ITransaction';
 import { DateTime } from 'luxon';
 import { AirtableService } from './airtable.service';
-import { forkJoin } from 'rxjs';
+import { PlannedTransaction } from '../models/records/IPlannedTransaction';
 
 @Injectable({ providedIn: 'root' })
 export class BudgetService {
@@ -25,28 +24,32 @@ export class BudgetService {
   }
 
   fetchAll() {
-    var baseId = this.inputsService.apiForm.controls.baseName.value;
+    var base = this.airtableService.bases().find(base => base.name === this.inputsService.apiForm.controls.baseName.value);
+    if (base === undefined) {
+      return;
+    }
     var transactionsTableName = this.inputsService.apiForm.controls.transactionTableName.value;
     var plannedTransactionsTableName = this.inputsService.apiForm.controls.plannedTransactionTableName.value;
-    this.airtableService.fetchRecords<IPlannedTransaction>(baseId, plannedTransactionsTableName);
-    this.airtableService.fetchRecords<ITransaction>(baseId, transactionsTableName);
+    this.airtableService.fetchRecords<PlannedTransaction>(base.id, plannedTransactionsTableName);
+    this.airtableService.fetchRecords<Transaction>(base.id, transactionsTableName);
   }
 
-  getProjectedPlannedTransactions(plannedTransactions: IPlannedTransaction[]): ITransaction[] {
+  getProjectedPlannedTransactions(plannedTransactions: PlannedTransaction[]): Transaction[] {
     return plannedTransactions
-      .filter(plannedTransaction => plannedTransaction.fields.Active)
+      .filter(plannedTransaction => plannedTransaction.Active)
       .map(plannedTransaction => {
         return {
-          category: plannedTransaction.fields.Category,
-          description: plannedTransaction.fields.Description,
-          account: plannedTransaction.fields.Account,
-          date: plannedTransaction.fields['Date Of Transaction'],
-          amount: plannedTransaction.fields.Amount,
+          Category: plannedTransaction.Category,
+          Description: plannedTransaction.Description,
+          Account: plannedTransaction.Account,
+          Date: plannedTransaction['Date Of Transaction'],
+          Amount: plannedTransaction.Amount,
+          "Running Balance": 0,
         };
     });
   }
 
-  getProjectedPlannedTransactionsChartData(plannedTransactions: IPlannedTransaction[]) {
+  getProjectedPlannedTransactionsChartData(plannedTransactions: PlannedTransaction[]) {
     var plannedTransactionsChartData = this.getChartDataTemplate<number>('Planned Transactions');
     // TODO: Implement this method
     return plannedTransactionsChartData;

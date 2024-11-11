@@ -7,8 +7,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { InputsService } from '../../services/inputs.service';
 import { BudgetService } from '../../services/budget.service';
-import { IGlobalQueryParams } from '../../models/query-param-keys';
-import { QueryParamsService } from '../../common/angular/services';
 import { AirtableService } from '../../services/airtable.service';
 import { LoadingService } from '../../common/angular/services/loading';
 import { Endpoints } from '../../models/Endpoints';
@@ -33,11 +31,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 export class InputsComponent {
   EndPoints = Endpoints;
   selectedBasesTables = computed(() => {
-    var selectedBaseSchema = this.airtableService.baseSchemas.find(schema => schema().baseId === this.inputsService.currentlySelectedBase());
-    if (selectedBaseSchema === undefined) {
+    var selectedBaseSchema = this.airtableService.baseSchema();
+    if (selectedBaseSchema === null) {
       return [];
     }
-    return selectedBaseSchema().tables;
+    return selectedBaseSchema.tables;
   });
 
   constructor(

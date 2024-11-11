@@ -1,0 +1,61 @@
+<table mat-table [dataSource]="plannedTransactionsDataSource()" matSort>
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Description]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Active">
+    <th mat-header-cell *matHeaderCellDef> Active </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Active]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Amount">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Amount]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Priority">
+    <th mat-header-cell *matHeaderCellDef> Priority </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Priority]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Category">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Category]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.IsIncome">
+    <th mat-header-cell *matHeaderCellDef> Is Income </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.IsIncome]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Account">
+    <th mat-header-cell *matHeaderCellDef> Account </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Account]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Occurence">
+    <th mat-header-cell *matHeaderCellDef> Occurence </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Occurence]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Autopay">
+    <th mat-header-cell *matHeaderCellDef> Autopay </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Autopay]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.Shared">
+    <th mat-header-cell *matHeaderCellDef> Shared? </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.Shared]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="PlannedTransactionTableColumns.DateOfTransaction">
+    <th mat-header-cell *matHeaderCellDef> Date of Transaction </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionTableColumns.DateOfTransaction]}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedPlannedTransactionColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedPlannedTransactionColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>

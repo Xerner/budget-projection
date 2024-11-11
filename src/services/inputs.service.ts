@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Signal, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IGlobalQueryParams } from '../models/query-param-keys';
 import { QueryParamsService } from '../common/angular/services/query-params/query-params.service';
@@ -7,6 +7,7 @@ import { AirtableService } from './airtable.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DateTime } from 'luxon';
 import { ITokenService, TOKEN_SERVICE } from '../common/angular/interceptors';
+import { QUERY_PARAM_KEYS, QueryParamKeys } from '../common/angular/services';
 
 @Injectable({ providedIn: 'root' })
 export class InputsService {
@@ -22,20 +23,28 @@ export class InputsService {
     endingDate: new FormControl<DateTime>(DateTime.now(), Validators.required),
   });
 
-  currentlySelectedBase = toSignal(this.apiForm.controls.baseName!.valueChanges);
+  currentlySelectedBase = signal<string>('');
 
   onApiControlChanges: Record<keyof IGlobalQueryParams, (value: any) => void> = {
     token: (token) => {
       this.tokenService.setToken(token);
       this.airtableService.fetchBases();
     },
-    baseName: (baseName) => this.airtableService.fetchBaseSchema(baseName),
+    baseName: (baseName) => {
+      var baseId = this.airtableService.bases().find(base => base.name === baseName)?.id;
+      if (baseId == undefined) {
+        this.airtableService.baseSchema.set(null);
+        return;
+      }
+      this.airtableService.fetchBaseSchema(baseId)
+    },
     transactionTableName: (_) => null,
     plannedTransactionTableName: (_) => null,
   };
 
   constructor(
     private queryParams: QueryParamsService<IGlobalQueryParams>,
+    @Inject(QUERY_PARAM_KEYS) private queryParamKeys: QueryParamKeys<IGlobalQueryParams>,
     private airtableService: AirtableService,
     @Inject(TOKEN_SERVICE) private tokenService: ITokenService,
   ) {
@@ -57,17 +66,19 @@ export class InputsService {
   }
 
   private setControlValueToQueryParamSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
-    return this.queryParams.observables[key]!.subscribe(queryParamValue => {
-      if (queryParamValue === control.value) {
+    return this.queryParams.observables[key]!.subscribe(paramValues => {
+      var paramValue = paramValues[0];
+      if (paramValue === control.value) {
         return;
       }
-      control.setValue(queryParamValue);
+      control.setValue(paramValue);
     });
   }
 
   private setQueryParamToControlValueSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
     return control.valueChanges.subscribe(() => {
-      if (this.queryParams.params[key]() == control.value) {
+      var paramValue = this.queryParams.params[key]()[0];
+      if (paramValue === control.value) {
         return;
       }
       this.queryParams.set(key, control.value);

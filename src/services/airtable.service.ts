@@ -1,19 +1,16 @@
-import { Injectable, signal, Signal, WritableSignal } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { RecordsApiService } from './api/records.api.service';
 import { BasesApiService } from './api/bases.api.service';
 import { IBaseSchemaExt } from '../models/airtable/api/IBaseSchema';
 import { IRecordsExt } from '../models/airtable/api/IRecords';
 import { IBase } from '../models/airtable/api/IBase';
+import { IFields } from '../models/airtable/api/IFields';
 
 @Injectable({ providedIn: 'root' })
 export class AirtableService {
   bases = signal<IBase[]>([]);
-  private _baseSchemas: WritableSignal<IBaseSchemaExt>[] = [];
-  private _records: WritableSignal<IRecordsExt<any>>[] = [];
-  /** base name to schema */
-  baseSchemas: Signal<IBaseSchemaExt>[] = this._baseSchemas;
-  /** table name to records */
-  records: Signal<IRecordsExt<any>>[] = this._records
+  baseSchema = signal<IBaseSchemaExt | null>(null);
+  records = signal<IRecordsExt<any>[]>([])
 
   constructor(
     private basesApi: BasesApiService,
@@ -31,26 +28,24 @@ export class AirtableService {
       return;
     }
     this.basesApi.getBaseSchema(baseId).subscribe(schemaResponse => {
-      var baseSchema = this._baseSchemas.find(schema => schema().baseId === baseId);
-      if (baseSchema === undefined) {
-        this._baseSchemas.push(signal(schemaResponse));
-        return;
-      }
-      baseSchema.set(schemaResponse);
+      this.baseSchema.set(schemaResponse);
     });
   }
 
-  fetchRecords<T>(baseId: string, tableIdOrName: string) {
+  fetchRecords<T extends IFields>(baseId: string, tableIdOrName: string) {
     if (!baseId || !tableIdOrName) {
       return;
     }
     this.recordsApi.getRecords<T>(baseId, tableIdOrName).subscribe(recordsResponse => {
-      var records = this._records.find(records => records().baseId === baseId && records().tableIdOrName === tableIdOrName);
-      if (records === undefined) {
-        this._records.push(signal(recordsResponse));
+      var index = this.records().findIndex(record => record.tableIdOrName === tableIdOrName);
+      if (index !== -1) {
+        this.records.update(records_ => {
+          records_[index] = recordsResponse;
+          return records_;
+        });
         return;
       }
-      records.set(recordsResponse);
+      this.records.update(records_ => [...records_, recordsResponse]);
     });
   }
 }
