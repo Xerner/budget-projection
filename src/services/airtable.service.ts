@@ -1,4 +1,4 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { RecordsApiService } from './api/records.api.service';
 import { BasesApiService } from './api/bases.api.service';
 import { IBaseSchemaExt } from '../models/airtable/api/IBaseSchema';
