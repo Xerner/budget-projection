@@ -1,5 +1,3 @@
-import { IBase } from "./IBase";
-
 export interface IFieldOptions {
   // todo: add more types
   // https://airtable.com/developers/web/api/field-model
@@ -31,7 +29,7 @@ export interface ITableSchema {
 }
 
 export interface ITableSchemaExt extends ITableSchema {
-  baseId: IBase, 
+  baseId: IBase,
 }
 
 

@@ -1,12 +1,9 @@
-import { Inject, Injectable, Signal, signal } from '@angular/core';
+import { Inject, Injectable, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IGlobalQueryParams } from '../models/query-param-keys';
 import { QueryParamsService } from '../common/angular/services/query-params/query-params.service';
 import { InterfaceForm } from '../common/angular/types';
-import { AirtableService } from './airtable.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { DateTime } from 'luxon';
-import { ITokenService, TOKEN_SERVICE } from '../common/angular/interceptors';
 import { QUERY_PARAM_KEYS, QueryParamKeys } from '../common/angular/services';
 
 @Injectable({ providedIn: 'root' })
@@ -25,39 +22,15 @@ export class InputsService {
 
   currentlySelectedBase = signal<string>('');
 
-  onApiControlChanges: Record<keyof IGlobalQueryParams, (value: any) => void> = {
-    token: (token) => {
-      this.tokenService.setToken(token);
-      this.airtableService.fetchBases();
-    },
-    baseName: (baseName) => {
-      var baseId = this.airtableService.bases().find(base => base.name === baseName)?.id;
-      if (baseId == undefined) {
-        this.airtableService.baseSchema.set(null);
-        return;
-      }
-      this.airtableService.fetchBaseSchema(baseId)
-    },
-    transactionTableName: (_) => null,
-    plannedTransactionTableName: (_) => null,
-  };
-
   constructor(
     private queryParams: QueryParamsService<IGlobalQueryParams>,
     @Inject(QUERY_PARAM_KEYS) private queryParamKeys: QueryParamKeys<IGlobalQueryParams>,
-    private airtableService: AirtableService,
-    @Inject(TOKEN_SERVICE) private tokenService: ITokenService,
   ) {
     for (const key in this.apiForm.controls) {
       var control = this.apiForm.controls[key as keyof typeof this.apiForm.controls];
       var name = this.getControlName(control) as keyof IGlobalQueryParams;
-      this.subscribeToSpecificValueChanges(control, name);
       this.subscribeToUniversalValueChanges(control, name);
     }
-  }
-
-  private subscribeToSpecificValueChanges(control: FormControl, key: keyof IGlobalQueryParams) {
-    control.valueChanges.subscribe(this.onApiControlChanges[key].bind(this));
   }
 
   private subscribeToUniversalValueChanges(control: FormControl, key: keyof IGlobalQueryParams) {

@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { InputsService } from '../../services/inputs.service';
-import { BudgetService } from '../../services/budget.service';
+import { TransactionService } from '../../services/transaction.service';
 import { AirtableService } from '../../services/airtable.service';
 import { LoadingService } from '../../common/angular/services/loading';
 import { Endpoints } from '../../models/Endpoints';
@@ -40,12 +40,12 @@ export class InputsComponent {
 
   constructor(
     protected inputsService: InputsService,
-    private budgetService: BudgetService,
+    private budgetService: TransactionService,
     protected airtableService: AirtableService,
     protected loadingService: LoadingService,
   ) { }
 
   onFetchClicked() {
-    this.budgetService.fetchAll();
+    this.airtableService.fetchAll();
   }
 }

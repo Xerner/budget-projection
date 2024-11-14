@@ -1,7 +1,24 @@
-import { LinkToAnotherRecordField } from "../airtable/api/fields/LinkToAnotherRecordField";
-import { StringField, NumberField, DateField, BooleanField } from "../airtable/api/fields/PrimitiveFields";
+import { BooleanField, DateField, IFields, LinkToAnotherRecordField, NumberField, StringField } from "./Fields";
 
-export type PlannedTransaction = {
+export interface ApiTransaction extends IFields {
+  "Date": DateField;
+  "Description": StringField;
+  "Category": StringField;
+  "Amount": NumberField;
+  "Account": LinkToAnotherRecordField;
+  "Running Balance": NumberField;
+}
+
+export enum TransactionTableColumns {
+  Date = 'Date',
+  Description = 'Description',
+  Category = 'Category',
+  Amount = 'Amount',
+  RunningBalance = 'Running Balance',
+  Account = 'Account',
+}
+
+export interface ApiPlannedTransaction extends IFields {
   "Description": StringField;
   "Active": BooleanField;
   "Amount": NumberField;

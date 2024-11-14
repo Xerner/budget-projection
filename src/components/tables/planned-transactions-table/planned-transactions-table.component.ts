@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, viewChild } from '@angular/core';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { PlannedTransaction, PlannedTransactionTableColumns } from '../../../models/records/IPlannedTransaction';
+import { IPlannedTransaction, PlannedTransactionTableColumns } from '../../../models/airtable/api/IPlannedTransaction';
 import { TablesService } from '../../../services/tables.service';
 import { AirtableService } from '../../../services/airtable.service';
 
@@ -20,9 +20,9 @@ export class PlannedTransactionsTableComponent {
   PlannedTransactionTableColumns = PlannedTransactionTableColumns
   plannedTransactionsPaginator = viewChild.required(MatPaginator);
   plannedTransactionsDataSource = computed(() => {
-    var dataSource = new MatTableDataSource<PlannedTransaction>();
+    var dataSource = new MatTableDataSource<IPlannedTransaction>();
     dataSource.paginator = this.plannedTransactionsPaginator();
-    dataSource.data = this.tablesService.getRecordsOrEmpty<PlannedTransaction>('Planned Transactions').map(record => record.fields);
+    dataSource.data = this.tablesService.getRecordsOrEmpty<IPlannedTransaction>('Planned Transactions').map(record => record.fields);
     return dataSource;
   });
 
