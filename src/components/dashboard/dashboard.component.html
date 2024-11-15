@@ -6,8 +6,9 @@
       <canvas
         class="h-full"
         baseChart
+        [data]="transactionsChartsService.chartDatasets()"
         [options]="
-          budgetService.getOptions('Budget Projection', 'Date', 'Balance')
+          transactionsChartsService.getOptions('Budget Projection', 'Date', 'Balance')
         "
       ></canvas>
     </div>

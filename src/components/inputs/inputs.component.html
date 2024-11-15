@@ -51,12 +51,13 @@
       [formControl]="
         this.inputsService.dashboardForm.controls.startingBalance
       "
+      [formControl]="inputsService.dashboardForm.controls.startingBalance"
     />
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Choose the starting date</mat-label>
-    <input matInput [matDatepicker]="startDatePicker" />
+    <input matInput [matDatepicker]="startDatePicker" [formControl]="inputsService.dashboardForm.controls.startingDate" />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle
       matIconSuffix
@@ -67,7 +68,7 @@
 
   <mat-form-field>
     <mat-label>Choose the ending date</mat-label>
-    <input matInput [matDatepicker]="endDatePicker" />
+    <input matInput [matDatepicker]="endDatePicker" [formControl]="inputsService.dashboardForm.controls.endingDate" />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle
       matIconSuffix

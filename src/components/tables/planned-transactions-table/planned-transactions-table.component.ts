@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, viewChild } from '@angular/core';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { IPlannedTransaction, PlannedTransactionTableColumns } from '../../../models/airtable/api/IPlannedTransaction';
-import { TablesService } from '../../../services/tables.service';
 import { AirtableService } from '../../../services/airtable.service';
+import { IPlannedTransaction } from '../../../models/Transactions';
 
 @Component({
   selector: 'app-planned-transactions-table',
@@ -17,31 +16,43 @@ import { AirtableService } from '../../../services/airtable.service';
   templateUrl: './planned-transactions-table.component.html',
 })
 export class PlannedTransactionsTableComponent {
-  PlannedTransactionTableColumns = PlannedTransactionTableColumns
   plannedTransactionsPaginator = viewChild.required(MatPaginator);
   plannedTransactionsDataSource = computed(() => {
     var dataSource = new MatTableDataSource<IPlannedTransaction>();
     dataSource.paginator = this.plannedTransactionsPaginator();
-    dataSource.data = this.tablesService.getRecordsOrEmpty<IPlannedTransaction>('Planned Transactions').map(record => record.fields);
+    dataSource.data = this.airtableService.plannedTransactions();
     return dataSource;
   });
 
-  displayedPlannedTransactionColumns = [
-    PlannedTransactionTableColumns.Description,
-    PlannedTransactionTableColumns.Active,
-    PlannedTransactionTableColumns.Amount,
-    PlannedTransactionTableColumns.Priority,
-    PlannedTransactionTableColumns.Category,
-    PlannedTransactionTableColumns.IsIncome,
-    PlannedTransactionTableColumns.Account,
-    PlannedTransactionTableColumns.Occurence,
-    PlannedTransactionTableColumns.Autopay,
-    PlannedTransactionTableColumns.Shared,
-    PlannedTransactionTableColumns.DateOfTransaction,
+  displayedPlannedTransactionColumns: Partial<keyof IPlannedTransaction>[] = [
+    "description",
+    "active",
+    "amount",
+    "priority",
+    "category",
+    "isIncome",
+    "account",
+    "occurrence",
+    "autopay",
+    "shared",
+    "dateOfTransaction",
   ]
+  PlannedTransactionColumns: Record<keyof IPlannedTransaction, keyof IPlannedTransaction> = {
+    id: "id",
+    description: "description",
+    active: "active",
+    amount: "amount",
+    priority: "priority",
+    category: "category",
+    isIncome: "isIncome",
+    account: "account",
+    occurrence: "occurrence",
+    autopay: "autopay",
+    shared: "shared",
+    dateOfTransaction: "dateOfTransaction",
+  }
 
   constructor(
-    private tablesService: TablesService,
     private airtableService: AirtableService,
   ) {
   }

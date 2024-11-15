@@ -1,3 +1,5 @@
+import { IBase } from "./Bases";
+
 export interface IFieldOptions {
   // todo: add more types
   // https://airtable.com/developers/web/api/field-model

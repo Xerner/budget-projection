@@ -81,17 +81,22 @@ export class AirtableService {
     if (!baseId || !tableName) {
       return;
     }
-    this.recordsApi.getRecords<ApiTransaction>(baseId, tableName).subscribe(recordsResponse => {
-      var mapped = recordsResponse.records.map<ITransaction>(record => ({
-        id: record.id,
-        date: DateTime.fromISO(record.fields.Date),
-        description: record.fields.Description,
-        category: record.fields.Category,
-        amount: record.fields.Amount,
-        account: record.fields.Account,
-        runningBalance: record.fields["Running Balance"],
-      }));
-      this.transactions.set(mapped)
+    var mappedRecords: ITransaction[] = [];
+    this.recordsApi.getRecords<ApiTransaction>(baseId, tableName).subscribe({
+      next: recordsResponse => {
+        mappedRecords = mappedRecords.concat(recordsResponse.records.map<ITransaction>(record => ({
+          id: record.id,
+          date: DateTime.fromISO(record.fields.Date),
+          description: record.fields.Description,
+          category: record.fields.Category,
+          amount: record.fields.Amount,
+          account: record.fields.Account,
+          runningBalance: record.fields["Running Balance"],
+        })));
+      },
+      complete: () => {
+        this.transactions.set(mappedRecords)
+      }
     });
   }
 
@@ -99,22 +104,27 @@ export class AirtableService {
     if (!baseId || !tableName) {
       return;
     }
-    this.recordsApi.getRecords<ApiPlannedTransaction>(baseId, tableName).subscribe(recordsResponse => {
-      var mapped = recordsResponse.records.map<IPlannedTransaction>(record => ({
-        id: record.id,
-        description: record.fields.Description,
-        active: record.fields.Active,
-        amount: record.fields.Amount,
-        priority: record.fields.Priority,
-        category: record.fields.Category,
-        isIncome: record.fields.IsIncome,
-        account: record.fields.Account,
-        occurrence: record.fields.Occurence as Occurence,
-        autopay: record.fields.Autopay,
-        shared: record.fields.Shared,
-        dateOfTransaction: DateTime.fromISO(record.fields["Date of Transaction"]),
-      }));
-      this.plannedTransactions.set(mapped)
+    var mappedRecords: IPlannedTransaction[] = [];
+    this.recordsApi.getRecords<ApiPlannedTransaction>(baseId, tableName).subscribe({
+      next: recordsResponse => {
+        mappedRecords = mappedRecords.concat(recordsResponse.records.map<IPlannedTransaction>(record => ({
+          id: record.id,
+          description: record.fields.Description,
+          active: record.fields.Active,
+          amount: record.fields.Amount,
+          priority: record.fields.Priority,
+          category: record.fields.Category,
+          isIncome: record.fields["Is Income"],
+          account: record.fields.Account,
+          occurrence: record.fields.Occurrence as Occurence,
+          autopay: record.fields.Autopay,
+          shared: record.fields.Shared,
+          dateOfTransaction: DateTime.fromISO(record.fields["Date of Transaction"]),
+        })));
+      },
+      complete: () => {
+        this.plannedTransactions.set(mappedRecords)
+      }
     });
   }
 }

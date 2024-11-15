@@ -11,7 +11,7 @@ export enum Occurence {
   AdHoc = "Ad-Hoc",
 }
 
-export function OccurenceToDuration(occurence: Occurence): DurationLike {
+export function OccurenceToDuration(occurence: Occurence): DurationLike | null {
   switch (occurence) {
     case Occurence.Monthly:
       return { months: 1 };
@@ -29,5 +29,7 @@ export function OccurenceToDuration(occurence: Occurence): DurationLike {
       return { months: 6 };
     case Occurence.AdHoc:
       return { months: 0 };
+    default:
+      return null;
   }
 }

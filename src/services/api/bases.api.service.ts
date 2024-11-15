@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IBaseSchema, IBaseSchemaExt } from '../../models/airtable/api/IBaseSchema';
-import { IBasesResponse } from '../../models/airtable/api/IBasesResponse';
 import { map, Observable, of } from 'rxjs';
 import { Endpoints } from '../../models/Endpoints';
 import { STRINGS } from '../../common/library';
+import { IBasesResponse, IBaseSchemaExt, IBaseSchema } from '../../models/airtable/api';
 
 @Injectable({ providedIn: 'root' })
 export class BasesApiService {

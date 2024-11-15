@@ -8,8 +8,8 @@ import { IBalance, IPlannedTransaction, IProjectedTransaction, ITransaction } fr
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
   startingBalance = signal<number | null>(0);
-  startingDate = signal<DateTime | null>(DateTime.now());
-  endingDate = signal<DateTime | null>(DateTime.now());
+  startingDate = signal<DateTime | null>(null);
+  endingDate = signal<DateTime | null>(null);
   balances = computed<IBalance[]>(this.getRunningBalancesOnDates.bind(this));
   projectedBalances = computed<IBalance[]>(this.getProjectedRunningBalancesOnDates.bind(this));
 
@@ -36,10 +36,9 @@ export class TransactionService {
     if (transactions === null || startingDate === null || endingDate === null || startingBalance === null) {
       return [];
     }
-
     var runningBalance = startingBalance;
-    var transactionsOnDates = this.getTransactionsOnDates(transactions);
-    var runningBalanceTransactions = Object.keys(transactionsOnDates)
+    var transactionsOnDates = this.getDateToTransactionsMap(transactions);
+    var runningBalanceTransactions = [...transactionsOnDates.keys()]
       .map<IBalance>(justDate => {
         var transactions = transactionsOnDates.get(justDate);
         return this.createBalanceOnDate(runningBalance, justDate, transactions);
@@ -57,8 +56,8 @@ export class TransactionService {
     }
     var projectedPlannedTransactions = this.getProjectedPlannedTransactions(plannedTransactions, endingDate)
     var runningBalance = startingBalance;
-    var transactionsOnDates = this.getTransactionsOnDates(projectedPlannedTransactions);
-    var runningBalanceTransactions = Object.keys(transactionsOnDates)
+    var transactionsOnDates = this.getDateToTransactionsMap(projectedPlannedTransactions);
+    var runningBalanceTransactions = [...transactionsOnDates.keys()]
       .map<IBalance>(justDate => {
         var transactions = transactionsOnDates.get(justDate);
         return this.createBalanceOnDate(runningBalance, justDate, transactions);
@@ -66,7 +65,7 @@ export class TransactionService {
     return runningBalanceTransactions;
   }
 
-  private getTransactionsOnDates(transactions: ITransaction[]): Map<string, ITransaction[]> {
+  private getDateToTransactionsMap(transactions: ITransaction[]): Map<string, ITransaction[]> {
     return transactions.reduce((accumulator, current) => {
       var date = current.date.startOf('day').toISODate()!;
       if (!accumulator.has(date)) {
@@ -96,7 +95,9 @@ export class TransactionService {
   private getProjectedPlannedTransactions(plannedTransactions: IPlannedTransaction[], endingDate: DateTime): IProjectedTransaction[] {
     return plannedTransactions
       .filter(plannedTransaction => plannedTransaction.active)
-      .flatMap(plannedTransaction => this.createProjectedTransactions(plannedTransaction, endingDate));
+      .flatMap(plannedTransaction => {
+        return this.createProjectedTransactions(plannedTransaction, endingDate)
+      });
   }
 
   private createProjectedTransactions(plannedTransaction: IPlannedTransaction, endingDate: DateTime): IProjectedTransaction[] {
@@ -104,7 +105,10 @@ export class TransactionService {
       return [this.createProjectedTransaction(plannedTransaction, endingDate)];
     }
     var duration = OccurenceToDuration(plannedTransaction.occurrence);
-    var nextDate = endingDate.startOf('day').plus(duration);
+    if (duration == null) {
+      return [];
+    }
+    var nextDate = DateTime.now().startOf('day');
     var transactions: IProjectedTransaction[] = []
     while (nextDate < endingDate) {
       transactions.push(this.createProjectedTransaction(plannedTransaction, nextDate));

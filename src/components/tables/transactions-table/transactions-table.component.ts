@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, viewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { ApiTransaction, TransactionTableColumns } from '../../../models/airtable/api/Transactions';
-import { TablesService } from '../../../services/tables.service';
+import { AirtableService } from '../../../services/airtable.service';
+import { ITransaction } from '../../../models/Transactions';
 
 @Component({
   selector: 'app-transactions-table',
@@ -16,24 +16,32 @@ import { TablesService } from '../../../services/tables.service';
   templateUrl: './transactions-table.component.html',
 })
 export class TransactionsTableComponent {
-  TransactionTableColumns = TransactionTableColumns
   transactionsPaginator = viewChild.required(MatPaginator);
   transactionsDataSource = computed(() => {
-    var dataSource = new MatTableDataSource<ApiTransaction>();
+    var dataSource = new MatTableDataSource<ITransaction>();
     dataSource.paginator = this.transactionsPaginator();
-    dataSource.data = this.tablesService.getRecordsOrEmpty<ApiTransaction>('Transactions').map(record => record.fields);
+    dataSource.data = this.airtableService.transactions();
     return dataSource;
   });
 
-  displayedTransactionColumns = [
-    TransactionTableColumns.Date,
-    TransactionTableColumns.Description,
-    TransactionTableColumns.Amount,
-    TransactionTableColumns.RunningBalance,
-    TransactionTableColumns.Account,
+  displayedTransactionColumns: Partial<keyof ITransaction>[] = [
+    "date",
+    "description",
+    "amount",
+    "runningBalance",
+    "account",
   ]
+  readonly TransactionColumns: Record<keyof ITransaction, keyof ITransaction> = {
+    id: "id",
+    category: "category",
+    date: "date",
+    description: "description",
+    amount: "amount",
+    runningBalance: "runningBalance",
+    account: "account",
+  }
 
   constructor(
-    protected tablesService: TablesService,
+    protected airtableService: AirtableService,
   ) { }
 }
