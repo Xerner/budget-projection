@@ -13,21 +13,18 @@ export class InputsService {
     baseName: new FormControl<string>('', Validators.required),
     transactionTableName: new FormControl<string>('', Validators.required),
     plannedTransactionTableName: new FormControl<string>('', Validators.required),
-  });
-  dashboardForm = new FormGroup({
     startingBalance: new FormControl<number>(0, Validators.required),
-    startingDate: new FormControl<DateTime>(DateTime.now(), Validators.required),
-    endingDate: new FormControl<DateTime>(DateTime.now(), Validators.required),
+    startingDate: new FormControl<DateTime | null>(null, Validators.required),
+    endingDate: new FormControl<DateTime | null>(null, Validators.required),
   });
 
   currentlySelectedBase = signal<string>('');
 
   constructor(
     private queryParams: QueryParamsService<IGlobalQueryParams>,
-    @Inject(QUERY_PARAM_KEYS) private queryParamKeys: QueryParamKeys<IGlobalQueryParams>,
   ) {
     for (const key in this.apiForm.controls) {
-      var control = this.apiForm.controls[key as keyof typeof this.apiForm.controls];
+      var control = this.apiForm.controls[key as keyof typeof this.apiForm.controls]!;
       var name = this.getControlName(control) as keyof IGlobalQueryParams;
       this.subscribeToUniversalValueChanges(control, name);
     }
@@ -41,8 +38,13 @@ export class InputsService {
   private setControlValueToQueryParamSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
     return this.queryParams.observables[key]!.subscribe(paramValues => {
       var paramValue = paramValues[0];
-      if (paramValue === control.value) {
+      if (paramValue === undefined || paramValue === control.value) {
         return;
+      }
+      var newControlValue: any = paramValue;
+      console.log('setting control named', key, 'value to', newControlValue, 'from query params');
+      if (key === 'startingDate' || key === 'endingDate') {
+        newControlValue = DateTime.fromISO(paramValue);
       }
       control.setValue(paramValue);
     });
@@ -54,7 +56,7 @@ export class InputsService {
       if (paramValue === control.value) {
         return;
       }
-      this.queryParams.set(key, control.value);
+      this.queryParams.set(key, paramValue);
     });
   }
 

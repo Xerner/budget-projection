@@ -12,18 +12,20 @@ export class TransactionService {
   endingDate = signal<DateTime | null>(null);
   balances = computed<IBalance[]>(this.getRunningBalancesOnDates.bind(this));
   projectedBalances = computed<IBalance[]>(this.getProjectedRunningBalancesOnDates.bind(this));
-
+  allBalances = computed<IBalance[]>(() => {
+    return this.balances().concat(this.projectedBalances());
+  });
   constructor(
     private inputsService: InputsService,
     private airtableService: AirtableService,
   ) {
-    this.inputsService.dashboardForm.controls.startingBalance.valueChanges.subscribe(value => {
+    this.inputsService.apiForm.controls.startingBalance.valueChanges.subscribe(value => {
       this.startingBalance.set(value);
     });
-    this.inputsService.dashboardForm.controls.startingDate.valueChanges.subscribe(date => {
+    this.inputsService.apiForm.controls.startingDate.valueChanges.subscribe(date => {
       this.startingDate.set(date);
     });
-    this.inputsService.dashboardForm.controls.endingDate.valueChanges.subscribe(date => {
+    this.inputsService.apiForm.controls.endingDate.valueChanges.subscribe(date => {
       this.endingDate.set(date);
     });
   }

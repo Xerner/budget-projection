@@ -7,4 +7,8 @@
   <mat-tab label="Planned Transactions">
     <app-planned-transactions-table></app-planned-transactions-table>
   </mat-tab>
+  <!-- Balances -->
+  <mat-tab label="Balances" [disabled]="transactionsService.allBalances().length === 0">
+    <app-balances-table></app-balances-table>
+  </mat-tab>
 </mat-tab-group>

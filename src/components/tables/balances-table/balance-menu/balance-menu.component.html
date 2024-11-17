@@ -1,0 +1,12 @@
+
+@if (balance() === null) {
+  <div>No balance selected</div>
+} @else {
+  <div>{{balance()!.date}}</div>
+  <div>{{balance()!.balance | currency}}</div>
+  @for (item of balance()!.transactions; track $index) {
+    <div>{{item.date}}</div>
+    <div>{{item.amount | currency}}</div>
+    <div>{{item.description}}</div>
+  }
+}

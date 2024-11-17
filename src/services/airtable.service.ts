@@ -32,6 +32,9 @@ export class AirtableService {
     },
     transactionTableName: (_) => null,
     plannedTransactionTableName: (_) => null,
+    startingBalance: (_) => null,
+    startingDate: (_) => null,
+    endingDate: (_) => null,
   };
 
   constructor(
@@ -65,6 +68,11 @@ export class AirtableService {
   fetchBases() {
     this.basesApi.getBases().subscribe(response => {
       this.bases.set(response.bases);
+      var baseNameControlValue = this.inputsService.apiForm.controls.baseName.value;
+      if (!baseNameControlValue) {
+        return;
+      }
+      this.onApiControlChanges.baseName(baseNameControlValue);
     });
   }
 

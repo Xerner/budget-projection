@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="balancesDataSource()" matSort>
+  <ng-container [matColumnDef]="BalanceColumns.date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let row"> {{row[BalanceColumns.date]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="BalanceColumns.balance">
+    <th mat-header-cell *matHeaderCellDef> Balance </th>
+    <td mat-cell *matCellDef="let row"> {{row[BalanceColumns.balance] | currency}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="BalanceColumns.transactions">
+    <th mat-header-cell *matHeaderCellDef> See Transactions </th>
+    <td mat-cell *matCellDef="let row">
+      <button mat-button [matMenuTriggerFor]="transactionsMenu" (click)="selectBalance(row)">Menu</button>
+
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedBalanceColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedBalanceColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+
+<mat-menu #transactionsMenu="matMenu">
+  <app-balance-menu [balance]="selectedBalance()"></app-balance-menu>
+</mat-menu>
