@@ -12,6 +12,7 @@ import { LoadingService } from '../../common/angular/services/loading';
 import { Endpoints } from '../../models/Endpoints';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { HttpCacheStore } from '../../common/angular/services';
 
 @Component({
   selector: 'app-inputs',
@@ -40,12 +41,16 @@ export class InputsComponent {
 
   constructor(
     protected inputsService: InputsService,
-    private budgetService: TransactionService,
     protected airtableService: AirtableService,
     protected loadingService: LoadingService,
+    protected httpCache: HttpCacheStore,
   ) { }
 
   onFetchClicked() {
     this.airtableService.fetchAll();
+  }
+
+  onLogCacheClicked() {
+    console.log(this.httpCache.cache);
   }
 }

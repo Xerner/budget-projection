@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^18.2.1",
     "@angular/router": "^18.2.1",
     "@types/luxon": "^3.4.2",
+    "chart.js": "^4.4.6",
     "fuzzysort": "^3.1.0",
     "luxon": "^3.5.0",
     "ng2-charts": "^6.0.1",

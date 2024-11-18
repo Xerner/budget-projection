@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenAuthInterceptor } from './common/angular/interceptors/auth/token-auth.interceptor';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
@@ -17,16 +17,15 @@ import { cacheSettings } from './cache.settings';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    // provideHttpClient(withInterceptorsFromDi()),
-    provideHttpCacheClient(cacheSettings, withInterceptorsFromDi()),
-    provideCharts(withDefaultRegisterables()),
-    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true }, provideAnimationsAsync(),
-    provideLuxonDateAdapter(),
     provideAnimationsAsync(),
-    provideQueryParams(QueryParams),
+    provideHttpCacheClient(cacheSettings, null, withInterceptorsFromDi()),
+    provideCharts(withDefaultRegisterables()),
+    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true },
     provideBearerTokenAuth(),
+    provideLuxonDateAdapter(),
+    provideQueryParams(QueryParams),
     provideLoadingTracking(LoadingService),
     provideNotificationPools(NotificationTypes.Errors),
-    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true },
   ]
 };
