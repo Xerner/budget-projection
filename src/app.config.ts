@@ -6,17 +6,19 @@ import { routes } from './app.routes';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
-import { provideQueryParams } from './common/angular/services';
+import { provideHttpCacheClient, provideQueryParams } from './common/angular/services';
 import { QueryParams } from './models/query-param-keys';
 import { provideBearerTokenAuth } from './common/angular/interceptors';
 import { LoadingService, provideLoadingTracking } from './common/angular/services/loading';
 import { provideNotificationPools } from './common/angular/services/notifications';
 import { NotificationTypes } from './models/NotificationTypes';
+import { cacheSettings } from './cache.settings';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptorsFromDi()),
+    // provideHttpClient(withInterceptorsFromDi()),
+    provideHttpCacheClient(cacheSettings, withInterceptorsFromDi()),
     provideCharts(withDefaultRegisterables()),
     { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true }, provideAnimationsAsync(),
     provideLuxonDateAdapter(),
