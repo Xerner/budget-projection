@@ -25,7 +25,7 @@ export class TransactionsChartsService {
     private transactionService: TransactionService,
   ) { }
 
-  private getChartDataTemplate<T>(datasetLabel: string): ChartData<keyof ChartTypeRegistry, T[], string> {
+  private getChartDataTemplate<T>(): ChartData<keyof ChartTypeRegistry, T[], string> {
     return {
       labels: [],
       datasets: []
@@ -63,8 +63,8 @@ export class TransactionsChartsService {
     }
   }
 
-  getChartDatasets(): ChartData<keyof ChartTypeRegistry, number[], string> {
-    var chartDataset = this.getChartDataTemplate<number>("Balance");
+  getChartDatasets(): ChartData<keyof ChartTypeRegistry, (number | null)[], string> {
+    var chartDataset = this.getChartDataTemplate<(number | null)>();
     var startingDate = this.transactionService.startingDate();
     var endingDate = this.transactionService.endingDate();
     var balances = this.transactionService.balances();
@@ -74,28 +74,42 @@ export class TransactionsChartsService {
     }
     var dateLabels = this.dateLabels();
     chartDataset.labels = dateLabels.map(date => date.toISODate()!);
-    var balancesChartData = this.getChartData(balances, dateLabels);
+    var balancesChartData = this.getChartData(balances, dateLabels, true);
     var projectedBalancesChartData = this.getChartData(projectedBalances, dateLabels);
     chartDataset.datasets.push({
       label: "Balance",
       data: balancesChartData,
       type: "line",
+      tension: 0.3,
+      pointStyle: false,
       borderWidth: 1,
     })
     chartDataset.datasets.push({
       label: "Projected Balance",
       data: projectedBalancesChartData,
       type: "line",
+      tension: 0.3,
+      pointStyle: false,
       borderWidth: 1,
     });
     return chartDataset;
   }
 
-  private getChartData(balances: IBalance[], dateLabels: DateTime[]) {
-    var chartData = dateLabels.reduce<number[]>((accumulator, dateLabel) => {
+  private getChartData(balances: IBalance[], dateLabels: DateTime[], isActualBalance = false) {
+    var now = DateTime.now();
+    var chartData = dateLabels.reduce<(number | null)[]>((accumulator, dateLabel) => {
+      var isAfterNow = dateLabel.diff(now, 'days').days > 0;
+      if (isAfterNow && isActualBalance) {
+        accumulator.push(null);
+        return accumulator;
+      }
       var balanceOnThisDate = balances.find(b => b.date.diff(dateLabel, 'days').days === 0);
-      if (balanceOnThisDate != null) {
-        accumulator.push(balanceOnThisDate.balance);
+      if (balanceOnThisDate) {
+        accumulator.push(Math.ceil(balanceOnThisDate.balance));
+        return accumulator;
+      }
+      if (accumulator.length === 0) {
+        accumulator.push(null);
         return accumulator;
       }
       accumulator.push(accumulator[accumulator.length - 1]);

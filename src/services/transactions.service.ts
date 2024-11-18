@@ -127,7 +127,6 @@ export class TransactionService {
       account: plannedTransaction.account,
       date: datetime,
       amount: plannedTransaction.amount,
-      runningBalance: 0,
       plannedTransaction: plannedTransaction,
     };
   }

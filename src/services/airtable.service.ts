@@ -95,7 +95,7 @@ export class AirtableService {
         mappedRecords = mappedRecords.concat(recordsResponse.records.map<ITransaction>(record => ({
           id: record.id,
           date: DateTime.fromISO(record.fields.Date),
-          description: record.fields.Description,
+          description: record.fields['Merchant Name'],
           category: record.fields.Category,
           amount: record.fields.Amount,
           account: record.fields.Account,

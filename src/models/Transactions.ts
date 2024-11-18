@@ -8,7 +8,6 @@ export interface ITransaction {
   category: string;
   amount: number;
   account: string[];
-  runningBalance: number;
 }
 
 export interface IProjectedTransaction extends ITransaction {

@@ -28,7 +28,6 @@ export class TransactionsTableComponent {
     "date",
     "description",
     "amount",
-    "runningBalance",
     "account",
   ]
   readonly TransactionColumns: Record<keyof ITransaction, keyof ITransaction> = {
@@ -37,7 +36,6 @@ export class TransactionsTableComponent {
     date: "date",
     description: "description",
     amount: "amount",
-    runningBalance: "runningBalance",
     account: "account",
   }
 

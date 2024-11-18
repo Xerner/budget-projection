@@ -1,65 +1,30 @@
-import { Inject, Injectable, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IGlobalQueryParams } from '../models/query-param-keys';
-import { QueryParamsService } from '../common/angular/services/query-params/query-params.service';
 import { InterfaceForm } from '../common/angular/types';
 import { DateTime } from 'luxon';
-import { QUERY_PARAM_KEYS, QueryParamKeys } from '../common/angular/services';
+import { QueryParamControl } from '../common/angular/controls/QueryParamControl';
 
 @Injectable({ providedIn: 'root' })
 export class InputsService {
   apiForm = new FormGroup<InterfaceForm<IGlobalQueryParams>>({
-    token: new FormControl<string>('', Validators.required),
-    baseName: new FormControl<string>('', Validators.required),
-    transactionTableName: new FormControl<string>('', Validators.required),
-    plannedTransactionTableName: new FormControl<string>('', Validators.required),
-    startingBalance: new FormControl<number>(0, Validators.required),
-    startingDate: new FormControl<DateTime | null>(null, Validators.required),
-    endingDate: new FormControl<DateTime | null>(null, Validators.required),
+    token: new QueryParamControl<string>('', null, null, Validators.required),
+    baseName: new QueryParamControl<string>('', null, null, Validators.required),
+    transactionTableName: new QueryParamControl<string>('', null, null, Validators.required),
+    plannedTransactionTableName: new QueryParamControl<string>('', null, null, Validators.required),
+    startingBalance: new QueryParamControl<number>(0, null, parseFloat, Validators.required),
+    startingDate: new QueryParamControl<DateTime | null>(null, null, DateTime.fromISO, Validators.required),
+    endingDate: new QueryParamControl<DateTime | null>(null, null, DateTime.fromISO, Validators.required),
   });
 
   currentlySelectedBase = signal<string>('');
 
-  constructor(
-    private queryParams: QueryParamsService<IGlobalQueryParams>,
-  ) {
-    for (const key in this.apiForm.controls) {
-      var control = this.apiForm.controls[key as keyof typeof this.apiForm.controls]!;
-      var name = this.getControlName(control) as keyof IGlobalQueryParams;
-      this.subscribeToUniversalValueChanges(control, name);
-    }
-  }
-
-  private subscribeToUniversalValueChanges(control: FormControl, key: keyof IGlobalQueryParams) {
-    this.setControlValueToQueryParamSubscription(control, key);
-    this.setQueryParamToControlValueSubscription(control, key);
-  }
-
-  private setControlValueToQueryParamSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
-    return this.queryParams.observables[key]!.subscribe(paramValues => {
-      var paramValue = paramValues[0];
-      if (paramValue === undefined || paramValue === control.value) {
-        return;
-      }
-      var newControlValue: any = paramValue;
-      console.log('setting control named', key, 'value to', newControlValue, 'from query params');
-      if (key === 'startingDate' || key === 'endingDate') {
-        newControlValue = DateTime.fromISO(paramValue);
-      }
-      control.setValue(paramValue);
-    });
-  }
-
-  private setQueryParamToControlValueSubscription(control: FormControl, key: keyof IGlobalQueryParams) {
-    return control.valueChanges.subscribe(() => {
-      var paramValue = this.queryParams.params[key]()[0];
-      if (paramValue === control.value) {
-        return;
-      }
-      this.queryParams.set(key, paramValue);
-    });
-  }
-
+  /**
+   * Gets the name of the control within its parent form group.
+   *
+   * @returns {string} The name of the control.
+   * @throws Will throw an error if the control has no parent or if the name cannot be found.
+   */
   getControlName(control: FormControl): string {
     var parent = control.parent
     if (parent == null) {

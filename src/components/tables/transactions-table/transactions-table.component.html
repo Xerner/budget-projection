@@ -9,19 +9,19 @@
     <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.description]}} </td>
   </ng-container>
 
-  <ng-container [matColumnDef]="TransactionColumns.amount">
-    <th mat-header-cell *matHeaderCellDef> Amount </th>
-    <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.amount]}} </td>
-  </ng-container>
-
-  <ng-container [matColumnDef]="TransactionColumns.runningBalance">
-    <th mat-header-cell *matHeaderCellDef> Running Balance </th>
-    <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.runningBalance]}} </td>
-  </ng-container>
-
   <ng-container [matColumnDef]="TransactionColumns.account">
     <th mat-header-cell *matHeaderCellDef> Account </th>
     <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.account]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="TransactionColumns.category">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.category]}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="TransactionColumns.amount">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.amount]}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedTransactionColumns"></tr>

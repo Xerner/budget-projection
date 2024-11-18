@@ -2,11 +2,10 @@ import { BooleanField, DateField, IFields, LinkToAnotherRecordField, NumberField
 
 export interface ApiTransaction extends IFields {
   "Date": DateField;
-  "Description": StringField;
+  "Merchant Name": StringField;
+  "Account": LinkToAnotherRecordField;
   "Category": StringField;
   "Amount": NumberField;
-  "Account": LinkToAnotherRecordField;
-  "Running Balance": NumberField;
 }
 
 export interface ApiPlannedTransaction extends IFields {
