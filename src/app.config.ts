@@ -18,7 +18,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpCacheClient(cacheSettings, null, withInterceptorsFromDi()),
     provideCharts(withDefaultRegisterables()),
     { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true },
@@ -27,5 +26,6 @@ export const appConfig: ApplicationConfig = {
     provideQueryParams(QueryParams),
     provideLoadingTracking(LoadingService),
     provideNotificationPools(NotificationTypes.Errors),
+    provideHttpCacheClient(cacheSettings, withInterceptorsFromDi()),
   ]
 };
