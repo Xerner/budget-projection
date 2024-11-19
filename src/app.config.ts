@@ -1,6 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenAuthInterceptor } from './common/angular/interceptors/auth/token-auth.interceptor';
+import { withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
@@ -19,8 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideCharts(withDefaultRegisterables()),
-    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenAuthInterceptor, multi: true },
     provideBearerTokenAuth(),
     provideLuxonDateAdapter(),
     provideQueryParams(QueryParams),
