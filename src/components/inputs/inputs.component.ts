@@ -53,4 +53,8 @@ export class InputsComponent {
   onLogCacheClicked() {
     console.log(this.httpCache.cache);
   }
+
+  onBustCacheClicked() {
+    this.httpCache.bust();
+  }
 }

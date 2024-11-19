@@ -41,13 +41,13 @@ export class TransactionsChartsService {
             display: true,
             text: yAxisTitle
           },
-          ticks: {
-            stepSize: 1,
-            precision: 0
-          }
+          // ticks: {
+          //   stepSize: 1,
+          //   precision: 0
+          // }
         },
         x: {
-          beginAtZero: true,
+          // beginAtZero: true,
           title: {
             display: true,
             text: xAxisTitle

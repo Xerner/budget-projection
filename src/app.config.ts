@@ -11,7 +11,7 @@ import { provideBearerTokenAuth } from './common/angular/interceptors';
 import { LoadingService, provideLoadingTracking } from './common/angular/services/loading';
 import { provideNotificationPools } from './common/angular/services/notifications';
 import { NotificationTypes } from './models/NotificationTypes';
-import { cacheSettings } from './cache.settings';
+import { cacheSettings, preloadedCache } from './cache.settings';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,5 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideLoadingTracking(LoadingService),
     provideNotificationPools(NotificationTypes.Errors),
     provideHttpCacheClient(cacheSettings, withInterceptorsFromDi()),
+    // provideHttpCacheClient(cacheSettings, preloadedCache, withInterceptorsFromDi()),
   ]
 };
