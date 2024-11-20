@@ -1,10 +1,51 @@
-<div class="p-3 w-full">
-  <canvas
-    class="h-full"
-    baseChart
-    [data]="transactionsChartsService.chartDatasets()"
-    [options]="
-      transactionsChartsService.getOptions('Transactions & Predicted Balance', 'Date', 'Balance')
-    "
-  ></canvas>
+<div class="p-3 grid grid-cols-2 gap-3 w-full">
+  <div class="col-span-full">
+    <canvas
+      baseChart
+      [data]="transactionsChartsService.balanceAndProjectedBalanceLineChartDatasets()"
+      [options]="
+        transactionsChartsService.getLineChartOptions('Transactions & Predicted Balance', 'Date', 'Balance')
+      "
+    ></canvas>
+  </div>
+
+  <div class="col-span-1">
+    <canvas
+      baseChart
+      [data]="transactionsChartsService.categoryCountsRadarChartDataset()"
+      [options]="
+        transactionsChartsService.getBarChartOptions('Transaction Category Counts')
+      "
+    ></canvas>
+  </div>
+
+  <div class="col-span-1">
+    <canvas
+      baseChart
+      [data]="transactionsChartsService.categoryTotalsRadarChartDataset()"
+      [options]="
+        transactionsChartsService.getBarChartOptions('Transaction Category Totals')
+      "
+    ></canvas>
+  </div>
+
+  <div class="col-span-1">
+    <canvas
+      baseChart
+      [data]="transactionsChartsService.categoryTotalsBarChartDataset()"
+      [options]="
+        transactionsChartsService.getBarChartOptions('Transaction Category Totals')
+      "
+    ></canvas>
+  </div>
+
+  <div class="col-span-1">
+    <canvas
+      baseChart
+      [data]="transactionsChartsService.projectedCategoryTotalsBarChartDataset()"
+      [options]="
+        transactionsChartsService.getBarChartOptions('Projected Transaction Category Totals')
+      "
+    ></canvas>
+  </div>
 </div>

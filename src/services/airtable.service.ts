@@ -103,6 +103,7 @@ export class AirtableService {
         })));
       },
       complete: () => {
+        mappedRecords.sort((a, b) => b.date.diff(a.date).milliseconds);
         this.transactions.set(mappedRecords)
       }
     });
