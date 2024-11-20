@@ -8,7 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { InputsComponent } from "../inputs/inputs.component";
 import { AppStore } from '../../stores/app.store';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from "@angular/common/http";
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { NotificationPoolService } from '../../common/angular/services/notifications/notification-pool.service';

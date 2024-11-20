@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { withInterceptorsFromDi } from '@angular/common/http';
+import { withInterceptorsFromDi } from "@angular/common/http";
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
@@ -23,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideQueryParams(QueryParams),
     provideLoadingTracking(LoadingService),
     provideNotificationPools(NotificationTypes.Errors),
-    provideHttpCacheClient(cacheSettings, withInterceptorsFromDi()),
-    // provideHttpCacheClient(cacheSettings, preloadedCache, withInterceptorsFromDi()),
+    // provideHttpCacheClient(cacheSettings, withInterceptorsFromDi()),
+    provideHttpCacheClient(cacheSettings, preloadedCache, withInterceptorsFromDi()),
   ]
 };
