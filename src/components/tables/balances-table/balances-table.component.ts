@@ -6,7 +6,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { IBalanceOnDate } from '../../../models/Transactions';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
-import { BalanceMenuComponent } from './balance-menu/balance-menu.component';
+import { BalanceOnDayTableComponent } from '../balance-on-day-table/balance-on-day-table.component';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
 
 @Component({
@@ -17,7 +17,7 @@ import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
     MatPaginatorModule,
     MatTableModule,
     CurrencyPipe,
-    BalanceMenuComponent,
+    BalanceOnDayTableComponent,
     MatMenuModule,
     MatMenuTrigger,
     MatButtonModule,

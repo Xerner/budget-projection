@@ -1,21 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { IBalanceOnDate, ITransactionWithCalculations } from '../../../../models/Transactions';
+import { IBalanceOnDate, ITransactionWithCalculations } from '../../../models/Transactions';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
-  selector: 'app-balance-menu',
+  selector: 'app-balance-on-day-table',
   standalone: true,
   imports: [
     CommonModule,
     DateTimePipe,
     MatMenuModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatTableModule,
   ],
-  templateUrl: './balance-menu.component.html',
+  templateUrl: './balance-on-day-table.component.html',
 })
-export class BalanceMenuComponent {
+export class BalanceOnDayTableComponent {
   balance = input.required<IBalanceOnDate | null>();
+  displayedColumns = ['date', 'balance', 'calculation', 'description'];
 
   constructor() { }
 

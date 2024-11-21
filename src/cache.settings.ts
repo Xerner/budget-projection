@@ -14,9 +14,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -1144,9 +1142,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Planned Transactions",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -1830,9 +1826,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/rec1tfwPMiHPsoezG",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -2960,9 +2954,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/rec4I7NTZXiMxRGvD",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -4090,9 +4082,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/rec6SJJ1ch4RBmCyy",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -5220,9 +5210,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/rec8eqpS0Ae0wAGyH",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -6350,9 +6338,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recAwTgCLDQ75Rk14",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -7480,9 +7466,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recD2pdYlNi0czIMP",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -8610,9 +8594,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recFAU1sq4J6cEXYX",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -9740,9 +9722,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recHLzhGUMcepigEa",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -10870,9 +10850,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recJHAWpcHzegc2Hv",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -12000,9 +11978,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recLyxKMV5k1duS3f",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -13130,9 +13106,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recNrtShlULmdnrTk",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -14260,9 +14234,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recPsYSJ0OZG7eg4x",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -15390,9 +15362,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recS2Yv7SDs3hrKdP",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -16520,9 +16490,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recU64vtaD04J9T8U",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -17650,9 +17618,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recWOxhnOVhoJDKfW",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -18780,9 +18746,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recY47kfnqzRZ3jgj",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -19910,9 +19874,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recaJ1CUSF5TsB7Lo",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -21040,9 +21002,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/reccYiq7kO1zXtuW4",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -22170,9 +22130,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recezwM2mnzH94mXq",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -23300,9 +23258,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/rech3a3DtcT8dp0Ig",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -24430,9 +24386,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recjEMHEgdr8dGsJP",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -25560,9 +25514,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recl9yTyuWic5yZVv",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -26690,9 +26642,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recnEo4Alha29Tnbq",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -27820,9 +27770,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recpL8HZkrrfTWa5X",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -28950,9 +28898,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recrEby0qRZkhu8Jr",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -30080,9 +30026,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/rectOgLgheXi6EWCR",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -31210,9 +31154,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recvYTWyOLxVsAyvu",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -32340,9 +32282,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/recxayw22pilDcvlJ",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -33470,9 +33410,7 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "responseType": "json",
           "withCredentials": false,
           "urlWithParams": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/reczVdte8yTCgLiIF",
-          "headers": {
-              "Authorization": "Bearer paty81Svh3DydmTUH.540614a2723e3ed7ebb22d19390dae38f3013653dd25ce08ed7caa849014efbc"
-          }
+          "headers": {}
       },
       "response": {
           "body": {
@@ -33717,6 +33655,964 @@ export const preloadedCache: ISerializedHttpCacheItem[] = [
           "status": 200,
           "statusText": "OK",
           "url": "https://api.airtable.com/v0/appGkawgVuUsMXjLz/Transactions?offset=itrr0L2PYbkp0DLQo/reczVdte8yTCgLiIF",
+          "ok": true,
+          "type": 4
+      }
+  },
+  {
+      "request": {
+          "method": "GET",
+          "url": "assets/airtable.svg",
+          "params": "",
+          "body": null,
+          "responseType": "text",
+          "withCredentials": false,
+          "urlWithParams": "assets/airtable.svg",
+          "headers": {
+              "Authorization": "Bearer "
+          }
+      },
+      "response": {
+          "body": "<svg width=\"102\" height=\"22.2\" viewBox=\"0 0 680 148\" style=\"shape-rendering: geometricprecision\">\n  <g>\n    <path fill=\"rgb(51, 51, 51)\" d=\"M272.8495 85.1981L261.0145 53.2891C260.5305 51.9841 258.6855 51.9841 258.2015 53.2891L246.3655 85.1981C246.0025 86.1781 246.7275 87.2201 247.7725 87.2201L271.4435 87.2201C272.4885 87.2201 273.2125 86.1781 272.8495 85.1981M278.3175 103.1321L240.8985 103.1321C240.2705 103.1321 239.7095 103.5221 239.4915 104.1101L232.1245 123.9641C231.9065 124.5521 231.3455 124.9421 230.7185 124.9421L214.5015 124.9421C213.4395 124.9421 212.7135 123.8691 213.1095 122.8841L250.4505 29.8621C250.6785 29.2941 251.2295 28.9211 251.8425 28.9211L267.3725 28.9211C267.9845 28.9211 268.5365 29.2941 268.7645 29.8621L306.1055 122.8831C306.5015 123.8691 305.7755 124.9421 304.7135 124.9421L288.4965 124.9421C287.8695 124.9421 287.3085 124.5521 287.0905 123.9641L279.7235 104.1101C279.5055 103.5221 278.9445 103.1321 278.3175 103.1321M313.7043 61.5684L327.5763 61.5684C328.4053 61.5684 329.0763 62.2404 329.0763 63.0684L329.0763 123.4424C329.0763 124.2704 328.4053 124.9424 327.5763 124.9424L313.7043 124.9424C312.8763 124.9424 312.2043 124.2704 312.2043 123.4424L312.2043 63.0684C312.2043 62.2404 312.8763 61.5684 313.7043 61.5684M379.6682 76.2549C379.6682 77.0829 378.9962 77.7549 378.1682 77.7549L377.7482 77.7549C370.8892 77.7549 365.8582 79.4009 362.6582 82.6929 359.4562 85.9849 357.8572 91.4269 357.8572 99.0169L357.8572 123.4429C357.8572 124.2709 357.1862 124.9429 356.3572 124.9429L342.6222 124.9429C341.7942 124.9429 341.1222 124.2709 341.1222 123.4429L341.1222 63.0679C341.1222 62.2399 341.7942 61.5679 342.6222 61.5679L356.2202 61.5679C357.0492 61.5679 357.7202 62.2399 357.7202 63.0679L357.7202 75.0109 357.9952 75.0109C359.6412 70.0729 362.2472 66.2799 365.8142 63.6259 369.3802 60.9749 373.7702 59.6479 378.9822 59.6479L379.6682 59.6479 379.6682 76.2549zM417.5974 75.6973C416.7694 75.6973 416.0974 76.3693 416.0974 77.1973L416.0974 102.3093C416.0974 104.8703 416.5984 106.6983 417.6064 107.7963 418.6114 108.8933 420.3494 109.4423 422.8184 109.4423L424.1994 109.4423C425.0274 109.4423 425.6994 110.1133 425.6994 110.9423L425.6994 123.5793C425.6994 124.4083 425.0274 125.0793 424.1994 125.0793L418.2914 125.0793C412.1644 125.0793 407.4554 123.5023 404.1634 120.3473 400.8704 117.1923 399.2244 112.5073 399.2244 106.2873L399.2244 77.1973C399.2244 76.3693 398.5534 75.6973 397.7244 75.6973L389.0654 75.6973C388.2364 75.6973 387.5654 75.0253 387.5654 74.1973L387.5654 63.0683C387.5654 62.2403 388.2364 61.5683 389.0654 61.5683L397.7244 61.5683C398.5534 61.5683 399.2244 60.8973 399.2244 60.0683L399.2244 37.6913C399.2244 36.8633 399.8964 36.1913 400.7244 36.1913L414.5974 36.1913C415.4254 36.1913 416.0974 36.8633 416.0974 37.6913L416.0974 60.0683C416.0974 60.8973 416.7694 61.5683 417.5974 61.5683L427.6284 61.5683C428.4574 61.5683 429.1284 62.2403 429.1284 63.0683L429.1284 74.1973C429.1284 75.0253 428.4574 75.6973 427.6284 75.6973L417.5974 75.6973zM481.1191 106.1499C484.2741 102.8579 485.8511 98.5599 485.8511 93.2549 485.8511 87.9529 484.2741 83.6529 481.1191 80.3609 477.9641 77.0689 473.8251 75.4229 468.7041 75.4229 463.5821 75.4229 459.4461 77.0689 456.2901 80.3609 453.1361 83.6529 451.5581 87.9529 451.5581 93.2549 451.5581 98.5599 453.1361 102.8579 456.2901 106.1499 459.4461 109.4419 463.5821 111.0879 468.7041 111.0879 473.8251 111.0879 477.9641 109.4419 481.1191 106.1499M449.0891 123.0219C444.4251 120.3709 440.7431 116.5059 438.0471 111.4309 435.3481 106.3559 434.0001 100.2979 434.0001 93.2549 434.0001 86.2149 435.3481 80.1549 438.0471 75.0799 440.7431 70.0049 444.4251 66.1429 449.0891 63.4889 453.7531 60.8369 458.8731 59.5109 464.4521 59.5109 469.3901 59.5109 473.6191 60.4709 477.1411 62.3919 480.6601 64.3119 483.4721 67.0099 485.5771 70.4849L485.8511 70.4849 485.8511 63.0679C485.8511 62.2399 486.5231 61.5679 487.3511 61.5679L501.0861 61.5679C501.9151 61.5679 502.5861 62.2399 502.5861 63.0679L502.5861 123.4419C502.5861 124.2709 501.9151 124.9419 501.0861 124.9419L487.3511 124.9419C486.5231 124.9419 485.8511 124.2709 485.8511 123.4419L485.8511 116.0259 485.5771 116.0259C483.4721 119.5029 480.6601 122.1989 477.1411 124.1189 473.6191 126.0399 469.3901 126.9999 464.4521 126.9999 458.8731 126.9999 453.7531 125.6729 449.0891 123.0219M559.709 106.1499C562.864 102.8579 564.441 98.5599 564.441 93.2549 564.441 87.9529 562.864 83.6529 559.709 80.3609 556.555 77.0689 552.416 75.4229 547.295 75.4229 542.173 75.4229 538.036 77.0689 534.881 80.3609 531.727 83.6529 530.148 87.9529 530.148 93.2549 530.148 98.5599 531.727 102.8579 534.881 106.1499 538.036 109.4419 542.173 111.0879 547.295 111.0879 552.416 111.0879 556.555 109.4419 559.709 106.1499M538.859 124.1189C535.338 122.1989 532.525 119.5029 530.423 116.0259L530.148 116.0259 530.148 123.4419C530.148 124.2709 529.477 124.9419 528.648 124.9419L514.776 124.9419C513.948 124.9419 513.276 124.2709 513.276 123.4419L513.276 30.4209C513.276 29.5929 513.948 28.9209 514.776 28.9209L528.648 28.9209C529.477 28.9209 530.148 29.5929 530.148 30.4209L530.148 70.4849 530.423 70.4849C532.525 67.0099 535.338 64.3119 538.859 62.3919 542.379 60.4709 546.609 59.5109 551.548 59.5109 557.125 59.5109 562.247 60.8369 566.911 63.4889 571.575 66.1429 575.255 70.0049 577.953 75.0799 580.649 80.1549 582 86.2149 582 93.2549 582 100.2979 580.649 106.3559 577.953 111.4309 575.255 116.5059 571.575 120.3709 566.911 123.0219 562.247 125.6729 557.125 126.9999 551.548 126.9999 546.609 126.9999 542.379 126.0399 538.859 124.1189M605.3721 124.9424L591.5001 124.9424C590.6711 124.9424 590.0001 124.2704 590.0001 123.4424L590.0001 30.4214C590.0001 29.5934 590.6711 28.9214 591.5001 28.9214L605.3721 28.9214C606.2001 28.9214 606.8721 29.5934 606.8721 30.4214L606.8721 123.4424C606.8721 124.2704 606.2001 124.9424 605.3721 124.9424M638.0937 76.2461C635.7937 78.0401 634.2407 80.6301 633.4367 84.0181 633.2157 84.9521 633.9447 85.8481 634.9047 85.8481L661.3047 85.8481C662.2207 85.8481 662.9407 85.0281 662.7927 84.1241 662.2647 80.9191 660.8907 78.3631 658.6697 76.4521 656.0637 74.2121 652.6557 73.0911 648.4497 73.0911 644.2427 73.0911 640.7897 74.1431 638.0937 76.2461M671.9067 68.3581C677.3017 74.2571 679.9997 82.6031 679.9997 93.3921L679.9997 95.1841C679.9997 96.0131 679.3287 96.6841 678.4997 96.6841L634.3957 96.6841C633.4637 96.6841 632.7497 97.5321 632.9107 98.4501 633.6157 102.4581 635.3887 105.6421 638.2307 108.0011 641.4757 110.7001 645.5697 112.0481 650.5077 112.0481 656.8827 112.0481 662.7837 109.5601 668.2097 104.5831 668.8727 103.9751 669.9237 104.1041 670.4377 104.8421L677.1817 114.5221C677.6157 115.1451 677.5237 116.0051 676.9517 116.5051 673.6437 119.4011 669.9947 121.8261 666.0077 123.7761 661.6187 125.9241 656.4507 127.0001 650.5077 127.0001 643.6497 127.0001 637.6577 125.6041 632.5377 122.8161 627.4147 120.0281 623.4377 116.0951 620.6047 111.0191 617.7687 105.9441 616.3517 100.0691 616.3517 93.3921 616.3517 86.7181 617.7237 80.8201 620.4667 75.6971 623.2097 70.5771 627.0507 66.5991 631.9897 63.7631 636.9277 60.9301 642.6887 59.5111 649.2737 59.5111 658.9647 59.5111 666.5097 62.4601 671.9067 68.3581M330.8866 39.2473C330.8866 44.9063 326.2996 49.4933 320.6406 49.4933 314.9816 49.4933 310.3936 44.9063 310.3936 39.2473 310.3936 33.5883 314.9816 29.0013 320.6406 29.0013 326.2996 29.0013 330.8866 33.5883 330.8866 39.2473\"></path>\n    <path fill=\"rgb(255, 186, 5)\" d=\"M78.9992,1.8675 L13.0402,29.1605 C9.3722,30.6785 9.4102,35.8885 13.1012,37.3515 L79.3362,63.6175 C85.1562,65.9255 91.6372,65.9255 97.4562,63.6175 L163.6922,37.3515 C167.3822,35.8885 167.4212,30.6785 163.7522,29.1605 L97.7942,1.8675 C91.7762,-0.6225 85.0162,-0.6225 78.9992,1.8675\"></path>\n    <path fill=\"rgb(57, 202, 255)\" d=\"M94.2726,77.9608 L94.2726,143.5768 C94.2726,146.6978 97.4196,148.8348 100.3206,147.6848 L174.1266,119.0368 C175.8116,118.3688 176.9166,116.7408 176.9166,114.9288 L176.9166,49.3128 C176.9166,46.1918 173.7696,44.0548 170.8686,45.2048 L97.0626,73.8528 C95.3786,74.5208 94.2726,76.1488 94.2726,77.9608\"></path>\n    <path fill=\"rgb(220, 4, 59)\" d=\"M77.0384,81.3464 L55.1344,91.9224 L52.9104,92.9974 L6.6724,115.1524 C3.7414,116.5664 0.0004,114.4304 0.0004,111.1744 L0.0004,49.5884 C0.0004,48.4104 0.6044,47.3934 1.4144,46.6274 C1.7524,46.2884 2.1354,46.0094 2.5334,45.7884 C3.6384,45.1254 5.2144,44.9484 6.5544,45.4784 L76.6704,73.2594 C80.2344,74.6734 80.5144,79.6674 77.0384,81.3464\"></path>\n    <path fill=\"rgba(0, 0, 0, 0.25)\" d=\"M77.0384,81.3464 L55.1344,91.9224 L1.4144,46.6274 C1.7524,46.2884 2.1354,46.0094 2.5334,45.7884 C3.6384,45.1254 5.2144,44.9484 6.5544,45.4784 L76.6704,73.2594 C80.2344,74.6734 80.5144,79.6674 77.0384,81.3464\"></path>\n  </g>\n</svg>\n",
+          "headers": {
+              "access-control-allow-origin": "*",
+              "cache-control": "no-cache",
+              "content-length": "8667",
+              "content-type": "image/svg+xml",
+              "date": "Thu, 21 Nov 2024 16:23:05 GMT",
+              "etag": "W/\"8667-1730913536065\"",
+              "last-modified": "Wed, 06 Nov 2024 17:18:56 GMT"
+          },
+          "status": 200,
+          "statusText": "OK",
+          "url": "http://localhost:4200/assets/airtable.svg",
+          "ok": true,
+          "type": 4
+      }
+  },
+  {
+      "request": {
+          "method": "GET",
+          "url": "https://api.airtable.com/v0/meta/bases",
+          "params": "",
+          "body": null,
+          "responseType": "json",
+          "withCredentials": false,
+          "urlWithParams": "https://api.airtable.com/v0/meta/bases",
+          "headers": {
+              "Authorization": "Bearer patMvLTlef0dYVVU1.458c811c778cf16513a8948a8aca8744481776d870f40ad9baf90e95f022e08d"
+          }
+      },
+      "response": {
+          "body": {
+              "bases": [
+                  {
+                      "id": "appGkawgVuUsMXjLz",
+                      "name": "Budget",
+                      "permissionLevel": "create"
+                  }
+              ]
+          },
+          "headers": {
+              "content-length": "98",
+              "content-type": "application/json; charset=utf-8"
+          },
+          "status": 200,
+          "statusText": "OK",
+          "url": "https://api.airtable.com/v0/meta/bases",
+          "ok": true,
+          "type": 4
+      }
+  },
+  {
+      "request": {
+          "method": "GET",
+          "url": "https://api.airtable.com/v0/meta/bases/appGkawgVuUsMXjLz/tables",
+          "params": "",
+          "body": null,
+          "responseType": "json",
+          "withCredentials": false,
+          "urlWithParams": "https://api.airtable.com/v0/meta/bases/appGkawgVuUsMXjLz/tables",
+          "headers": {
+              "Authorization": "Bearer patMvLTlef0dYVVU1.458c811c778cf16513a8948a8aca8744481776d870f40ad9baf90e95f022e08d"
+          }
+      },
+      "response": {
+          "body": {
+              "tables": [
+                  {
+                      "id": "tbl4erQA4Xw1FOTI7",
+                      "name": "Planned Transactions",
+                      "primaryFieldId": "fldjik9DwbMeKh8xY",
+                      "fields": [
+                          {
+                              "type": "singleLineText",
+                              "id": "fldjik9DwbMeKh8xY",
+                              "name": "Description"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldRRbBrRPGtOiHCW",
+                              "name": "Amount"
+                          },
+                          {
+                              "type": "singleSelect",
+                              "options": {
+                                  "choices": [
+                                      {
+                                          "id": "sel765UbYmHfnwabN",
+                                          "name": "Need",
+                                          "color": "greenLight2"
+                                      },
+                                      {
+                                          "id": "selxEULKxNLV9Uo4w",
+                                          "name": "Want",
+                                          "color": "orangeLight2"
+                                      }
+                                  ]
+                              },
+                              "id": "fldJiWfFPiLb68rOI",
+                              "name": "Priority"
+                          },
+                          {
+                              "type": "singleSelect",
+                              "options": {
+                                  "choices": [
+                                      {
+                                          "id": "selNN1uJHlPWgr3BR",
+                                          "name": "Living",
+                                          "color": "cyanLight2"
+                                      },
+                                      {
+                                          "id": "sel3De3W6iXx6kdgM",
+                                          "name": "Savings",
+                                          "color": "yellowLight2"
+                                      },
+                                      {
+                                          "id": "selgWCtsaL4tXdB6e",
+                                          "name": "Loans",
+                                          "color": "redLight2"
+                                      },
+                                      {
+                                          "id": "sel0i15cl7WdDdTNZ",
+                                          "name": "Insurance",
+                                          "color": "tealLight2"
+                                      },
+                                      {
+                                          "id": "sel9ajgrhrAPCMObB",
+                                          "name": "Entertainment",
+                                          "color": "pinkLight2"
+                                      },
+                                      {
+                                          "id": "selkL9Hs22UrxZReu",
+                                          "name": "Income",
+                                          "color": "greenLight2"
+                                      }
+                                  ]
+                              },
+                              "id": "fldgc7LWYsKoY4YXD",
+                              "name": "Category"
+                          },
+                          {
+                              "type": "singleSelect",
+                              "options": {
+                                  "choices": [
+                                      {
+                                          "id": "seltil3QedNDUwLHV",
+                                          "name": "Income",
+                                          "color": "greenLight2"
+                                      },
+                                      {
+                                          "id": "sel0p83ZoIvroNovL",
+                                          "name": "Expense",
+                                          "color": "redLight2"
+                                      }
+                                  ]
+                              },
+                              "id": "fld8BTrTdFUudwszE",
+                              "name": "Is Income"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tblW3w8apnZhOc4XL",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": false,
+                                  "inverseLinkFieldId": "fldenEiEoFApHMZBo"
+                              },
+                              "id": "fldqRlsl0RdVsoPPa",
+                              "name": "Account"
+                          },
+                          {
+                              "type": "checkbox",
+                              "options": {
+                                  "icon": "check",
+                                  "color": "greenBright"
+                              },
+                              "id": "fldw8E30nM56veqRh",
+                              "name": "Shared?"
+                          },
+                          {
+                              "type": "checkbox",
+                              "options": {
+                                  "icon": "check",
+                                  "color": "greenBright"
+                              },
+                              "id": "fld79kEJGCVR0cUPf",
+                              "name": "Active"
+                          },
+                          {
+                              "type": "formula",
+                              "options": {
+                                  "isValid": true,
+                                  "formula": "{fldRRbBrRPGtOiHCW}*12",
+                                  "referencedFieldIds": [
+                                      "fldRRbBrRPGtOiHCW"
+                                  ],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fld58kaFKqaJX9t0O",
+                              "name": "Yearly"
+                          },
+                          {
+                              "type": "checkbox",
+                              "options": {
+                                  "icon": "check",
+                                  "color": "greenBright"
+                              },
+                              "id": "fldERWIiwW7Tnpt4u",
+                              "name": "Autopay?"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tblBVi8uY9UWnrGkI",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": false,
+                                  "inverseLinkFieldId": "fldsWUqHHqdtPOgGL"
+                              },
+                              "id": "fldXX5wtUtyZIaQXw",
+                              "name": "Loans"
+                          },
+                          {
+                              "type": "formula",
+                              "options": {
+                                  "isValid": true,
+                                  "formula": "{fldRRbBrRPGtOiHCW}/4",
+                                  "referencedFieldIds": [
+                                      "fldRRbBrRPGtOiHCW"
+                                  ],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fldacfuSFiGcgiDzs",
+                              "name": "Weekly"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tblUxcQhAoFg4zwmC",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": false,
+                                  "inverseLinkFieldId": "fldFgNavXoPIELxXP"
+                              },
+                              "id": "fldPObN3apg88bNui",
+                              "name": "Payments"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tbl1LMghnymbNbTnN",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": false,
+                                  "inverseLinkFieldId": "fldqoTeXAGb4L6hCP"
+                              },
+                              "id": "fldbUDn9k5zT8WPWl",
+                              "name": "Bills Rollup"
+                          },
+                          {
+                              "type": "date",
+                              "options": {
+                                  "dateFormat": {
+                                      "name": "local",
+                                      "format": "l"
+                                  }
+                              },
+                              "id": "fldRMsmsTGpVJ0krU",
+                              "name": "Date Of Transaction"
+                          },
+                          {
+                              "type": "singleSelect",
+                              "options": {
+                                  "choices": [
+                                      {
+                                          "id": "selBeVgO4Yq95Ootr",
+                                          "name": "Monthly",
+                                          "color": "blueLight2"
+                                      },
+                                      {
+                                          "id": "selZYMSTt5ND3Fgqn",
+                                          "name": "Weekly",
+                                          "color": "cyanLight2"
+                                      },
+                                      {
+                                          "id": "seldvRtUDDcYiuTgk",
+                                          "name": "Yearly",
+                                          "color": "tealLight2"
+                                      },
+                                      {
+                                          "id": "selD16YW5inwigGSY",
+                                          "name": "Bi-Yearly",
+                                          "color": "greenLight2"
+                                      },
+                                      {
+                                          "id": "sel2t4tjN2mtYRG46",
+                                          "name": "Ad-Hoc",
+                                          "color": "yellowLight2"
+                                      }
+                                  ]
+                              },
+                              "id": "fldwV9VDWsRo5ZNhY",
+                              "name": "Occurrence"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldG5gDLwdCfsVSAM",
+                              "name": "Transactions"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldc1NQiywqLx9zAj",
+                              "name": "Transactions copy"
+                          }
+                      ],
+                      "views": [
+                          {
+                              "id": "viwk02PdCic1L6PWz",
+                              "name": "All - Simple",
+                              "type": "grid"
+                          },
+                          {
+                              "id": "viwJTDQxPoIWMmtU1",
+                              "name": "All",
+                              "type": "grid"
+                          },
+                          {
+                              "id": "viw0DsLV1XsSsDIGa",
+                              "name": "All Expenses (Including Inactive)",
+                              "type": "grid"
+                          }
+                      ]
+                  },
+                  {
+                      "id": "tblAv6jJ7jMGlHjtO",
+                      "name": "Transactions",
+                      "primaryFieldId": "fldozQ78VVFrlfb53",
+                      "fields": [
+                          {
+                              "type": "dateTime",
+                              "options": {
+                                  "dateFormat": {
+                                      "name": "local",
+                                      "format": "l"
+                                  },
+                                  "timeFormat": {
+                                      "name": "12hour",
+                                      "format": "h:mma"
+                                  },
+                                  "timeZone": "client"
+                              },
+                              "id": "fldozQ78VVFrlfb53",
+                              "name": "Date"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldfi8djULhojzfru",
+                              "name": "Account"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "flds9l7YjEFrzbkzt",
+                              "name": "Merchant Name"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldtgxH0035zKnbbe",
+                              "name": "Amount"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldbbgBuTbq7nNfx8",
+                              "name": "Running Balance"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldNLnKmFLU0gVakI",
+                              "name": "Category"
+                          }
+                      ],
+                      "views": [
+                          {
+                              "id": "viwo4KaUAjFXQC96i",
+                              "name": "Grid view",
+                              "type": "grid"
+                          }
+                      ]
+                  },
+                  {
+                      "id": "tbl6rDwg9CAcqV0tl",
+                      "name": "Transactions BofA Categorized",
+                      "primaryFieldId": "fldUvnkFXetXqtS5A",
+                      "fields": [
+                          {
+                              "type": "date",
+                              "options": {
+                                  "dateFormat": {
+                                      "name": "local",
+                                      "format": "l"
+                                  }
+                              },
+                              "id": "fldUvnkFXetXqtS5A",
+                              "name": "Date"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldY5SkvlXtXEp1z0",
+                              "name": "Merchant Name"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldLeFqQW45UoNWr1",
+                              "name": "Account"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldtMKUzzTEBCEAFE",
+                              "name": "Category"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldZc4Ux2mT5PBSbL",
+                              "name": "Amount"
+                          }
+                      ],
+                      "views": [
+                          {
+                              "id": "viwU0hnrCCttVQQ6P",
+                              "name": "Grid view",
+                              "type": "grid"
+                          }
+                      ]
+                  },
+                  {
+                      "id": "tbl1LMghnymbNbTnN",
+                      "name": "Bills Rollup",
+                      "primaryFieldId": "fldsEvcNuSBp4c6nu",
+                      "fields": [
+                          {
+                              "type": "singleLineText",
+                              "id": "fldsEvcNuSBp4c6nu",
+                              "name": "Name"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tbl4erQA4Xw1FOTI7",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": false,
+                                  "inverseLinkFieldId": "fldbUDn9k5zT8WPWl"
+                              },
+                              "id": "fldqoTeXAGb4L6hCP",
+                              "name": "link"
+                          }
+                      ],
+                      "views": [
+                          {
+                              "id": "viwjksXjErhno304Z",
+                              "name": "Grid view",
+                              "type": "grid"
+                          }
+                      ]
+                  },
+                  {
+                      "id": "tblBVi8uY9UWnrGkI",
+                      "name": "Loans",
+                      "primaryFieldId": "fldlD0njo3i9dSIbd",
+                      "fields": [
+                          {
+                              "type": "singleLineText",
+                              "id": "fldlD0njo3i9dSIbd",
+                              "name": "Name"
+                          },
+                          {
+                              "type": "singleSelect",
+                              "options": {
+                                  "choices": [
+                                      {
+                                          "id": "seltQJD8X2Y4GrjiS",
+                                          "name": "Auto",
+                                          "color": "tealLight2"
+                                      },
+                                      {
+                                          "id": "selTIgnWDag77LBix",
+                                          "name": "Student Debt",
+                                          "color": "greenLight2"
+                                      }
+                                  ]
+                              },
+                              "id": "fldmKvymQsWTZxCJN",
+                              "name": "Category"
+                          },
+                          {
+                              "type": "formula",
+                              "options": {
+                                  "isValid": true,
+                                  "formula": "{fldGCQD2gPJ5XsEQw}+{fldn6tc0NfzoJABoG}-{fldZEHJtd9WjDbU3v}-{fldsTOhEDvjQFLvbK}",
+                                  "referencedFieldIds": [
+                                      "fldGCQD2gPJ5XsEQw",
+                                      "fldn6tc0NfzoJABoG",
+                                      "fldZEHJtd9WjDbU3v",
+                                      "fldsTOhEDvjQFLvbK"
+                                  ],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fldIUCw8SUubKh8aW",
+                              "name": "Remaining Balance"
+                          },
+                          {
+                              "type": "rollup",
+                              "options": {
+                                  "isValid": true,
+                                  "recordLinkFieldId": "fld41FPojMurPlLiG",
+                                  "fieldIdInLinkedTable": "fldV6vOpymTplmVJJ",
+                                  "referencedFieldIds": [],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fld2CDdtNbFvKzaHZ",
+                              "name": "Total Payment Rollup"
+                          },
+                          {
+                              "type": "formula",
+                              "options": {
+                                  "isValid": true,
+                                  "formula": "{fldGCQD2gPJ5XsEQw}+{fldn6tc0NfzoJABoG}",
+                                  "referencedFieldIds": [
+                                      "fldGCQD2gPJ5XsEQw",
+                                      "fldn6tc0NfzoJABoG"
+                                  ],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fldCk2jrvbJAWgQ1X",
+                              "name": "Total Before Payments"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldGCQD2gPJ5XsEQw",
+                              "name": "Original Principal"
+                          },
+                          {
+                              "type": "percent",
+                              "options": {
+                                  "precision": 3
+                              },
+                              "id": "fldyIwyzsxwbsJl5e",
+                              "name": "Annual Interest"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldn6tc0NfzoJABoG",
+                              "name": "Accrued Interest"
+                          },
+                          {
+                              "type": "formula",
+                              "options": {
+                                  "isValid": true,
+                                  "formula": "{fldGCQD2gPJ5XsEQw}-{fldZEHJtd9WjDbU3v}",
+                                  "referencedFieldIds": [
+                                      "fldGCQD2gPJ5XsEQw",
+                                      "fldZEHJtd9WjDbU3v"
+                                  ],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fldDG8C3rSVuM3SOk",
+                              "name": "Principal"
+                          },
+                          {
+                              "type": "rollup",
+                              "options": {
+                                  "isValid": true,
+                                  "recordLinkFieldId": "fld41FPojMurPlLiG",
+                                  "fieldIdInLinkedTable": "fldovCqCFhMHeOO1L",
+                                  "referencedFieldIds": [],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fldZEHJtd9WjDbU3v",
+                              "name": "Principal Payed"
+                          },
+                          {
+                              "type": "rollup",
+                              "options": {
+                                  "isValid": true,
+                                  "recordLinkFieldId": "fld41FPojMurPlLiG",
+                                  "fieldIdInLinkedTable": "fldh1FOUk8TOlFdtm",
+                                  "referencedFieldIds": [],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fldsTOhEDvjQFLvbK",
+                              "name": "Interest Payed"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldApEiYFC8hq1Kh4",
+                              "name": "Loan Projections"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldcdnlcKMaQhtV6T",
+                              "name": "Monthly Bill"
+                          },
+                          {
+                              "type": "multipleLookupValues",
+                              "options": {
+                                  "isValid": false,
+                                  "recordLinkFieldId": "fldcdnlcKMaQhtV6T",
+                                  "fieldIdInLinkedTable": null,
+                                  "result": null
+                              },
+                              "id": "fldFXq9d6ihGEyQ3X",
+                              "name": "Bill Amount"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldbNXsqRqNHLInvj",
+                              "name": "Bill Payment"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tblUxcQhAoFg4zwmC",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": false,
+                                  "inverseLinkFieldId": "fldD5KRRPI7lpC07T"
+                              },
+                              "id": "fld41FPojMurPlLiG",
+                              "name": "Loan Payments"
+                          },
+                          {
+                              "type": "url",
+                              "id": "fldD7Gdw7mzQdwEo8",
+                              "name": "URL"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tbl4erQA4Xw1FOTI7",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": false,
+                                  "inverseLinkFieldId": "fldXX5wtUtyZIaQXw"
+                              },
+                              "id": "fldsWUqHHqdtPOgGL",
+                              "name": "Bills copy"
+                          }
+                      ],
+                      "views": [
+                          {
+                              "id": "viwkUGa9AYLyZzMAk",
+                              "name": "Grid view",
+                              "type": "grid"
+                          },
+                          {
+                              "id": "viwPDw3vNftCHUQf2",
+                              "name": "Student Debt",
+                              "type": "grid"
+                          }
+                      ]
+                  },
+                  {
+                      "id": "tblUxcQhAoFg4zwmC",
+                      "name": "Payments",
+                      "primaryFieldId": "fldMaEz3y9XOetdJ7",
+                      "fields": [
+                          {
+                              "type": "autoNumber",
+                              "id": "fldMaEz3y9XOetdJ7",
+                              "name": "Name"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tbl4erQA4Xw1FOTI7",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": true,
+                                  "inverseLinkFieldId": "fldPObN3apg88bNui"
+                              },
+                              "id": "fldFgNavXoPIELxXP",
+                              "name": "Bill"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tblBVi8uY9UWnrGkI",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": true,
+                                  "inverseLinkFieldId": "fld41FPojMurPlLiG"
+                              },
+                              "id": "fldD5KRRPI7lpC07T",
+                              "name": "Loan"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldovCqCFhMHeOO1L",
+                              "name": "Principal Payed"
+                          },
+                          {
+                              "type": "currency",
+                              "options": {
+                                  "precision": 2,
+                                  "symbol": "$"
+                              },
+                              "id": "fldh1FOUk8TOlFdtm",
+                              "name": "Interest Payed"
+                          },
+                          {
+                              "type": "formula",
+                              "options": {
+                                  "isValid": true,
+                                  "formula": "{fldovCqCFhMHeOO1L}+{fldh1FOUk8TOlFdtm}",
+                                  "referencedFieldIds": [
+                                      "fldovCqCFhMHeOO1L",
+                                      "fldh1FOUk8TOlFdtm"
+                                  ],
+                                  "result": {
+                                      "type": "currency",
+                                      "options": {
+                                          "precision": 2,
+                                          "symbol": "$"
+                                      }
+                                  }
+                              },
+                              "id": "fldV6vOpymTplmVJJ",
+                              "name": "Total Payment"
+                          },
+                          {
+                              "type": "date",
+                              "options": {
+                                  "dateFormat": {
+                                      "name": "local",
+                                      "format": "l"
+                                  }
+                              },
+                              "id": "fldtEd6pAoPdgDP0C",
+                              "name": "Payment Date"
+                          },
+                          {
+                              "type": "formula",
+                              "options": {
+                                  "isValid": true,
+                                  "formula": "IF({fldD5KRRPI7lpC07T} = \"\", \"Bill\", \"Loan\")",
+                                  "referencedFieldIds": [
+                                      "fldD5KRRPI7lpC07T"
+                                  ],
+                                  "result": {
+                                      "type": "singleLineText"
+                                  }
+                              },
+                              "id": "fld517ZbnCVld0Uhm",
+                              "name": "Type"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldgBD9arkiRdN7NV",
+                              "name": "Other Name"
+                          },
+                          {
+                              "type": "formula",
+                              "options": {
+                                  "isValid": true,
+                                  "formula": "CONCATENATE({fldFgNavXoPIELxXP}, {fldD5KRRPI7lpC07T}, {fldgBD9arkiRdN7NV})",
+                                  "referencedFieldIds": [
+                                      "fldFgNavXoPIELxXP",
+                                      "fldD5KRRPI7lpC07T",
+                                      "fldgBD9arkiRdN7NV"
+                                  ],
+                                  "result": {
+                                      "type": "singleLineText"
+                                  }
+                              },
+                              "id": "fldmBEGvRE5LidSLs",
+                              "name": "Full Name"
+                          }
+                      ],
+                      "views": [
+                          {
+                              "id": "viw8rgFjOS19vmdCI",
+                              "name": "All",
+                              "type": "grid"
+                          },
+                          {
+                              "id": "viwxJeeFKmdflugX6",
+                              "name": "Bills",
+                              "type": "grid"
+                          },
+                          {
+                              "id": "viw5Su160MkkfrOhD",
+                              "name": "Bills - Grouped",
+                              "type": "grid"
+                          },
+                          {
+                              "id": "viwlgatGZDXk4bq9b",
+                              "name": "Bills - Monthly",
+                              "type": "grid"
+                          }
+                      ]
+                  },
+                  {
+                      "id": "tblW3w8apnZhOc4XL",
+                      "name": "Accounts",
+                      "primaryFieldId": "fld2q32hwXIj5XRRc",
+                      "fields": [
+                          {
+                              "type": "singleLineText",
+                              "id": "fld2q32hwXIj5XRRc",
+                              "name": "Name"
+                          },
+                          {
+                              "type": "singleSelect",
+                              "options": {
+                                  "choices": [
+                                      {
+                                          "id": "selTXuBHSBwUJhTo6",
+                                          "name": "Kenny",
+                                          "color": "blueLight2"
+                                      },
+                                      {
+                                          "id": "selwzCwkEw5MEBeoc",
+                                          "name": "Alexis",
+                                          "color": "pinkLight2"
+                                      }
+                                  ]
+                              },
+                              "id": "fldUxfFMsLumETge9",
+                              "name": "Owner"
+                          },
+                          {
+                              "type": "multipleRecordLinks",
+                              "options": {
+                                  "linkedTableId": "tbl4erQA4Xw1FOTI7",
+                                  "isReversed": false,
+                                  "prefersSingleRecordLink": false,
+                                  "inverseLinkFieldId": "fldqRlsl0RdVsoPPa"
+                              },
+                              "id": "fldenEiEoFApHMZBo",
+                              "name": "Bills"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldJ9RWxZxSm76pdp",
+                              "name": "Transactions"
+                          },
+                          {
+                              "type": "singleLineText",
+                              "id": "fldf5o941QGSck6dW",
+                              "name": "Transactions copy"
+                          }
+                      ],
+                      "views": [
+                          {
+                              "id": "viwcczy6glasND2d5",
+                              "name": "Grid view",
+                              "type": "grid"
+                          }
+                      ]
+                  }
+              ]
+          },
+          "headers": {
+              "content-length": "2856",
+              "content-type": "application/json; charset=utf-8"
+          },
+          "status": 200,
+          "statusText": "OK",
+          "url": "https://api.airtable.com/v0/meta/bases/appGkawgVuUsMXjLz/tables",
           "ok": true,
           "type": 4
       }

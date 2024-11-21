@@ -1,0 +1,35 @@
+@if (balance() === null) {
+<div>No balance selected</div>
+} @else {
+<div class="m-3 grid grid-cols-10 gap-1">
+  <div>{{ balance()!.date | DateTime }}</div>
+  <div>{{ balance()!.balance | currency }}</div>
+</div>
+
+<table mat-table [dataSource]="balance() ? balance()!.transactions : []">
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let row"> {{ row.date | DateTime }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="balance">
+    <th mat-header-cell *matHeaderCellDef> Balance </th>
+    <td mat-cell *matCellDef="let row"> {{ row.calculatedBalance | currency }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="calculation">
+    <th mat-header-cell *matHeaderCellDef> Calculation </th>
+    <td mat-cell *matCellDef="let row" [class]="['text-slate-400', getCalculatedBalanceClass(row)]">
+      {{ row.amount | currency }} + {{ row.calculatedBalance | currency }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Desc </th>
+    <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+}
