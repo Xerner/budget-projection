@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { IBalanceOnDate, ITransactionWithCalculations } from '../../../models/Transactions';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
@@ -17,16 +17,31 @@ import { MatTableModule } from '@angular/material/table';
     MatIconModule,
     MatTooltipModule,
     MatTableModule,
+    DecimalPipe,
   ],
   templateUrl: './balance-on-day-table.component.html',
 })
 export class BalanceOnDayTableComponent {
   balance = input.required<IBalanceOnDate | null>();
-  displayedColumns = ['date', 'balance', 'calculation', 'description'];
+  displayedColumns = [
+    '#',
+    'date',
+    'previousBalance',
+    'plus',
+    'amount',
+    'equals',
+    'balance',
+    'account',
+    'description',
+  ];
 
   constructor() { }
 
   getCalculatedBalanceClass(transaction: ITransactionWithCalculations): string {
-    return transaction.calculatedBalance < 0 ? 'text-red-400' : 'text-green-400';
+    return transaction.amount < 0 ? 'text-red-400' : 'text-green-400';
+  }
+
+  getPreviousBalance(transaction: ITransactionWithCalculations): number {
+    return transaction.calculatedBalance - transaction.amount;
   }
 }

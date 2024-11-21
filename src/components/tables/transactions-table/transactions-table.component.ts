@@ -26,6 +26,7 @@ export class TransactionsTableComponent {
 
   displayedTransactionColumns: Partial<keyof ITransaction>[] = [
     "date",
+    "sortOrder",
     // "category",
     "account",
     "description",
@@ -36,6 +37,7 @@ export class TransactionsTableComponent {
     id: "id",
     category: "category",
     date: "date",
+    sortOrder: "sortOrder",
     description: "description",
     amount: "amount",
     account: "account",

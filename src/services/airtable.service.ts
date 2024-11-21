@@ -94,6 +94,7 @@ export class AirtableService {
         mappedRecords = mappedRecords.concat(recordsResponse.records.map<ITransaction>(record => ({
           id: record.id,
           date: DateTime.fromISO(record.fields.Date),
+          sortOrder: record.fields['Sort Order'],
           description: record.fields['Merchant Name'],
           category: record.fields.Category,
           amount: record.fields.Amount,
@@ -123,7 +124,7 @@ export class AirtableService {
           priority: record.fields.Priority,
           category: record.fields.Category,
           isIncome: record.fields["Is Income"],
-          account: record.fields.Account,
+          account: record.fields.Account?.[0] ?? "",
           occurrence: record.fields.Occurrence as Occurence,
           autopay: record.fields.Autopay,
           shared: record.fields.Shared,

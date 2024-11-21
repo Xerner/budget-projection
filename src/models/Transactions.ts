@@ -4,14 +4,16 @@ import { Occurence } from "./IOccurences";
 export interface ITransaction {
   id: string;
   date: DateTime;
+  sortOrder: number;
   description: string;
   category: string;
   amount: number;
-  account: string[];
+  account: string;
   runningBalance?: number;
 }
 
 export interface ITransactionWithCalculations extends ITransaction {
+  indexOnDay: number;
   calculatedBalance: number;
 }
 
@@ -27,7 +29,7 @@ export interface IPlannedTransaction {
   priority: string;
   category: string;
   isIncome: string;
-  account: string[];
+  account: string;
   occurrence: Occurence;
   autopay: boolean;
   shared: boolean;

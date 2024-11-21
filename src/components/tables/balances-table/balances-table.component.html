@@ -29,6 +29,6 @@
 
 <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
 
-<mat-menu #transactionsMenu="matMenu" xPosition="before" class="!max-w-max">
+<mat-menu #transactionsMenu="matMenu" class="!max-w-max">
   <app-balance-on-day-table [balance]="selectedBalance()"></app-balance-on-day-table>
 </mat-menu>
