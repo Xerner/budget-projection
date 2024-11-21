@@ -6,6 +6,7 @@ export interface ApiTransaction extends IFields {
   "Account": LinkToAnotherRecordField;
   "Category": StringField;
   "Amount": NumberField;
+  "Running Balance": NumberField;
 }
 
 export interface ApiPlannedTransaction extends IFields {

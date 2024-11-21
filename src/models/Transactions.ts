@@ -8,6 +8,11 @@ export interface ITransaction {
   category: string;
   amount: number;
   account: string[];
+  runningBalance?: number;
+}
+
+export interface ITransactionWithCalculations extends ITransaction {
+  calculatedBalance: number;
 }
 
 export interface IProjectedTransaction extends ITransaction {
@@ -29,8 +34,10 @@ export interface IPlannedTransaction {
   dateOfTransaction: DateTime;
 }
 
-export interface IBalance {
+export interface IBalanceOnDate {
   date: DateTime;
   balance: number;
-  transactions: ITransaction[];
+  previousBalance: IBalanceOnDate | null;
+  transactions: ITransactionWithCalculations[];
+  isProjected: boolean;
 }

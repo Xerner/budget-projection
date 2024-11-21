@@ -26,9 +26,11 @@ export class TransactionsTableComponent {
 
   displayedTransactionColumns: Partial<keyof ITransaction>[] = [
     "date",
+    // "category",
+    "account",
     "description",
     "amount",
-    "account",
+    "runningBalance",
   ]
   readonly TransactionColumns: Record<keyof ITransaction, keyof ITransaction> = {
     id: "id",
@@ -37,6 +39,7 @@ export class TransactionsTableComponent {
     description: "description",
     amount: "amount",
     account: "account",
+    runningBalance: "runningBalance",
   }
 
   constructor(

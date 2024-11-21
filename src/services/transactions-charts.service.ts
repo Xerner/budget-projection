@@ -2,7 +2,7 @@ import { computed, Injectable } from '@angular/core';
 import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { TransactionService } from './transactions.service';
 import { ARRAY } from '../common/library';
-import { IBalance } from '../models/Transactions';
+import { IBalanceOnDate } from '../models/Transactions';
 import { DateTime } from 'luxon';
 
 @Injectable({
@@ -77,7 +77,7 @@ export class TransactionsChartsService {
   }
 
   getCategoryLabels(): string[] {
-    var balances = this.transactionService.balances();
+    var balances = this.transactionService.actualBalances();
     var projectedBalances = this.transactionService.projectedBalances();
     if (balances == null || projectedBalances == null) {
       return [];
@@ -90,7 +90,7 @@ export class TransactionsChartsService {
     var chartDataset = this.getChartDataTemplate<(number | null)>();
     var startingDate = this.transactionService.startingDate();
     var endingDate = this.transactionService.endingDate();
-    var balances = this.transactionService.balances();
+    var balances = this.transactionService.actualBalances();
     var projectedBalances = this.transactionService.projectedBalances();
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
@@ -118,7 +118,7 @@ export class TransactionsChartsService {
     return chartDataset;
   }
 
-  private getBalanceAndProjectedBalanceData(balances: IBalance[], dateLabels: DateTime[], isActualBalance = false) {
+  private getBalanceAndProjectedBalanceData(balances: IBalanceOnDate[], dateLabels: DateTime[], isActualBalance = false) {
     var now = DateTime.now();
     var chartData = dateLabels.reduce<(number | null)[]>((accumulator, dateLabel) => {
       var isAfterNow = dateLabel.diff(now, 'days').days > 0;
@@ -145,7 +145,7 @@ export class TransactionsChartsService {
     var chartDataset = this.getChartDataTemplate<number>();
     var startingDate = this.transactionService.startingDate();
     var endingDate = this.transactionService.endingDate();
-    var balances = this.transactionService.balances();
+    var balances = this.transactionService.actualBalances();
     var projectedBalances = this.transactionService.projectedBalances();
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
@@ -173,7 +173,7 @@ export class TransactionsChartsService {
     var chartDataset = this.getChartDataTemplate<number>();
     var startingDate = this.transactionService.startingDate();
     var endingDate = this.transactionService.endingDate();
-    var balances = this.transactionService.balances();
+    var balances = this.transactionService.actualBalances();
     var projectedBalances = this.transactionService.projectedBalances();
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
@@ -209,7 +209,7 @@ export class TransactionsChartsService {
   }
 
   getCategoryTotalsBarChartDataset(): ChartData<keyof ChartTypeRegistry, (number)[], string> {
-    var balances = this.transactionService.balances();
+    var balances = this.transactionService.actualBalances();
     return this.getTotalsBarChartDataset(balances, "Categories");
   }
 
@@ -218,7 +218,7 @@ export class TransactionsChartsService {
     return this.getTotalsBarChartDataset(balances, "Projected Categories");
   }
 
-  getTotalsBarChartDataset(balances: IBalance[], dataTitle: string): ChartData<keyof ChartTypeRegistry, number[], string> {
+  getTotalsBarChartDataset(balances: IBalanceOnDate[], dataTitle: string): ChartData<keyof ChartTypeRegistry, number[], string> {
     var chartDataset = this.getChartDataTemplate<number>();
     var startingDate = this.transactionService.startingDate();
     var endingDate = this.transactionService.endingDate();
@@ -237,13 +237,13 @@ export class TransactionsChartsService {
     return chartDataset;
   }
 
-  getCategoryCountsRadarChartData(balances: IBalance[], labels: string[]): number[] {
+  getCategoryCountsRadarChartData(balances: IBalanceOnDate[], labels: string[]): number[] {
     var categories = balances.flatMap(b => b.transactions.map(t => t.category));
     var counts = labels.map(label => categories.filter(c => c === label).length);
     return counts;
   }
 
-  getCategoryTotalsRadarChartData(balances: IBalance[], labels: string[]): number[] {
+  getCategoryTotalsRadarChartData(balances: IBalanceOnDate[], labels: string[]): number[] {
     var amounts = balances.flatMap(b => b.transactions.map(t => ({ category: t.category, amount: t.amount })));
     var counts = labels.map(label => amounts.filter(amount => amount.category === label).reduce((acc, amount) => acc + amount.amount, 0));
     return counts;

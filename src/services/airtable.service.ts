@@ -32,7 +32,6 @@ export class AirtableService {
     },
     transactionTableName: (_) => null,
     plannedTransactionTableName: (_) => null,
-    startingBalance: (_) => null,
     startingDate: (_) => null,
     endingDate: (_) => null,
   };
