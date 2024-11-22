@@ -6,7 +6,7 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { provideHttpCacheClient, provideQueryParams } from './common/angular/services';
-import { QueryParams } from './models/query-param-keys';
+import { QueryParams } from './models/GlobalQueryParams';
 import { provideBearerTokenAuth } from './common/angular/interceptors';
 import { LoadingService, provideLoadingTracking } from './common/angular/services/loading';
 import { provideNotificationPools } from './common/angular/services/notifications';

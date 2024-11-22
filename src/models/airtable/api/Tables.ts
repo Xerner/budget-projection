@@ -1,4 +1,4 @@
-import { IBase } from "./Bases";
+import { AirtableBase } from "./Bases";
 
 export interface IFieldOptions {
   // todo: add more types
@@ -31,7 +31,7 @@ export interface ITableSchema {
 }
 
 export interface ITableSchemaExt extends ITableSchema {
-  baseId: IBase,
+  baseId: AirtableBase,
 }
 
 

@@ -1,20 +1,20 @@
 import { ITableSchema } from "./Tables";
 
-export interface IBase {
+export interface AirtableBase {
   id: string;
   name: string;
   permissionLevel: string;
 }
 
-export interface IBaseSchema {
+export interface AirtableBaseSchema {
   tables: ITableSchema[];
 }
 
-export interface IBaseSchemaExt extends IBaseSchema {
+export interface AirtableBaseSchemaExt extends AirtableBaseSchema {
   baseId: string;
 }
 
-export interface IBasesResponse {
-  bases: IBase[],
+export interface AirtableBasesResponse {
+  bases: AirtableBase[],
   offset: string
 }

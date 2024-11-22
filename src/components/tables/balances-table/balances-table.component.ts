@@ -3,7 +3,7 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { TransactionService } from '../../../services/transactions.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { IBalanceOnDate } from '../../../models/Transactions';
+import { IBalanceOnDate } from '../../../models/interfaces/IPlannedTransactions';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { BalanceOnDayTableComponent } from '../balance-on-day-table/balance-on-day-table.component';

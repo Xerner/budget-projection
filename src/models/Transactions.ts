@@ -1,45 +1,49 @@
 import { DateTime } from "luxon";
-import { Occurence } from "./IOccurences";
+import { IPlannedTransaction } from "./interfaces/IPlannedTransactions";
+import { Account } from "./Account";
 
-export interface ITransaction {
-  id: string;
-  date: DateTime;
-  sortOrder: number;
-  description: string;
-  category: string;
-  amount: number;
-  account: string;
-  runningBalance?: number;
+export class Transaction {
+  indexOnDay: number = 0;
+
+  constructor(
+    readonly id: string,
+    readonly date: DateTime<boolean>,
+    readonly sortOrder: number,
+    readonly description: string,
+    readonly category: string,
+    private readonly amount: number,
+    readonly account: Account,
+    public startingBalance: number
+  ) { }
+
+  calculatedBalance() {
+    return this.startingBalance + this.amount;
+  }
+
+  getAmount() {
+    switch (this.account.type) {
+      case "debit":
+        return this.amount;
+      case "credit":
+        return -this.amount;
+      default:
+        return this.amount;
+    }
+  }
 }
 
-export interface ITransactionWithCalculations extends ITransaction {
-  indexOnDay: number;
-  calculatedBalance: number;
-}
-
-export interface IProjectedTransaction extends ITransaction {
-  "plannedTransaction": IPlannedTransaction;
-}
-
-export interface IPlannedTransaction {
-  id: string;
-  description: string;
-  active: boolean;
-  amount: number;
-  priority: string;
-  category: string;
-  isIncome: string;
-  account: string;
-  occurrence: Occurence;
-  autopay: boolean;
-  shared: boolean;
-  dateOfTransaction: DateTime;
-}
-
-export interface IBalanceOnDate {
-  date: DateTime;
-  balance: number;
-  previousBalance: IBalanceOnDate | null;
-  transactions: ITransactionWithCalculations[];
-  isProjected: boolean;
+export class ProjectedTransaction extends Transaction {
+  constructor(
+    date: DateTime<boolean>,
+    sortOrder: number,
+    description: string,
+    category: string,
+    amount: number,
+    startingBalance: number,
+    readonly plannedTransaction: IPlannedTransaction
+  ) {
+    var id = "";
+    var account = Account.GetDummyAccount();
+    super(id, date, sortOrder, description, category, amount, account, startingBalance);
+  }
 }

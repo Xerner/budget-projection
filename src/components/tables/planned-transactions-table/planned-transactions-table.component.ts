@@ -3,7 +3,7 @@ import { Component, computed, viewChild } from '@angular/core';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { AirtableService } from '../../../services/airtable.service';
-import { IPlannedTransaction } from '../../../models/Transactions';
+import { IPlannedTransaction } from '../../../models/interfaces/IPlannedTransactions';
 
 @Component({
   selector: 'app-planned-transactions-table',

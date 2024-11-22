@@ -3,7 +3,7 @@ import { Component, computed, viewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { AirtableService } from '../../../services/airtable.service';
-import { ITransaction } from '../../../models/Transactions';
+import { ITransaction } from '../../../models/interfaces/IPlannedTransactions';
 
 @Component({
   selector: 'app-transactions-table',

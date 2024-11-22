@@ -2,7 +2,7 @@ import { computed, Injectable } from '@angular/core';
 import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { TransactionService } from './transactions.service';
 import { ARRAY } from '../common/library';
-import { IBalanceOnDate } from '../models/Transactions';
+import { IBalanceOnDate } from '../models/interfaces/IPlannedTransactions';
 import { DateTime } from 'luxon';
 
 @Injectable({

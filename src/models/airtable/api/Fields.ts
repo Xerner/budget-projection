@@ -1,4 +1,5 @@
 export interface IFields {
+  id: string;
   [key: string]: Field | any;
 }
 

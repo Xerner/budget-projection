@@ -1,6 +1,6 @@
 import { DurationLike } from "luxon";
 
-export enum Occurence {
+export enum Occurrence {
   Monthly = "Monthly",
   Weekly = "Weekly",
   Yearly = "Yearly",
@@ -11,23 +11,23 @@ export enum Occurence {
   AdHoc = "Ad-Hoc",
 }
 
-export function OccurenceToDuration(occurence: Occurence): DurationLike | null {
+export function OccurrenceToDuration(occurence: Occurrence): DurationLike | null {
   switch (occurence) {
-    case Occurence.Monthly:
+    case Occurrence.Monthly:
       return { months: 1 };
-    case Occurence.Weekly:
+    case Occurrence.Weekly:
       return { weeks: 1 };
-    case Occurence.Yearly:
+    case Occurrence.Yearly:
       return { years: 1 };
-    case Occurence.BiMonthly:
+    case Occurrence.BiMonthly:
       return { months: 2 };
-    case Occurence.BiWeekly:
+    case Occurrence.BiWeekly:
       return { weeks: 2 };
-    case Occurence.Quarterly:
+    case Occurrence.Quarterly:
       return { months: 3 };
-    case Occurence.SemiAnnually:
+    case Occurrence.SemiAnnually:
       return { months: 6 };
-    case Occurence.AdHoc:
+    case Occurrence.AdHoc:
       return { months: 0 };
     default:
       return null;

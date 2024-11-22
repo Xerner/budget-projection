@@ -1,6 +1,6 @@
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { IBalanceOnDate, ITransactionWithCalculations } from '../../../models/Transactions';
+import { IBalanceOnDate, ITransactionWithCalculations } from '../../../models/interfaces/IPlannedTransactions';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';

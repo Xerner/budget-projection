@@ -2,20 +2,22 @@ import { Inject, Injectable, signal } from '@angular/core';
 import { RecordsApiService } from './api/records.api.service';
 import { BasesApiService } from './api/bases.api.service';
 import { InputsService } from './inputs.service';
-import { IGlobalQueryParams } from '../models/query-param-keys';
+import { IGlobalQueryParams } from '../models/GlobalQueryParams';
 import { TOKEN_SERVICE, ITokenService } from '../common/angular/interceptors';
 import { FormControl } from '@angular/forms';
-import { IBase, IBaseSchemaExt, ApiPlannedTransaction, IRecordsExt, ApiTransaction } from '../models/airtable/api';
-import { IPlannedTransaction, ITransaction } from '../models/Transactions';
+import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction } from '../models/airtable/api';
+import { IPlannedTransaction } from '../models/interfaces/IPlannedTransactions';
 import { DateTime } from 'luxon';
-import { Occurence } from '../models/IOccurences';
+import { Occurrence } from '../models/interfaces/IOccurences';
+import { AirtableAccount } from 'models/airtable/api/Accounts';
 
 @Injectable({ providedIn: 'root' })
 export class AirtableService {
-  bases = signal<IBase[]>([]);
-  baseSchema = signal<IBaseSchemaExt | null>(null);
-  transactions = signal<ITransaction[]>([]);
+  bases = signal<AirtableBase[]>([]);
+  baseSchema = signal<AirtableBaseSchemaExt | null>(null);
+  transactions = signal<AirtableTransaction[]>([]);
   plannedTransactions = signal<IPlannedTransaction[]>([]);
+  accounts = signal<AirtableAccount[]>([]);
 
   onApiControlChanges: Record<keyof IGlobalQueryParams, (value: any) => void> = {
     token: (token) => {
@@ -88,23 +90,13 @@ export class AirtableService {
     if (!baseId || !tableName) {
       return;
     }
-    var mappedRecords: ITransaction[] = [];
-    this.recordsApi.getRecords<ApiTransaction>(baseId, tableName).subscribe({
+    var records: AirtableTransaction[] = [];
+    this.recordsApi.getRecords<AirtableTransaction>(baseId, tableName).subscribe({
       next: recordsResponse => {
-        mappedRecords = mappedRecords.concat(recordsResponse.records.map<ITransaction>(record => ({
-          id: record.id,
-          date: DateTime.fromISO(record.fields.Date),
-          sortOrder: record.fields['Sort Order'],
-          description: record.fields['Merchant Name'],
-          category: record.fields.Category,
-          amount: record.fields.Amount,
-          account: record.fields.Account,
-          runningBalance: record.fields["Running Balance"],
-        })));
+        records = records.concat(recordsResponse.records.map(record => record.fields));
       },
       complete: () => {
-        mappedRecords.sort((a, b) => b.date.diff(a.date).milliseconds);
-        this.transactions.set(mappedRecords)
+        this.transactions.set(records)
       }
     });
   }
@@ -114,7 +106,7 @@ export class AirtableService {
       return;
     }
     var mappedRecords: IPlannedTransaction[] = [];
-    this.recordsApi.getRecords<ApiPlannedTransaction>(baseId, tableName).subscribe({
+    this.recordsApi.getRecords<AirtablePlannedTransaction>(baseId, tableName).subscribe({
       next: recordsResponse => {
         mappedRecords = mappedRecords.concat(recordsResponse.records.map<IPlannedTransaction>(record => ({
           id: record.id,
@@ -125,7 +117,7 @@ export class AirtableService {
           category: record.fields.Category,
           isIncome: record.fields["Is Income"],
           account: record.fields.Account?.[0] ?? "",
-          occurrence: record.fields.Occurrence as Occurence,
+          occurrence: record.fields.Occurrence as Occurrence,
           autopay: record.fields.Autopay,
           shared: record.fields.Shared,
           dateOfTransaction: DateTime.fromISO(record.fields["Date of Transaction"]),
@@ -135,5 +127,21 @@ export class AirtableService {
         this.plannedTransactions.set(mappedRecords)
       }
     });
+  }
+
+  fetchAccounts(baseId: string, tableName: string) {
+    if (!baseId || !tableName) {
+      return;
+    }
+    var mappedRecords: AirtableAccount[] = [];
+    this.recordsApi.getRecords<AirtableAccount>(baseId, tableName).subscribe({
+      next: recordsResponse => {
+        mappedRecords = mappedRecords.concat(recordsResponse.records.map(record => record.fields));
+      },
+      complete: () => {
+        this.accounts.set(mappedRecords)
+      }
+    });
+
   }
 }

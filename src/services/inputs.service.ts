@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IGlobalQueryParams } from '../models/query-param-keys';
+import { IGlobalQueryParams } from '../models/GlobalQueryParams';
 import { InterfaceForm } from '../common/angular/types';
 import { DateTime } from 'luxon';
 import { QueryParamControl } from '../common/angular/controls/QueryParamControl';

@@ -1,6 +1,6 @@
 import { BooleanField, DateField, IFields, LinkToAnotherRecordField, NumberField, StringField } from "./Fields";
 
-export interface ApiTransaction extends IFields {
+export interface AirtableTransaction extends IFields {
   "Date": DateField;
   "Sort Order": NumberField;
   "Merchant Name": StringField;
@@ -10,7 +10,7 @@ export interface ApiTransaction extends IFields {
   "Running Balance": NumberField;
 }
 
-export interface ApiPlannedTransaction extends IFields {
+export interface AirtablePlannedTransaction extends IFields {
   "Description": StringField;
   "Active": BooleanField;
   "Amount": NumberField;
