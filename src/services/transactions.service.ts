@@ -8,11 +8,13 @@ import { Transaction } from 'models/Transactions';
 import { AccountsService } from './accounts.service';
 import { AirtableTransaction } from 'models/airtable/api';
 import { ProjectedTransactionService } from './projected-transactions.service';
+import { STRINGS } from 'common/library';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
   startingDate = signal<DateTime | null>(null);
   endingDate = signal<DateTime | null>(null);
+  actualTransactions = computed(() => this.getActualTransactions());
   actualBalances = computed<IBalanceOnDate[]>(() => {
     return this.balancesService.getActualBalancesOnDates(
       this.startingDate(),
@@ -25,13 +27,15 @@ export class TransactionService {
     var firstTransaction = startingBalance?.transactions[0] ?? null;
     var endingDate = this.endingDate();
     var plannedTransactions = this.airtableService.plannedTransactions()
-    if (startingBalance === null || firstTransaction === null || endingDate === null) {
+    var accounts = this.accountsService.accounts();
+    if (startingBalance === null || firstTransaction === null || endingDate === null || accounts === null) {
       return [];
     }
     var transactions = this.projectedTransactionService.getProjectedPlannedTransactions(
       plannedTransactions,
       endingDate,
       firstTransaction?.sortOrder ?? 0,
+      accounts
     )
     return this.balancesService.getProjectedRunningBalancesOnDates(
       this.startingDate(),
@@ -60,12 +64,12 @@ export class TransactionService {
   }
 
   getActualTransactions(): Transaction[] {
-    var accounts = this.accountsService.getAccounts();
+    var accounts = this.accountsService.accounts();
     var airtableTransactions: AirtableTransaction[] = this.airtableService.transactions();
     // sort by date and then by custom sort order because banks are too stupid to include transaction times
     airtableTransactions.sort(this.sortAirtableTransactions);
     return airtableTransactions.map<Transaction>(airtableTransaction => {
-      var account = accounts.find(account => account.name === airtableTransaction.Account);
+      var account = accounts.find(account => STRINGS.compare(airtableTransaction.Account, account.name, account.aliases) === 0);
       if (!account) {
         console.error('Account in transaction not found', airtableTransaction);
         throw new Error('Account in transaction not found');

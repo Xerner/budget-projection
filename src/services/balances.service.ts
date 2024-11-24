@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
 import { IBalanceOnDate } from 'models/interfaces/IBalance';
-import { ProjectedTransaction, Transaction } from 'models/Transactions';
+import { ProjectedTransaction } from 'models/ProjectedTransaction';
+import { Transaction } from 'models/Transactions';
 
 @Injectable({ providedIn: 'root' })
 export class BalancesService {

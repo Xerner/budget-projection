@@ -6,9 +6,6 @@ import { IGlobalQueryParams } from '../models/GlobalQueryParams';
 import { TOKEN_SERVICE, ITokenService } from '../common/angular/interceptors';
 import { FormControl } from '@angular/forms';
 import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction } from '../models/airtable/api';
-import { IPlannedTransaction } from '../models/interfaces/IPlannedTransactions';
-import { DateTime } from 'luxon';
-import { Occurrence } from '../models/interfaces/IOccurences';
 import { AirtableAccount } from 'models/airtable/api/Accounts';
 
 @Injectable({ providedIn: 'root' })
@@ -16,10 +13,11 @@ export class AirtableService {
   bases = signal<AirtableBase[]>([]);
   baseSchema = signal<AirtableBaseSchemaExt | null>(null);
   transactions = signal<AirtableTransaction[]>([]);
-  plannedTransactions = signal<IPlannedTransaction[]>([]);
+  plannedTransactions = signal<AirtablePlannedTransaction[]>([]);
   accounts = signal<AirtableAccount[]>([]);
 
-  onApiControlChanges: Record<keyof IGlobalQueryParams, (value: any) => void> = {
+  onApiControlChanges: Partial<Record<keyof IGlobalQueryParams, (value: any) => void>> = {
+
     token: (token) => {
       this.tokenService.setToken(token);
       this.fetchBases();
@@ -32,10 +30,6 @@ export class AirtableService {
       }
       this.fetchBaseSchema(baseId)
     },
-    transactionTableName: (_) => null,
-    plannedTransactionTableName: (_) => null,
-    startingDate: (_) => null,
-    endingDate: (_) => null,
   };
 
   constructor(
@@ -52,7 +46,7 @@ export class AirtableService {
   }
 
   private subscribeToSpecificValueChanges(control: FormControl, key: keyof IGlobalQueryParams) {
-    control.valueChanges.subscribe(this.onApiControlChanges[key].bind(this));
+    control.valueChanges.subscribe(this.onApiControlChanges[key]?.bind(this));
   }
 
   fetchAll() {
@@ -62,8 +56,10 @@ export class AirtableService {
     }
     var transactionsTableName = this.inputsService.apiForm.controls.transactionTableName.value;
     var plannedTransactionsTableName = this.inputsService.apiForm.controls.plannedTransactionTableName.value;
+    var accountsTableName = this.inputsService.apiForm.controls.accountsTableName.value;
     this.fetchPlannedTransactions(base.id, plannedTransactionsTableName);
     this.fetchTransactions(base.id, transactionsTableName);
+    this.fetchAccounts(base.id, accountsTableName);
   }
 
   fetchBases() {
@@ -73,7 +69,7 @@ export class AirtableService {
       if (!baseNameControlValue) {
         return;
       }
-      this.onApiControlChanges.baseName(baseNameControlValue);
+      this.onApiControlChanges.baseName!(baseNameControlValue);
     });
   }
 
@@ -105,23 +101,10 @@ export class AirtableService {
     if (!baseId || !tableName) {
       return;
     }
-    var mappedRecords: IPlannedTransaction[] = [];
+    var mappedRecords: AirtablePlannedTransaction[] = [];
     this.recordsApi.getRecords<AirtablePlannedTransaction>(baseId, tableName).subscribe({
       next: recordsResponse => {
-        mappedRecords = mappedRecords.concat(recordsResponse.records.map<IPlannedTransaction>(record => ({
-          id: record.id,
-          description: record.fields.Description,
-          active: record.fields.Active,
-          amount: record.fields.Amount,
-          priority: record.fields.Priority,
-          category: record.fields.Category,
-          isIncome: record.fields["Is Income"],
-          account: record.fields.Account?.[0] ?? "",
-          occurrence: record.fields.Occurrence as Occurrence,
-          autopay: record.fields.Autopay,
-          shared: record.fields.Shared,
-          dateOfTransaction: DateTime.fromISO(record.fields["Date of Transaction"]),
-        })));
+        mappedRecords = mappedRecords.concat(recordsResponse.records.map(record => record.fields));
       },
       complete: () => {
         this.plannedTransactions.set(mappedRecords)

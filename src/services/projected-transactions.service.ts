@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
+import { STRINGS } from 'common/library';
 import { DateTime } from 'luxon';
+import { Account } from 'models/Account';
+import { AirtablePlannedTransaction } from 'models/airtable/api';
 import { Occurrence, OccurrenceToDuration } from 'models/interfaces/IOccurences';
-import { IPlannedTransaction } from 'models/interfaces/IPlannedTransactions';
-import { ProjectedTransaction } from 'models/Transactions';
+import { ProjectedTransaction } from 'models/ProjectedTransaction';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectedTransactionService {
-  getProjectedPlannedTransactions(plannedTransactions: IPlannedTransaction[], endingDate: DateTime, sortOrder: number): ProjectedTransaction[] {
+  getProjectedPlannedTransactions(plannedTransactions: AirtablePlannedTransaction[], endingDate: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction[] {
     return plannedTransactions
-      .filter(plannedTransaction => plannedTransaction.active)
+      .filter(plannedTransaction => plannedTransaction.Active)
       .flatMap(plannedTransaction => {
-        return this.createProjectedTransactions(plannedTransaction, endingDate, sortOrder)
+        return this.createProjectedTransactions(plannedTransaction, endingDate, sortOrder, accounts)
       });
   }
 
-  private createProjectedTransactions(plannedTransaction: IPlannedTransaction, endingDate: DateTime, sortOrder: number): ProjectedTransaction[] {
-    if (plannedTransaction.occurrence == Occurrence.AdHoc) {
-      return [this.createProjectedTransaction(plannedTransaction, endingDate, sortOrder)];
+  private createProjectedTransactions(plannedTransaction: AirtablePlannedTransaction, endingDate: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction[] {
+    if (plannedTransaction.Occurrence == Occurrence.AdHoc) {
+      return [this.createProjectedTransaction(plannedTransaction, endingDate, sortOrder, accounts)];
     }
-    var duration = OccurrenceToDuration(plannedTransaction.occurrence);
+    var duration = OccurrenceToDuration(plannedTransaction.Occurrence as Occurrence);
     if (duration == null) {
       return [];
     }
@@ -26,21 +28,23 @@ export class ProjectedTransactionService {
     var transactions: ProjectedTransaction[] = [];
     var projectedTransaction: ProjectedTransaction;
     while (nextDate < endingDate) {
-      projectedTransaction = this.createProjectedTransaction(plannedTransaction, nextDate, sortOrder);
+      projectedTransaction = this.createProjectedTransaction(plannedTransaction, nextDate, sortOrder, accounts);
       transactions.push(projectedTransaction);
       nextDate = nextDate.plus(duration);
     }
     return transactions;
   }
 
-  private createProjectedTransaction(plannedTransaction: IPlannedTransaction, datetime: DateTime, sortOrder: number): ProjectedTransaction {
+  private createProjectedTransaction(plannedTransaction: AirtablePlannedTransaction, datetime: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction {
     sortOrder++;
+    var account = accounts.find(account => account.doesNameRepresent(plannedTransaction.Account[0])) ?? Account.UnknownAccount();
     return new ProjectedTransaction(
       datetime,
       sortOrder,
-      plannedTransaction.description,
-      plannedTransaction.category,
-      plannedTransaction.amount,
+      plannedTransaction.Description,
+      plannedTransaction.Category,
+      plannedTransaction.Amount,
+      account,
       0,
       plannedTransaction,
     );

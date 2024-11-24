@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="transactionsDataSource()" matSort>
   <ng-container [matColumnDef]="TransactionColumns.date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.date]}} </td>
+    <td mat-cell *matCellDef="let row"> {{ row[TransactionColumns.date] | DateTime }} </td>
   </ng-container>
 
   <ng-container [matColumnDef]="TransactionColumns.sortOrder">
@@ -9,9 +9,14 @@
     <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.sortOrder]}} </td>
   </ng-container>
 
-  <ng-container [matColumnDef]="TransactionColumns.account">
+  <ng-container [matColumnDef]="TransactionColumns.accountName">
     <th mat-header-cell *matHeaderCellDef> Account </th>
-    <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.account]}} </td>
+    <td mat-cell *matCellDef="let row"> {{row.account ? row.account.name : ""}} </td>
+  </ng-container>
+
+  <ng-container [matColumnDef]="TransactionColumns.accountType">
+    <th mat-header-cell *matHeaderCellDef> Account </th>
+    <td mat-cell *matCellDef="let row" [class]="accountStyleService.getAccountTypeClass(row.account)"> {{row.account ? row.account.type : ""}} </td>
   </ng-container>
 
   <ng-container [matColumnDef]="TransactionColumns.category">
@@ -26,12 +31,12 @@
 
   <ng-container [matColumnDef]="TransactionColumns.amount">
     <th mat-header-cell *matHeaderCellDef> Amount </th>
-    <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.amount]}} </td>
+    <td mat-cell *matCellDef="let row" [class]="transactionsStyleService.getTransactionAmountClass(row)"> {{ row[TransactionColumns.amount] | currency}} </td>
   </ng-container>
 
-  <ng-container [matColumnDef]="TransactionColumns.runningBalance">
+  <ng-container [matColumnDef]="TransactionColumns.startingBalance">
     <th mat-header-cell *matHeaderCellDef> Running Balance </th>
-    <td mat-cell *matCellDef="let row"> {{row[TransactionColumns.runningBalance]}} </td>
+    <td mat-cell *matCellDef="let row"> {{ row[TransactionColumns.startingBalance] | currency }} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedTransactionColumns"></tr>

@@ -2,7 +2,7 @@
 <!-- <div class="grid grid-cols-6 gap-6"> -->
   <div class="col-span-5">
     <div class="grid grid-cols-4 gap-x-6 gap-y-3 w-full">
-      <div class="font-medium font-xl col-span-4">API Inputs</div>
+      <div class="font-medium font-xl col-span-4">Enter all API Inputs</div>
 
       <!-- API Inputs -->
       <mat-form-field>
@@ -13,6 +13,7 @@
         />
       </mat-form-field>
 
+      <!-- Base -->
       <mat-form-field>
         <mat-label>Choose base</mat-label>
         <mat-select
@@ -28,8 +29,13 @@
         <mat-hint>Enter the token to load possible options</mat-hint>
       </mat-form-field>
 
+      <div></div>
+      <div></div>
+      <div class="font-medium font-xl col-span-4">Choose tables to source data from</div>
+
+      <!-- Transaction Table -->
       <mat-form-field>
-        <mat-label>Choose Transactions tables name</mat-label>
+        <mat-label>Transactions</mat-label>
         <mat-select
           [formControl]="
             this.inputsService.apiForm.controls.transactionTableName
@@ -44,11 +50,29 @@
         </mat-select>
       </mat-form-field>
 
+      <!-- Planned Transaction Table -->
       <mat-form-field>
-        <mat-label>Choose Planned Transactions tables name</mat-label>
+        <mat-label>Planned Transactions</mat-label>
         <mat-select
           [formControl]="
             this.inputsService.apiForm.controls.plannedTransactionTableName
+          "
+        >
+          <mat-option [value]=""
+            ><span class="text-slate-400">None</span></mat-option
+          >
+          @for (table of selectedBasesTables(); track $index) {
+          <mat-option [value]="table.name">{{ table.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Account Table -->
+      <mat-form-field>
+        <mat-label>Bank Accounts</mat-label>
+        <mat-select
+          [formControl]="
+            this.inputsService.apiForm.controls.accountsTableName
           "
         >
           <mat-option [value]=""
@@ -63,7 +87,7 @@
 
     <!-- Budget Inputs -->
     <div class="grid grid-cols-4 gap-x-6 gap-y-3 w-full">
-      <div class="font-medium font-xl col-span-4">Budget Inputs</div>
+      <div class="font-medium font-xl col-span-4">Data Filters</div>
 
       <mat-form-field>
         <mat-label>Choose the starting date</mat-label>

@@ -6,12 +6,16 @@
 
   <ng-container [matColumnDef]="PlannedTransactionColumns.active">
     <th mat-header-cell *matHeaderCellDef> Active </th>
-    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.active]}} </td>
+    <td mat-cell *matCellDef="let row">
+      <div>
+        {{ row[PlannedTransactionColumns.active] | boolean }}
+      </div>
+    </td>
   </ng-container>
 
   <ng-container [matColumnDef]="PlannedTransactionColumns.amount">
     <th mat-header-cell *matHeaderCellDef> Amount </th>
-    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.amount]}} </td>
+    <td mat-cell *matCellDef="let row"> {{ row[PlannedTransactionColumns.amount] | currency }} </td>
   </ng-container>
 
   <ng-container [matColumnDef]="PlannedTransactionColumns.priority">
@@ -31,7 +35,7 @@
 
   <ng-container [matColumnDef]="PlannedTransactionColumns.account">
     <th mat-header-cell *matHeaderCellDef> Account </th>
-    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.account]}} </td>
+    <td mat-cell *matCellDef="let row"> {{ row[PlannedTransactionColumns.account]?.name ?? "" }} </td>
   </ng-container>
 
   <ng-container [matColumnDef]="PlannedTransactionColumns.occurrence">
@@ -51,7 +55,7 @@
 
   <ng-container [matColumnDef]="PlannedTransactionColumns.dateOfTransaction">
     <th mat-header-cell *matHeaderCellDef> Date of Transaction </th>
-    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.dateOfTransaction]}} </td>
+    <td mat-cell *matCellDef="let row"> {{ row[PlannedTransactionColumns.dateOfTransaction] | DateTime }} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedPlannedTransactionColumns"></tr>

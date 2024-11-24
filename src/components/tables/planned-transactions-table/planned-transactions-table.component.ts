@@ -1,9 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed, viewChild } from '@angular/core';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { AirtableService } from '../../../services/airtable.service';
-import { IPlannedTransaction } from '../../../models/interfaces/IPlannedTransactions';
+import { PlannedTransaction } from 'models/PlannedTransaction';
+import { PlannedTransactionService } from 'services/planned-transaction.service';
+import { DateTimePipe } from 'common/angular/pipes';
+import { BooleanPipe } from 'pipes/boolean.pipe';
 
 @Component({
   selector: 'app-planned-transactions-table',
@@ -12,32 +14,22 @@ import { IPlannedTransaction } from '../../../models/interfaces/IPlannedTransact
     CommonModule,
     MatPaginatorModule,
     MatTableModule,
+    DateTimePipe,
+    CurrencyPipe,
+    BooleanPipe,
   ],
   templateUrl: './planned-transactions-table.component.html',
 })
 export class PlannedTransactionsTableComponent {
   plannedTransactionsPaginator = viewChild.required(MatPaginator);
   plannedTransactionsDataSource = computed(() => {
-    var dataSource = new MatTableDataSource<IPlannedTransaction>();
+    var dataSource = new MatTableDataSource<PlannedTransaction>();
     dataSource.paginator = this.plannedTransactionsPaginator();
-    dataSource.data = this.airtableService.plannedTransactions();
+    dataSource.data = this.plannedTransactionsService.plannedTransactions();
     return dataSource;
   });
 
-  displayedPlannedTransactionColumns: Partial<keyof IPlannedTransaction>[] = [
-    "description",
-    "active",
-    "amount",
-    "priority",
-    "category",
-    "isIncome",
-    "account",
-    "occurrence",
-    "autopay",
-    "shared",
-    "dateOfTransaction",
-  ]
-  PlannedTransactionColumns: Record<keyof IPlannedTransaction, keyof IPlannedTransaction> = {
+  PlannedTransactionColumns: Record<keyof PlannedTransaction, keyof PlannedTransaction> = {
     id: "id",
     description: "description",
     active: "active",
@@ -51,9 +43,22 @@ export class PlannedTransactionsTableComponent {
     shared: "shared",
     dateOfTransaction: "dateOfTransaction",
   }
+  displayedPlannedTransactionColumns = [
+    this.PlannedTransactionColumns.description,
+    this.PlannedTransactionColumns.active,
+    this.PlannedTransactionColumns.amount,
+    this.PlannedTransactionColumns.priority,
+    this.PlannedTransactionColumns.category,
+    this.PlannedTransactionColumns.isIncome,
+    this.PlannedTransactionColumns.account,
+    this.PlannedTransactionColumns.occurrence,
+    this.PlannedTransactionColumns.autopay,
+    this.PlannedTransactionColumns.shared,
+    this.PlannedTransactionColumns.dateOfTransaction,
+  ]
 
   constructor(
-    private airtableService: AirtableService,
+    private plannedTransactionsService: PlannedTransactionService,
   ) {
   }
 }

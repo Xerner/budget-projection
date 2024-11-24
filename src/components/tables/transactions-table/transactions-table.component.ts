@@ -1,9 +1,12 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed, viewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { AirtableService } from '../../../services/airtable.service';
-import { ITransaction } from '../../../models/interfaces/IPlannedTransactions';
+import { Transaction } from 'models/Transactions';
+import { TransactionService } from 'services/transactions.service';
+import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
+import { TransactionsStyleService } from 'services/styles/transactions-style.service';
+import { AccountStylesService } from 'services/styles/account-styles';
 
 @Component({
   selector: 'app-transactions-table',
@@ -12,39 +15,47 @@ import { ITransaction } from '../../../models/interfaces/IPlannedTransactions';
     CommonModule,
     MatTableModule,
     MatPaginatorModule,
+    CurrencyPipe,
+    DateTimePipe,
   ],
   templateUrl: './transactions-table.component.html',
 })
 export class TransactionsTableComponent {
   transactionsPaginator = viewChild.required(MatPaginator);
   transactionsDataSource = computed(() => {
-    var dataSource = new MatTableDataSource<ITransaction>();
+    var dataSource = new MatTableDataSource<Transaction>();
     dataSource.paginator = this.transactionsPaginator();
-    dataSource.data = this.airtableService.transactions();
+    dataSource.data = this.transactionsService.actualTransactions();
     return dataSource;
   });
 
-  displayedTransactionColumns: Partial<keyof ITransaction>[] = [
-    "date",
-    "sortOrder",
-    // "category",
-    "account",
-    "description",
-    "amount",
-    "runningBalance",
-  ]
-  readonly TransactionColumns: Record<keyof ITransaction, keyof ITransaction> = {
+  readonly TransactionColumns = {
     id: "id",
     category: "category",
     date: "date",
     sortOrder: "sortOrder",
     description: "description",
     amount: "amount",
-    account: "account",
-    runningBalance: "runningBalance",
+    accountName: "accountName",
+    accountType: "accountType",
+    startingBalance: "startingBalance",
+    // account columns
   }
+  displayedTransactionColumns = [
+    // this.TransactionColumns.id,
+    this.TransactionColumns.date,
+    this.TransactionColumns.sortOrder,
+    // "category",
+    this.TransactionColumns.accountName,
+    this.TransactionColumns.accountType,
+    this.TransactionColumns.description,
+    this.TransactionColumns.amount,
+    this.TransactionColumns.startingBalance,
+  ]
 
   constructor(
-    protected airtableService: AirtableService,
+    protected transactionsService: TransactionService,
+    protected transactionsStyleService: TransactionsStyleService,
+    protected accountStyleService: AccountStylesService,
   ) { }
 }

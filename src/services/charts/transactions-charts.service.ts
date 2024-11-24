@@ -1,9 +1,9 @@
 import { computed, Injectable } from '@angular/core';
 import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
-import { TransactionService } from './transactions.service';
-import { ARRAY } from '../common/library';
-import { IBalanceOnDate } from '../models/interfaces/IPlannedTransactions';
+import { ARRAY } from 'common/library';
 import { DateTime } from 'luxon';
+import { IBalanceOnDate } from 'models/interfaces/IBalance';
+import { TransactionService } from 'services/transactions.service';
 
 @Injectable({
   providedIn: 'root'
@@ -244,7 +244,7 @@ export class TransactionsChartsService {
   }
 
   getCategoryTotalsRadarChartData(balances: IBalanceOnDate[], labels: string[]): number[] {
-    var amounts = balances.flatMap(b => b.transactions.map(t => ({ category: t.category, amount: t.amount })));
+    var amounts = balances.flatMap(b => b.transactions.map(t => ({ category: t.category, amount: t.getAmount() })));
     var counts = labels.map(label => amounts.filter(amount => amount.category === label).reduce((acc, amount) => acc + amount.amount, 0));
     return counts;
   }

@@ -7,6 +7,7 @@ export interface IGlobalQueryParams {
   plannedTransactionTableName: string;
   startingDate: string;
   endingDate: string;
+  accountsTableName: string;
 }
 
 export const QueryParams: QueryParamKeys<IGlobalQueryParams> = {
@@ -14,6 +15,7 @@ export const QueryParams: QueryParamKeys<IGlobalQueryParams> = {
   baseName: 'baseName',
   transactionTableName: 'transactionTableName',
   plannedTransactionTableName: "plannedTransactionTableName",
+  accountsTableName: "accountsTableName",
   startingDate: "startingDate",
   endingDate: "endingDate",
 }

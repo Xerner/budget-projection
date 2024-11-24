@@ -1,5 +1,4 @@
 import { DateTime } from "luxon";
-import { IPlannedTransaction } from "./interfaces/IPlannedTransactions";
 import { Account } from "./Account";
 
 export class Transaction {
@@ -11,7 +10,7 @@ export class Transaction {
     readonly sortOrder: number,
     readonly description: string,
     readonly category: string,
-    private readonly amount: number,
+    readonly amount: number,
     readonly account: Account,
     public startingBalance: number
   ) { }
@@ -22,28 +21,19 @@ export class Transaction {
 
   getAmount() {
     switch (this.account.type) {
-      case "debit":
+      case "Debit":
         return this.amount;
-      case "credit":
+      case "Credit":
         return -this.amount;
       default:
         return this.amount;
     }
   }
-}
 
-export class ProjectedTransaction extends Transaction {
-  constructor(
-    date: DateTime<boolean>,
-    sortOrder: number,
-    description: string,
-    category: string,
-    amount: number,
-    startingBalance: number,
-    readonly plannedTransaction: IPlannedTransaction
-  ) {
-    var id = "";
-    var account = Account.GetDummyAccount();
-    super(id, date, sortOrder, description, category, amount, account, startingBalance);
+  compareOrder(other: Transaction) {
+    if (this.date.valueOf() === other.date.valueOf()) {
+      return this.sortOrder - other.sortOrder;
+    }
+    return this.date.valueOf() - other.date.valueOf();
   }
 }

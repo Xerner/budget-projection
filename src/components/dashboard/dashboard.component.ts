@@ -6,7 +6,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { InputsService } from '../../services/inputs.service';
 import { BaseChartDirective } from 'ng2-charts';
 import { TransactionService } from '../../services/transactions.service';
-import { TransactionsChartsService } from '../../services/transactions-charts.service';
+import { TransactionsChartsService } from 'services/charts/transactions-charts.service';
 
 @Component({
   selector: 'app-dashboard',

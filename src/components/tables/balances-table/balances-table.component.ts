@@ -3,11 +3,13 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { TransactionService } from '../../../services/transactions.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { IBalanceOnDate } from '../../../models/interfaces/IPlannedTransactions';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { BalanceOnDayTableComponent } from '../balance-on-day-table/balance-on-day-table.component';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
+import { IBalanceOnDate } from 'models/interfaces/IBalance';
+import { BooleanPipe } from 'pipes/boolean.pipe';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-balances-table',
@@ -21,7 +23,9 @@ import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
     MatMenuModule,
     MatMenuTrigger,
     MatButtonModule,
+    MatIconModule,
     DateTimePipe,
+    BooleanPipe,
 ],
   templateUrl: './balances-table.component.html',
 })

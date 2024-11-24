@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { NotificationPoolService } from '../../common/angular/services/notifications/notification-pool.service';
 import { NotificationTypes } from '../../models/NotificationTypes';
 import { TablesComponent } from '../tables/tables.component';
+import { AirtableService } from 'services/airtable.service';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +41,7 @@ export class AppComponent {
   constructor(
     protected inputsService: InputsService,
     protected appStore: AppStore,
+    private airtableService: AirtableService,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     protected notifications: NotificationPoolService<NotificationTypes>,

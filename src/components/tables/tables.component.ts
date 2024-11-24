@@ -4,6 +4,7 @@ import { TransactionsTableComponent } from './transactions-table/transactions-ta
 import { PlannedTransactionsTableComponent } from './planned-transactions-table/planned-transactions-table.component';
 import { BalancesTableComponent } from './balances-table/balances-table.component';
 import { TransactionService } from '../../services/transactions.service';
+import { AccountsSummariesTableComponent } from "./accounts-summaries-table/accounts-summaries-table.component";
 
 @Component({
   selector: 'app-tables',
@@ -13,7 +14,8 @@ import { TransactionService } from '../../services/transactions.service';
     TransactionsTableComponent,
     PlannedTransactionsTableComponent,
     BalancesTableComponent,
-  ],
+    AccountsSummariesTableComponent
+],
   templateUrl: './tables.component.html',
 })
 export class TablesComponent {

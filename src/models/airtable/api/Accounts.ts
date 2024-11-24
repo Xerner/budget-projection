@@ -3,8 +3,8 @@ import { IFields, StringField } from "./Fields";
 
 export interface AirtableAccount extends IFields {
   id: StringField;
-  name: StringField;
-  owner: StringField;
-  aliases: StringField;
-  type: AccountType;
+  Name?: StringField;
+  Owner?: StringField;
+  Aliases?: StringField;
+  Type?: AccountType;
 }

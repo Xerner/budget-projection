@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { InputsService } from '../../services/inputs.service';
-import { TransactionService } from '../../services/transactions.service';
 import { AirtableService } from '../../services/airtable.service';
 import { LoadingService } from '../../common/angular/services/loading';
 import { Endpoints } from '../../models/Endpoints';
