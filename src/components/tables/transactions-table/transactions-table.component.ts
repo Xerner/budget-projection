@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, computed, viewChild } from '@angular/core';
+import { Component, computed, input, viewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Transaction } from 'models/Transactions';
@@ -21,11 +21,12 @@ import { AccountStylesService } from 'services/styles/account-styles';
   templateUrl: './transactions-table.component.html',
 })
 export class TransactionsTableComponent {
+  transactions = input.required<Transaction[]>()
   transactionsPaginator = viewChild.required(MatPaginator);
   transactionsDataSource = computed(() => {
     var dataSource = new MatTableDataSource<Transaction>();
     dataSource.paginator = this.transactionsPaginator();
-    dataSource.data = this.transactionsService.actualTransactions();
+    dataSource.data = this.transactions();
     return dataSource;
   });
 

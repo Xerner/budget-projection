@@ -1,67 +1,29 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, Injectable } from '@angular/core';
 import { InputsService } from './inputs.service';
 import { DateTime } from 'luxon';
 import { AirtableService } from './airtable.service';
-import { BalancesService } from './balances.service';
-import { IBalanceOnDate } from 'models/interfaces/IBalance';
 import { Transaction } from 'models/Transactions';
 import { AccountsService } from './accounts.service';
 import { AirtableTransaction } from 'models/airtable/api';
-import { ProjectedTransactionService } from './projected-transactions.service';
 import { STRINGS } from 'common/library';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
-  startingDate = signal<DateTime | null>(null);
-  endingDate = signal<DateTime | null>(null);
-  actualTransactions = computed(() => this.getActualTransactions());
-  actualBalances = computed<IBalanceOnDate[]>(() => {
-    return this.balancesService.getActualBalancesOnDates(
-      this.startingDate(),
-      this.endingDate(),
-      this.getActualTransactions()
-    );
-  });
-  projectedBalances = computed<IBalanceOnDate[]>(() => {
-    var startingBalance = this.actualBalances().length > 0 ? this.actualBalances()[this.actualBalances().length - 1] : null;
-    var firstTransaction = startingBalance?.transactions[0] ?? null;
-    var endingDate = this.endingDate();
-    var plannedTransactions = this.airtableService.plannedTransactions()
-    var accounts = this.accountsService.accounts();
-    if (startingBalance === null || firstTransaction === null || endingDate === null || accounts === null) {
+  transactions = computed(() => this.getActualTransactions());
+  filteredTransactions = computed(() => {
+    var startingDate = this.inputsService.startingDate();
+    var endingDate = this.inputsService.endingDate();
+    if (startingDate === null || endingDate === null) {
       return [];
     }
-    var transactions = this.projectedTransactionService.getProjectedPlannedTransactions(
-      plannedTransactions,
-      endingDate,
-      firstTransaction?.sortOrder ?? 0,
-      accounts
-    )
-    return this.balancesService.getProjectedRunningBalancesOnDates(
-      this.startingDate(),
-      this.endingDate(),
-      transactions,
-      startingBalance,
-    );
-  });
-  allBalances = computed<IBalanceOnDate[]>(() => {
-    return this.actualBalances().concat(this.projectedBalances());
+    return this.getFilteredTransactions(this.transactions(), startingDate, endingDate);
   });
 
   constructor(
     private inputsService: InputsService,
     private airtableService: AirtableService,
-    private balancesService: BalancesService,
     private accountsService: AccountsService,
-    private projectedTransactionService: ProjectedTransactionService,
-  ) {
-    this.inputsService.apiForm.controls.startingDate.valueChanges.subscribe(date => {
-      this.startingDate.set(date);
-    });
-    this.inputsService.apiForm.controls.endingDate.valueChanges.subscribe(date => {
-      this.endingDate.set(date);
-    });
-  }
+  ) { }
 
   getActualTransactions(): Transaction[] {
     var accounts = this.accountsService.accounts();
@@ -84,6 +46,15 @@ export class TransactionService {
         account,
         airtableTransaction['Running Balance'] - airtableTransaction.Amount,
       );
+    });
+  }
+
+  getFilteredTransactions(transactions: Transaction[], startingDate: DateTime, endingDate: DateTime): Transaction[] {
+    if (!startingDate || !endingDate) {
+      return [];
+    }
+    return transactions.filter(transaction => {
+      return transaction.date >= startingDate && transaction.date <= endingDate;
     });
   }
 

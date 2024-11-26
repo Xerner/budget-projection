@@ -4,22 +4,45 @@
 <app-accounts-summaries-table></app-accounts-summaries-table>
 
 <div class="p-3">
+  <div class="text-2xl">Filtered Data Tables</div>
+  <p class="inline text-light text-sm">
+    These tables, and everything else, are affected by the <span class="font-semibold">Data Filters</span>
+  </p>
+</div>
+
+<mat-tab-group>
+  <!-- Transactions -->
+  <mat-tab label="Transactions">
+    <app-transactions-table [transactions]="transactionsService.filteredTransactions()"></app-transactions-table>
+  </mat-tab>
+  <!-- Planned Transactions -->
+  <mat-tab label="Planned Transactions">
+    <app-planned-transactions-table [transactions]="plannedTransactionsService.filteredPlannedTransactions()"></app-planned-transactions-table>
+  </mat-tab>
+  <!-- Balances -->
+  <mat-tab label="Calculated Balance Per Day" [disabled]="balancesService.allBalances().length === 0">
+    <app-balances-table [balances]="balancesService.filteredBalances()"></app-balances-table>
+  </mat-tab>
+</mat-tab-group>
+
+<div class="p-3">
   <div class="text-2xl">Source Data Tables</div>
   <p class="inline text-light text-sm">
     These tables are not affected by the <span class="font-semibold">Data Filters</span>
   </p>
 </div>
+
 <mat-tab-group>
   <!-- Transactions -->
   <mat-tab label="Transactions">
-    <app-transactions-table></app-transactions-table>
+    <app-transactions-table [transactions]="transactionsService.transactions()"></app-transactions-table>
   </mat-tab>
   <!-- Planned Transactions -->
   <mat-tab label="Planned Transactions">
-    <app-planned-transactions-table></app-planned-transactions-table>
+    <app-planned-transactions-table [transactions]="plannedTransactionsService.plannedTransactions()"></app-planned-transactions-table>
   </mat-tab>
   <!-- Balances -->
-  <mat-tab label="Calculated Balance Per Day" [disabled]="transactionsService.allBalances().length === 0">
-    <app-balances-table></app-balances-table>
+  <mat-tab label="Calculated Balance Per Day" [disabled]="balancesService.allBalances().length === 0">
+    <app-balances-table [balances]="balancesService.allBalances()"></app-balances-table>
   </mat-tab>
 </mat-tab-group>

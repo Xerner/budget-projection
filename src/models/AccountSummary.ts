@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { Account } from "./Account";
 import { Transaction } from "./Transactions";
 
@@ -55,5 +56,12 @@ export class AccountSummary {
 
   calculateCurrentBalance(): number {
     return this.transactions.reduce((balance, transaction) => balance + transaction.getAmount(), this.startingBalance);
+  }
+
+  getLastTransactionDate(): DateTime | null {
+    if (this.transactions.length === 0) {
+      return null;
+    }
+    return this.transactions[this.transactions.length - 1].date;
   }
 }

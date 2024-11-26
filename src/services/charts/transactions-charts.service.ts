@@ -3,6 +3,8 @@ import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { ARRAY } from 'common/library';
 import { DateTime } from 'luxon';
 import { IBalanceOnDate } from 'models/interfaces/IBalance';
+import { BalancesService } from 'services/balances.service';
+import { InputsService } from 'services/inputs.service';
 import { TransactionService } from 'services/transactions.service';
 
 @Injectable({
@@ -18,7 +20,9 @@ export class TransactionsChartsService {
   projectedCategoryTotalsBarChartDataset = computed(this.getProjectedCategoryTotalsBarChartDataset.bind(this));
 
   constructor(
+    private inputsService: InputsService,
     private transactionService: TransactionService,
+    private balancesService: BalancesService,
   ) { }
 
   private getChartDataTemplate<T>(): ChartData<keyof ChartTypeRegistry, T[], string> {
@@ -66,8 +70,8 @@ export class TransactionsChartsService {
   }
 
   getDateLabels(): DateTime[] {
-    var startingDate = this.transactionService.startingDate();
-    var endingDate = this.transactionService.endingDate();
+    var startingDate = this.inputsService.startingDate();
+    var endingDate = this.inputsService.endingDate();
     if (startingDate == null || endingDate == null) {
       return [];
     }
@@ -77,8 +81,8 @@ export class TransactionsChartsService {
   }
 
   getCategoryLabels(): string[] {
-    var balances = this.transactionService.actualBalances();
-    var projectedBalances = this.transactionService.projectedBalances();
+    var balances = this.balancesService.actualBalances();
+    var projectedBalances = this.balancesService.projectedBalances();
     if (balances == null || projectedBalances == null) {
       return [];
     }
@@ -88,10 +92,10 @@ export class TransactionsChartsService {
 
   getBalanceAndProjectedBalanceLineChartDatasets(): ChartData<keyof ChartTypeRegistry, (number | null)[], string> {
     var chartDataset = this.getChartDataTemplate<(number | null)>();
-    var startingDate = this.transactionService.startingDate();
-    var endingDate = this.transactionService.endingDate();
-    var balances = this.transactionService.actualBalances();
-    var projectedBalances = this.transactionService.projectedBalances();
+    var startingDate = this.inputsService.startingDate();
+    var endingDate = this.inputsService.endingDate();
+    var balances = this.balancesService.filteredBalances();
+    var projectedBalances = this.balancesService.projectedBalances();
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
     }
@@ -143,10 +147,10 @@ export class TransactionsChartsService {
 
   getCategoryCountsRadarChartDataset(): ChartData<keyof ChartTypeRegistry, (number)[], string> {
     var chartDataset = this.getChartDataTemplate<number>();
-    var startingDate = this.transactionService.startingDate();
-    var endingDate = this.transactionService.endingDate();
-    var balances = this.transactionService.actualBalances();
-    var projectedBalances = this.transactionService.projectedBalances();
+    var startingDate = this.inputsService.startingDate();
+    var endingDate = this.inputsService.endingDate();
+    var balances = this.balancesService.actualBalances();
+    var projectedBalances = this.balancesService.projectedBalances();
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
     }
@@ -171,10 +175,10 @@ export class TransactionsChartsService {
 
   getCategoryTotalsRadarChartDataset(): ChartData<keyof ChartTypeRegistry, (number)[], string> {
     var chartDataset = this.getChartDataTemplate<number>();
-    var startingDate = this.transactionService.startingDate();
-    var endingDate = this.transactionService.endingDate();
-    var balances = this.transactionService.actualBalances();
-    var projectedBalances = this.transactionService.projectedBalances();
+    var startingDate = this.inputsService.startingDate();
+    var endingDate = this.inputsService.endingDate();
+    var balances = this.balancesService.actualBalances();
+    var projectedBalances = this.balancesService.projectedBalances();
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
     }
@@ -209,19 +213,19 @@ export class TransactionsChartsService {
   }
 
   getCategoryTotalsBarChartDataset(): ChartData<keyof ChartTypeRegistry, (number)[], string> {
-    var balances = this.transactionService.actualBalances();
+    var balances = this.balancesService.actualBalances();
     return this.getTotalsBarChartDataset(balances, "Categories");
   }
 
   getProjectedCategoryTotalsBarChartDataset(): ChartData<keyof ChartTypeRegistry, (number)[], string> {
-    var balances = this.transactionService.projectedBalances();
+    var balances = this.balancesService.projectedBalances();
     return this.getTotalsBarChartDataset(balances, "Projected Categories");
   }
 
   getTotalsBarChartDataset(balances: IBalanceOnDate[], dataTitle: string): ChartData<keyof ChartTypeRegistry, number[], string> {
     var chartDataset = this.getChartDataTemplate<number>();
-    var startingDate = this.transactionService.startingDate();
-    var endingDate = this.transactionService.endingDate();
+    var startingDate = this.inputsService.startingDate();
+    var endingDate = this.inputsService.endingDate();
     if (balances == null || startingDate == null || endingDate == null) {
       return chartDataset;
     }

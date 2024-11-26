@@ -2,6 +2,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed, viewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { DateTimePipe } from 'common/angular/pipes';
 import { AccountSummary } from 'models/AccountSummary';
 import { AccountChartsService } from 'services/charts/accounts-charts.service';
 import { AccountStylesService } from 'services/styles/account-styles';
@@ -14,14 +15,15 @@ import { AccountStylesService } from 'services/styles/account-styles';
     MatTableModule,
     MatPaginatorModule,
     CurrencyPipe,
+    DateTimePipe,
   ],
   templateUrl: './accounts-summaries-table.component.html',
 })
 export class AccountsSummariesTableComponent {
-  transactionsPaginator = viewChild.required(MatPaginator);
+  // transactionsPaginator = viewChild.required(MatPaginator);
   transactionsDataSource = computed(() => {
     var dataSource = new MatTableDataSource<AccountSummary>();
-    dataSource.paginator = this.transactionsPaginator();
+    // dataSource.paginator = this.transactionsPaginator();
     dataSource.data = this.accountsChartsService.accountSummaries();
     return dataSource;
   });
@@ -34,10 +36,11 @@ export class AccountsSummariesTableComponent {
   readonly AccountSummaryColumns = {
     name: "name",
     type: "type",
+    lastDate: "lastDate",
     startingBalance: "startingBalance",
     currentBalance: "currentBalance",
-    income: "income",
-    expense: "expense",
+    // income: "income",
+    // expense: "expense",
     projectedBalance: "projectedBalance",
   }
   displayedAccountSummaryColumns = [
@@ -45,8 +48,9 @@ export class AccountsSummariesTableComponent {
     this.AccountSummaryColumns.type,
     this.AccountSummaryColumns.startingBalance,
     this.AccountSummaryColumns.currentBalance,
-    this.AccountSummaryColumns.income,
-    this.AccountSummaryColumns.expense,
+    this.AccountSummaryColumns.lastDate,
+    // this.AccountSummaryColumns.income,
+    // this.AccountSummaryColumns.expense,
     this.AccountSummaryColumns.projectedBalance,
   ]
 }

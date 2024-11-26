@@ -1,14 +1,52 @@
-import { Injectable } from '@angular/core';
-import { STRINGS } from 'common/library';
+import { computed, Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
 import { Account } from 'models/Account';
 import { AirtablePlannedTransaction } from 'models/airtable/api';
 import { Occurrence, OccurrenceToDuration } from 'models/interfaces/IOccurences';
 import { ProjectedTransaction } from 'models/ProjectedTransaction';
+import { InputsService } from './inputs.service';
+import { AirtableService } from './airtable.service';
+import { AccountsService } from './accounts.service';
+import { TransactionService } from './transactions.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectedTransactionService {
-  getProjectedPlannedTransactions(plannedTransactions: AirtablePlannedTransaction[], endingDate: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction[] {
+  projectedTransactions = computed(() => {
+    var transactions = this.transactionsService.transactions();
+    var firstTransaction = transactions?.[0] ?? null;
+    var plannedTransactions = this.airtableService.plannedTransactions()
+    var endingDate = this.inputsService.endingDate();
+    var accounts = this.accountsService.accounts();
+    if (firstTransaction === null || endingDate === null || accounts === null) {
+      return [];
+    }
+    return this.getProjectedPlannedTransactions(
+      plannedTransactions,
+      endingDate,
+      firstTransaction?.sortOrder ?? 0,
+      accounts
+    )
+  });
+  filteredProjectedTransactions = computed(() => {
+    var transactions = this.projectedTransactions();
+    var startingDate = this.inputsService.startingDate();
+    var endingDate = this.inputsService.endingDate();
+    if (startingDate === null || endingDate === null) {
+      return [];
+    }
+    return transactions.filter(transaction =>
+      transaction.date >= startingDate! && transaction.date <= endingDate!
+    );
+  });
+
+  constructor(
+    private airtableService: AirtableService,
+    private inputsService: InputsService,
+    private transactionsService: TransactionService,
+    private accountsService: AccountsService,
+  ) { }
+
+  private getProjectedPlannedTransactions(plannedTransactions: AirtablePlannedTransaction[], endingDate: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction[] {
     return plannedTransactions
       .filter(plannedTransaction => plannedTransaction.Active)
       .flatMap(plannedTransaction => {

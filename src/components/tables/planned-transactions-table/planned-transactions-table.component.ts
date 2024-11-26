@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, computed, viewChild } from '@angular/core';
+import { Component, computed, input, viewChild } from '@angular/core';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { PlannedTransaction } from 'models/PlannedTransaction';
@@ -21,11 +21,12 @@ import { BooleanPipe } from 'pipes/boolean.pipe';
   templateUrl: './planned-transactions-table.component.html',
 })
 export class PlannedTransactionsTableComponent {
+  transactions = input.required<PlannedTransaction[]>()
   plannedTransactionsPaginator = viewChild.required(MatPaginator);
   plannedTransactionsDataSource = computed(() => {
     var dataSource = new MatTableDataSource<PlannedTransaction>();
     dataSource.paginator = this.plannedTransactionsPaginator();
-    dataSource.data = this.plannedTransactionsService.plannedTransactions();
+    dataSource.data = this.transactions();
     return dataSource;
   });
 

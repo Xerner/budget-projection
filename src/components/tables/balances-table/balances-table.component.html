@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="balancesDataSource()" matSort>
   <ng-container [matColumnDef]="BalanceColumns.date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
-    <td mat-cell *matCellDef="let row"> {{ row[BalanceColumns.date] | DateTime }} </td>
+    <td mat-cell *matCellDef="let row"> {{ row[BalanceColumns.date] | datetime }} </td>
   </ng-container>
 
   <ng-container [matColumnDef]="BalanceColumns.balance">

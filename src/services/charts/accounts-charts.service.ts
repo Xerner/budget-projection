@@ -6,7 +6,9 @@ import { TransactionService } from 'services/transactions.service';
   providedIn: 'root'
 })
 export class AccountChartsService {
-  accountSummaries = computed(() => this.accountsService.getAccountSummaries(this.transactionService.actualTransactions(), this.accountsService.accounts()));
+  accountSummaries = computed(() => {
+    return this.accountsService.getAccountSummaries(this.transactionService.filteredTransactions(), this.accountsService.accounts())
+  });
 
   constructor(
     private accountsService: AccountsService,

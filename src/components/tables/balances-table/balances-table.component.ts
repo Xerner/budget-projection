@@ -1,5 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, computed, signal, viewChild } from '@angular/core';
+import { Component, computed, input, signal, viewChild } from '@angular/core';
 import { TransactionService } from '../../../services/transactions.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -30,11 +30,12 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './balances-table.component.html',
 })
 export class BalancesTableComponent {
+  balances = input.required<IBalanceOnDate[]>()
   balancesPaginator = viewChild.required(MatPaginator);
   balancesDataSource = computed(() => {
     var dataSource = new MatTableDataSource<IBalanceOnDate>();
     dataSource.paginator = this.balancesPaginator();
-    dataSource.data = this.transactionsService.allBalances();
+    dataSource.data = this.balances();
     return dataSource;
   });
   selectedBalance = signal<IBalanceOnDate | null>(null);

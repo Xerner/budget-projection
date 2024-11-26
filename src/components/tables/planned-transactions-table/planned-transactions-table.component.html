@@ -55,7 +55,7 @@
 
   <ng-container [matColumnDef]="PlannedTransactionColumns.dateOfTransaction">
     <th mat-header-cell *matHeaderCellDef> Date of Transaction </th>
-    <td mat-cell *matCellDef="let row"> {{ row[PlannedTransactionColumns.dateOfTransaction] | DateTime }} </td>
+    <td mat-cell *matCellDef="let row"> {{ row[PlannedTransactionColumns.dateOfTransaction] | datetime }} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedPlannedTransactionColumns"></tr>

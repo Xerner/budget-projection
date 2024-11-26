@@ -16,8 +16,18 @@ export class InputsService {
     startingDate: new QueryParamControl<DateTime | null>(null, null, DateTime.fromISO, Validators.required),
     endingDate: new QueryParamControl<DateTime | null>(null, null, DateTime.fromISO, Validators.required),
   });
-
+  startingDate = signal<DateTime | null>(null);
+  endingDate = signal<DateTime | null>(null);
   currentlySelectedBase = signal<string>('');
+
+  constructor() {
+    this.apiForm.controls.startingDate.valueChanges.subscribe(date => {
+      this.startingDate.set(date);
+    });
+    this.apiForm.controls.endingDate.valueChanges.subscribe(date => {
+      this.endingDate.set(date);
+    });
+  }
 
   /**
    * Gets the name of the control within its parent form group.

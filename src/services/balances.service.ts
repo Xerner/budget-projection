@@ -1,11 +1,54 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
 import { IBalanceOnDate } from 'models/interfaces/IBalance';
 import { ProjectedTransaction } from 'models/ProjectedTransaction';
 import { Transaction } from 'models/Transactions';
+import { ProjectedTransactionService } from './projected-transactions.service';
+import { InputsService } from './inputs.service';
+import { TransactionService } from './transactions.service';
 
 @Injectable({ providedIn: 'root' })
 export class BalancesService {
+  actualBalances = computed<IBalanceOnDate[]>(() => {
+    return this.getActualBalancesOnDates(
+      this.inputsService.startingDate(),
+      this.inputsService.endingDate(),
+      this.transactionService.getActualTransactions()
+    );
+  });
+  projectedBalances = computed<IBalanceOnDate[]>(() => {
+    var startingBalance = this.actualBalances().length > 0 ? this.actualBalances()[this.actualBalances().length - 1] : null;
+    var transactions = this.projectedTransactionService.projectedTransactions();
+    if (transactions === null || startingBalance === null) {
+      return [];
+    }
+    return this.getProjectedRunningBalancesOnDates(
+      this.inputsService.startingDate(),
+      this.inputsService.endingDate(),
+      transactions,
+      startingBalance,
+    );
+  });
+  allBalances = computed<IBalanceOnDate[]>(() => {
+    return this.actualBalances().concat(this.projectedBalances());
+  });
+  filteredBalances = computed<IBalanceOnDate[]>(() => {
+    var startingDate = this.inputsService.startingDate();
+    var endingDate = this.inputsService.endingDate();
+    if (startingDate === null || endingDate === null) {
+      return [];
+    }
+    return this.allBalances().filter(balance => {
+      return balance.date >= startingDate! && balance.date <= endingDate!;
+    });
+  });
+
+  constructor(
+    private inputsService: InputsService,
+    private transactionService: TransactionService,
+    private projectedTransactionService: ProjectedTransactionService,
+  ) { }
+
   getActualBalancesOnDates(startingDate: DateTime | null, endingDate: DateTime | null, transactions: Transaction[]): IBalanceOnDate[] {
     transactions = transactions.filter(transaction => transaction.date >= startingDate! && transaction.date <= endingDate!)
     if (transactions === null || startingDate === null || endingDate === null) {
