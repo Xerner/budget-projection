@@ -8,6 +8,14 @@
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
+  <ng-container matColumnDef="isProjected">
+    <th mat-header-cell *matHeaderCellDef>Is Projected?</th>
+    <td mat-cell *matCellDef="let row" class="text-slate-400">
+      <div>{{ isProjected(row) | boolean }}</div>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>Total</td>
+  </ng-container>
+
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef>Date</th>
     <td mat-cell *matCellDef="let row" class="text-slate-400">

@@ -10,8 +10,8 @@
   </ng-container>
 
   <ng-container [matColumnDef]="BalanceColumns.isProjected">
-    <th mat-header-cell *matHeaderCellDef> Is Projected </th>
-    <td mat-cell *matCellDef="let row"> <div>{{ row[BalanceColumns.isProjected] | boolean }}</div> </td>
+    <th mat-header-cell *matHeaderCellDef> Has Projected? </th>
+    <td mat-cell *matCellDef="let row"> <div>{{ row.hasProjectedTransactions() | boolean }}</div> </td>
   </ng-container>
 
   <ng-container [matColumnDef]="BalanceColumns.transactions">

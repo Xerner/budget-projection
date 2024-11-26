@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { BalanceOnDayTableComponent } from '../balance-on-day-table/balance-on-day-table.component';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
-import { IBalanceOnDate } from 'models/interfaces/IBalance';
+import { BalanceOnDate } from 'models/interfaces/IBalance';
 import { BooleanPipe } from 'pipes/boolean.pipe';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -30,35 +30,35 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './balances-table.component.html',
 })
 export class BalancesTableComponent {
-  balances = input.required<IBalanceOnDate[]>()
+  balances = input.required<BalanceOnDate[]>()
   balancesPaginator = viewChild.required(MatPaginator);
   balancesDataSource = computed(() => {
-    var dataSource = new MatTableDataSource<IBalanceOnDate>();
+    var dataSource = new MatTableDataSource<BalanceOnDate>();
     dataSource.paginator = this.balancesPaginator();
     dataSource.data = this.balances();
     return dataSource;
   });
-  selectedBalance = signal<IBalanceOnDate | null>(null);
+  selectedBalance = signal<BalanceOnDate | null>(null);
 
   constructor(
     protected transactionsService: TransactionService
   ) { }
 
-  displayedBalanceColumns: Partial<keyof IBalanceOnDate>[] = [
-    "date",
-    "balance",
-    "isProjected",
-    "transactions",
-  ]
-  BalanceColumns: Record<keyof IBalanceOnDate, keyof IBalanceOnDate> = {
+  BalanceColumns = {
     date: "date",
     balance: "balance",
     transactions: "transactions",
-    isProjected: "isProjected",
+    isProjected: "Has Projected",
     previousBalance: "previousBalance",
   }
+  displayedBalanceColumns = [
+    this.BalanceColumns.isProjected,
+    this.BalanceColumns.date,
+    this.BalanceColumns.balance,
+    this.BalanceColumns.transactions,
+  ]
 
-  selectBalance(balance: IBalanceOnDate) {
+  selectBalance(balance: BalanceOnDate) {
     this.selectedBalance.set(balance);
   }
 }
