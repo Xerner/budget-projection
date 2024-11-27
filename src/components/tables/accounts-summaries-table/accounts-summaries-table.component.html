@@ -1,17 +1,20 @@
-<table mat-table [dataSource]="transactionsDataSource()" matSort>
+<table mat-table [dataSource]="accountSummariesDataSource()" matSort>
   <ng-container [matColumnDef]="AccountSummaryColumns.name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let row"> {{ row.account.name }} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <ng-container [matColumnDef]="AccountSummaryColumns.type">
     <th mat-header-cell *matHeaderCellDef> Type </th>
     <td mat-cell *matCellDef="let row" [class]="accountStyles.getAccountTypeClass(row.account)"> {{ row.account.type }} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <ng-container [matColumnDef]="AccountSummaryColumns.lastDate">
     <th mat-header-cell *matHeaderCellDef> Last Transaction Date </th>
     <td mat-cell *matCellDef="let row"> {{ row.getLastTransactionDate() | datetime }} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <!-- <ng-container [matColumnDef]="AccountSummaryColumns.income">
@@ -27,20 +30,24 @@
   <ng-container [matColumnDef]="AccountSummaryColumns.startingBalance">
     <th mat-header-cell *matHeaderCellDef> Starting </th>
     <td mat-cell *matCellDef="let row"> {{ row[AccountSummaryColumns.startingBalance] | currency }} </td>
+    <td mat-footer-cell *matFooterCellDef> {{ getTotalStartingBalance() | currency }} </td>
   </ng-container>
 
   <ng-container [matColumnDef]="AccountSummaryColumns.currentBalance">
     <th mat-header-cell *matHeaderCellDef> Current </th>
     <td mat-cell *matCellDef="let row"> {{ row[AccountSummaryColumns.currentBalance] | currency }} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <ng-container [matColumnDef]="AccountSummaryColumns.projectedBalance">
     <th mat-header-cell *matHeaderCellDef> Projected </th>
     <td mat-cell *matCellDef="let row"> {{ row[AccountSummaryColumns.projectedBalance] | currency }} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedAccountSummaryColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedAccountSummaryColumns;"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedAccountSummaryColumns" class="!h-8"></tr>
 </table>
 
 <!-- <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator> -->

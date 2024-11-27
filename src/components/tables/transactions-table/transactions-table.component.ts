@@ -7,6 +7,7 @@ import { TransactionService } from 'services/transactions.service';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
 import { TransactionsStyleService } from 'services/styles/transactions-style.service';
 import { AccountStylesService } from 'services/styles/account-styles';
+import { MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-transactions-table',
@@ -17,6 +18,7 @@ import { AccountStylesService } from 'services/styles/account-styles';
     MatPaginatorModule,
     CurrencyPipe,
     DateTimePipe,
+    MatSortModule,
   ],
   templateUrl: './transactions-table.component.html',
 })

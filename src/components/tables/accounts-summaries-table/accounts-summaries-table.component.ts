@@ -20,10 +20,8 @@ import { AccountStylesService } from 'services/styles/account-styles';
   templateUrl: './accounts-summaries-table.component.html',
 })
 export class AccountsSummariesTableComponent {
-  // transactionsPaginator = viewChild.required(MatPaginator);
-  transactionsDataSource = computed(() => {
+  accountSummariesDataSource = computed(() => {
     var dataSource = new MatTableDataSource<AccountSummary>();
-    // dataSource.paginator = this.transactionsPaginator();
     dataSource.data = this.accountsChartsService.accountSummaries();
     return dataSource;
   });
@@ -53,4 +51,8 @@ export class AccountsSummariesTableComponent {
     // this.AccountSummaryColumns.expense,
     this.AccountSummaryColumns.projectedBalance,
   ]
+
+  getTotalStartingBalance() {
+    return this.accountSummariesDataSource().data.reduce((accumulator, accountSummary) => accumulator + accountSummary.startingBalance, 0);
+  }
 }

@@ -1,6 +1,6 @@
 import { computed, Injectable } from '@angular/core';
 import { AirtableService } from './airtable.service';
-import { Account } from 'models/Account';
+import { Account, AccountType } from 'models/Account';
 import { Transaction } from 'models/Transactions';
 import { AccountSummary } from 'models/AccountSummary';
 
@@ -10,10 +10,10 @@ import { AccountSummary } from 'models/AccountSummary';
 export class AccountsService {
   accounts = computed<Account[]>(() => this.airtableService.accounts().map<Account>(account => new Account(
     account.id,
-    account.Name ? account.Name : 'Unnamed Account',
-    account.Aliases?.split(',').map(alias => alias.trim()),
-    account.Owner ? account.Owner : '',
-    account.Type ? account.Type : 'Debit',
+    account.fields.Name ? account.fields.Name : 'Unnamed Account',
+    account.fields.Aliases?.split(',').map(alias => alias.trim()),
+    account.fields.Owner ? account.fields.Owner : '',
+    account.fields.Type ? account.fields.Type as AccountType : 'Debit',
   )));
 
   constructor(

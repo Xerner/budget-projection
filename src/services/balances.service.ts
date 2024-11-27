@@ -1,36 +1,18 @@
 import { computed, Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
-import { BalanceOnDate } from 'models/interfaces/IBalance';
-import { ProjectedTransaction } from 'models/ProjectedTransaction';
+import { BalanceOnDate } from 'models/Balance';
 import { Transaction } from 'models/Transactions';
-import { ProjectedTransactionService } from './projected-transactions.service';
 import { InputsService } from './inputs.service';
 import { TransactionService } from './transactions.service';
 
 @Injectable({ providedIn: 'root' })
 export class BalancesService {
-  actualBalances = computed<BalanceOnDate[]>(() => {
-    return this.getActualBalancesOnDates(
+  balances = computed<BalanceOnDate[]>(() => {
+    return this.getBalancesOnDates(
       this.inputsService.startingDate(),
       this.inputsService.endingDate(),
-      this.transactionService.getActualTransactions()
+      this.transactionService.transactions()
     );
-  });
-  projectedBalances = computed<BalanceOnDate[]>(() => {
-    var startingBalance = this.actualBalances().length > 0 ? this.actualBalances()[this.actualBalances().length - 1] : null;
-    var transactions = this.projectedTransactionService.projectedTransactions();
-    if (transactions === null || startingBalance === null) {
-      return [];
-    }
-    return this.getProjectedRunningBalancesOnDates(
-      this.inputsService.startingDate(),
-      this.inputsService.endingDate(),
-      transactions,
-      startingBalance,
-    );
-  });
-  allBalances = computed<BalanceOnDate[]>(() => {
-    return this.actualBalances().concat(this.projectedBalances());
   });
   filteredBalances = computed<BalanceOnDate[]>(() => {
     var startingDate = this.inputsService.startingDate();
@@ -38,7 +20,7 @@ export class BalancesService {
     if (startingDate === null || endingDate === null) {
       return [];
     }
-    return this.allBalances().filter(balance => {
+    return this.balances().filter(balance => {
       return balance.date >= startingDate! && balance.date <= endingDate!;
     });
   });
@@ -46,83 +28,71 @@ export class BalancesService {
   constructor(
     private inputsService: InputsService,
     private transactionService: TransactionService,
-    private projectedTransactionService: ProjectedTransactionService,
   ) { }
 
-  getActualBalancesOnDates(startingDate: DateTime | null, endingDate: DateTime | null, transactions: Transaction[]): BalanceOnDate[] {
-    transactions = transactions.filter(transaction => transaction.date >= startingDate! && transaction.date <= endingDate!)
-    if (transactions === null || startingDate === null || endingDate === null) {
+  getBalancesOnDates(startingDate: DateTime | null, endingDate: DateTime | null, transactions: Transaction[]): BalanceOnDate[] {
+    if (transactions.length == 0 || startingDate === null || endingDate === null) {
       return [];
     }
-    return this.getBalancesOnDates(transactions);
-  }
-
-  getProjectedRunningBalancesOnDates(startingDate: DateTime | null, endingDate: DateTime | null, projectedTransactions: ProjectedTransaction[], startingBalance: BalanceOnDate) {
-    if (projectedTransactions === null || startingDate === null || endingDate === null) {
-      return [];
-    }
-    return this.getBalancesOnDates(projectedTransactions, startingBalance);
-  }
-
-  private getBalancesOnDates(transactions: Transaction[], startingBalance: BalanceOnDate | null = null): BalanceOnDate[] {
-    if (transactions.length == 0) {
-      return [];
-    }
-    transactions.sort((transaction1, transaction2) => transaction1.date.toMillis() - transaction2.date.toMillis());
-    var transactionsOnDateTuples = this.getTransactionsOnDateTuples(transactions);
+    var dates = this.getDatesBetween(startingDate, endingDate);
     var balanceOnDate: BalanceOnDate | null = null;
-    var balanceOnDates = transactionsOnDateTuples
-      .map<BalanceOnDate>(transactionsOnDateTuple => {
-        var date = transactionsOnDateTuple[0];
-        var transactionsOnDate = transactionsOnDateTuple[1];
-        startingBalance = balanceOnDate ?? startingBalance;
-        balanceOnDate = this.createBalanceOnDate(startingBalance, date, transactionsOnDate);
-        return balanceOnDate
-      });
-    return balanceOnDates;
+    var balancesOnDates = dates.map<BalanceOnDate>(date => {
+      balanceOnDate = this.createBalanceOnDate(date, transactions, balanceOnDate);
+      return balanceOnDate
+    });
+    return balancesOnDates;
   }
 
-  private createBalanceOnDate(previousBalance: BalanceOnDate | null, date: DateTime, transactions: Transaction[]): BalanceOnDate {
-    var startingBalance: number;
+  private getDatesBetween(startingDate: DateTime, endingDate: DateTime): DateTime[] {
+    var dates = [];
+    for (var date = startingDate; date <= endingDate; date = date.plus({ days: 1 })) {
+      dates.push(date);
+    }
+    return dates;
+  }
+
+  private createBalanceOnDate(date: DateTime, transactions: Transaction[], previousBalance: BalanceOnDate | null): BalanceOnDate {
     if (previousBalance === null) {
-      var firstTransaction = transactions.length === 0 ? null : transactions[0];
-      startingBalance = firstTransaction?.startingBalance ?? 0;
+      var previousTransactions = this.findAllPreviousTransactionsForEachAccountBeforeDate(transactions, date);
+      var startingBalance = previousTransactions.reduce((accumulator, transaction) => accumulator += transaction.startingBalance, 0);
     } else {
       var startingBalance = previousBalance.balance;
     }
-    if (transactions.length === 0) {
+    var transactionsOnDay = transactions
+      .filter(transaction => transaction.date.diff(date, 'days').days === 0)
+      .map(transaction => transaction.clone());
+    if (transactionsOnDay.length === 0) {
       return new BalanceOnDate(
         date,
         startingBalance,
         [],
-        previousBalance,
       );
     };
-    var previousTransaction = previousBalance?.transactions[previousBalance.transactions.length - 1];
-    transactions.forEach((transaction, i) => {
+    var previousTransaction: Transaction | null = null;
+    transactionsOnDay.forEach((transaction, i) => {
       transaction.indexOnDay = i;
       transaction.startingBalance = previousTransaction?.calculatedBalance() ?? startingBalance;
       previousTransaction = transaction;
     });
-    var balance = transactions.reduce((accumulator, transaction) => accumulator += transaction.getAmount(), startingBalance);
+    var balance = transactionsOnDay.reduce((accumulator, transaction) => accumulator += transaction.getAmount(), startingBalance);
     return new BalanceOnDate(
       date,
       balance,
-      transactions,
-      previousBalance,
+      transactionsOnDay,
     );
   }
 
-  private getTransactionsOnDateTuples<T extends Transaction>(transactions: T[]): [DateTime, T[]][] {
-    return transactions.reduce((tuples, current) => {
-      var date = current.date;
-      var transactionsOnDateTuple: [DateTime, T[]] | undefined = tuples.find(([_date, _]) => _date.equals(date));
-      if (transactionsOnDateTuple === undefined) {
-        transactionsOnDateTuple = [date, []];
-        tuples.push(transactionsOnDateTuple);
+  private findAllPreviousTransactionsForEachAccountBeforeDate(transactions: Transaction[], date: DateTime): Transaction[] {
+    var accountsFound = new Set<string>();
+    var previousTransactionsForEachAccount = [];
+    for (var i = transactions.length - 1; i >= 0; i--) {
+      var transaction = transactions[i];
+      if (transaction.date >= date || accountsFound.has(transaction.account.name)) {
+        continue;
       }
-      transactionsOnDateTuple[1].push(current);
-      return tuples;
-    }, [] as [DateTime, T[]][]);
+      accountsFound.add(transaction.account.name);
+      previousTransactionsForEachAccount.push(transaction);
+    }
+    return previousTransactionsForEachAccount;
   }
 }

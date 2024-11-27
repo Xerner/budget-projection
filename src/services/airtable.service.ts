@@ -89,7 +89,7 @@ export class AirtableService {
     var records: AirtableTransaction[] = [];
     this.recordsApi.getRecords<AirtableTransaction>(baseId, tableName).subscribe({
       next: recordsResponse => {
-        records = records.concat(recordsResponse.records.map(record => record.fields));
+        records = records.concat(recordsResponse.records);
       },
       complete: () => {
         this.transactions.set(records)
@@ -104,7 +104,7 @@ export class AirtableService {
     var mappedRecords: AirtablePlannedTransaction[] = [];
     this.recordsApi.getRecords<AirtablePlannedTransaction>(baseId, tableName).subscribe({
       next: recordsResponse => {
-        mappedRecords = mappedRecords.concat(recordsResponse.records.map(record => record.fields));
+        mappedRecords = mappedRecords.concat(recordsResponse.records);
       },
       complete: () => {
         this.plannedTransactions.set(mappedRecords)
@@ -119,12 +119,12 @@ export class AirtableService {
     var mappedRecords: AirtableAccount[] = [];
     this.recordsApi.getRecords<AirtableAccount>(baseId, tableName).subscribe({
       next: recordsResponse => {
-        mappedRecords = mappedRecords.concat(recordsResponse.records.map(record => record.fields));
+        var records = recordsResponse.records.map(record => record.fields);
+        mappedRecords = mappedRecords.concat(recordsResponse.records);
       },
       complete: () => {
         this.accounts.set(mappedRecords)
       }
     });
-
   }
 }

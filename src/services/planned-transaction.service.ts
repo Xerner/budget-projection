@@ -3,7 +3,7 @@ import { AirtableService } from './airtable.service';
 import { PlannedTransaction } from 'models/PlannedTransaction';
 import { AccountsService } from './accounts.service';
 import { Account } from 'models/Account';
-import { Occurrence } from 'models/interfaces/IOccurences';
+import { Occurrence } from 'models/Occurences';
 import { DateTime } from 'luxon';
 import { InputsService } from './inputs.service';
 
@@ -24,20 +24,20 @@ export class PlannedTransactionService {
       return [];
     }
     return airtablePlannedTransactions.map(airtablePlannedTransaction => {
-      var account = accounts.find(account => account.id === airtablePlannedTransaction.Account?.[0]) ?? Account.UnknownAccount();
+      var account = accounts.find(account => account.id === airtablePlannedTransaction.fields.Account?.[0]) ?? Account.UnknownAccount();
       return new PlannedTransaction(
         airtablePlannedTransaction.id,
-        airtablePlannedTransaction.Description,
-        airtablePlannedTransaction.Active,
-        airtablePlannedTransaction.Amount,
-        airtablePlannedTransaction.Priority,
-        airtablePlannedTransaction.Category,
-        airtablePlannedTransaction['Is Income'],
+        airtablePlannedTransaction.fields.Description,
+        airtablePlannedTransaction.fields.Active,
+        airtablePlannedTransaction.fields.Amount,
+        airtablePlannedTransaction.fields.Priority,
+        airtablePlannedTransaction.fields.Category,
+        airtablePlannedTransaction.fields['Is Income'],
         account,
-        airtablePlannedTransaction.Occurrence as Occurrence,
-        airtablePlannedTransaction.Autopay,
-        airtablePlannedTransaction.Shared,
-        DateTime.fromISO(airtablePlannedTransaction['Date Of Transaction']),
+        airtablePlannedTransaction.fields.Occurrence as Occurrence,
+        airtablePlannedTransaction.fields.Autopay,
+        airtablePlannedTransaction.fields.Shared,
+        DateTime.fromISO(airtablePlannedTransaction.fields['Date Of Transaction']),
       )
     })
   })

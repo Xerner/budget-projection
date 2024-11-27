@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { Account } from "./Account";
-import { Occurrence } from "./interfaces/IOccurences";
+import { Occurrence } from "./Occurences";
 
 export class PlannedTransaction {
   constructor(

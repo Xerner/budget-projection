@@ -1,10 +1,12 @@
-import { AccountType } from "models/Account";
 import { IFields, StringField } from "./Fields";
+import { IRecord } from "./Records";
 
-export interface AirtableAccount extends IFields {
-  id: StringField;
-  Name?: StringField;
-  Owner?: StringField;
-  Aliases?: StringField;
-  Type?: AccountType;
+export interface AirtableAccount extends IRecord<AirtableAccountFields> {
+}
+
+export interface AirtableAccountFields extends IFields {
+  Name: StringField;
+  Owner: StringField;
+  Aliases: StringField;
+  Type: StringField;
 }

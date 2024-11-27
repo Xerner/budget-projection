@@ -7,7 +7,6 @@ export class BalanceOnDate {
     readonly date: DateTime,
     readonly balance: number,
     readonly transactions: Transaction[],
-    readonly previousBalance: BalanceOnDate | null,
   ) { }
 
   hasProjectedTransactions() {

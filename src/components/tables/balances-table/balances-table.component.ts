@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { BalanceOnDayTableComponent } from '../balance-on-day-table/balance-on-day-table.component';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
-import { BalanceOnDate } from 'models/interfaces/IBalance';
+import { BalanceOnDate } from 'models/Balance';
 import { BooleanPipe } from 'pipes/boolean.pipe';
 import { MatIconModule } from '@angular/material/icon';
 

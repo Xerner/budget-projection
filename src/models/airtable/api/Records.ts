@@ -8,12 +8,12 @@ export interface IRecord<TFields extends IFields = IFields> {
   commentCount?: number;
 }
 
-export interface IRecords<TFields extends IFields = IFields, TRecord extends IRecord<TFields> = IRecord<TFields>> {
+export interface IRecords<TRecord extends IRecord> {
   records: TRecord[];
   offset?: string;
 }
 
-export interface IRecordsExt<T extends IFields = IFields> extends IRecords<T> {
+export interface IRecordsExt<TRecord extends IRecord> extends IRecords<TRecord> {
   baseId: string;
   tableIdOrName: string;
 }

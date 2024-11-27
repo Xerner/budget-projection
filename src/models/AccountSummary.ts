@@ -47,11 +47,21 @@ export class AccountSummary {
   }
 
   calculateIncome(): number {
-    return this.transactions.reduce((income, transaction) => income + Math.max(transaction.getAmount(), 0), 0);
+    return this.transactions.reduce((income, transaction) => {
+      if (transaction.isIncome()) {
+        return income += Math.max(transaction.getAmount(), 0);
+      }
+      return income;
+    }, 0);
   }
 
   calculateExpense(): number {
-    return this.transactions.reduce((expense, transaction) => expense + Math.min(transaction.getAmount(), 0), 0);
+    return this.transactions.reduce((expense, transaction) => {
+      if (transaction.isExpense()) {
+        return expense += Math.min(transaction.getAmount(), 0);
+      }
+      return expense;
+    }, 0);
   }
 
   calculateCurrentBalance(): number {

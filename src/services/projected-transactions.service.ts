@@ -1,89 +1,52 @@
-import { computed, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
 import { Account } from 'models/Account';
 import { AirtablePlannedTransaction } from 'models/airtable/api';
-import { Occurrence, OccurrenceToDuration } from 'models/interfaces/IOccurences';
+import { Occurrence, OccurrenceToDuration } from 'models/Occurences';
 import { ProjectedTransaction } from 'models/ProjectedTransaction';
-import { InputsService } from './inputs.service';
-import { AirtableService } from './airtable.service';
-import { AccountsService } from './accounts.service';
-import { TransactionService } from './transactions.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectedTransactionService {
-  projectedTransactions = computed(() => {
-    var transactions = this.transactionsService.transactions();
-    var firstTransaction = transactions?.[0] ?? null;
-    var plannedTransactions = this.airtableService.plannedTransactions()
-    var endingDate = this.inputsService.endingDate();
-    var accounts = this.accountsService.accounts();
-    if (firstTransaction === null || endingDate === null || accounts === null) {
-      return [];
-    }
-    return this.getProjectedPlannedTransactions(
-      plannedTransactions,
-      endingDate,
-      firstTransaction?.sortOrder ?? 0,
-      accounts
-    )
-  });
-  filteredProjectedTransactions = computed(() => {
-    var transactions = this.projectedTransactions();
-    var startingDate = this.inputsService.startingDate();
-    var endingDate = this.inputsService.endingDate();
-    if (startingDate === null || endingDate === null) {
-      return [];
-    }
-    return transactions.filter(transaction =>
-      transaction.date >= startingDate! && transaction.date <= endingDate!
-    );
-  });
-
-  constructor(
-    private airtableService: AirtableService,
-    private inputsService: InputsService,
-    private transactionsService: TransactionService,
-    private accountsService: AccountsService,
-  ) { }
-
-  private getProjectedPlannedTransactions(plannedTransactions: AirtablePlannedTransaction[], endingDate: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction[] {
-    return plannedTransactions
-      .filter(plannedTransaction => plannedTransaction.Active)
+  getProjectedPlannedTransactions(plannedTransactions: AirtablePlannedTransaction[], endingDate: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction[] {
+    var transactions = plannedTransactions
+      .filter(plannedTransaction => plannedTransaction.fields.Active)
       .flatMap(plannedTransaction => {
-        return this.createProjectedTransactions(plannedTransaction, endingDate, sortOrder, accounts)
-      });
+        return this.createProjectedTransactions(plannedTransaction, endingDate, accounts)
+      })
+      .sort((a, b) => a.date.toMillis() - b.date.toMillis());
+    transactions.forEach(transaction => transaction.sortOrder = sortOrder++);
+    return transactions;
   }
 
-  private createProjectedTransactions(plannedTransaction: AirtablePlannedTransaction, endingDate: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction[] {
-    if (plannedTransaction.Occurrence == Occurrence.AdHoc) {
-      return [this.createProjectedTransaction(plannedTransaction, endingDate, sortOrder, accounts)];
+  private createProjectedTransactions(plannedTransaction: AirtablePlannedTransaction, endingDate: DateTime, accounts: Account[]): ProjectedTransaction[] {
+    if (plannedTransaction.fields.Occurrence == Occurrence.AdHoc) {
+      return [this.createProjectedTransaction(plannedTransaction, endingDate, accounts)];
     }
-    var duration = OccurrenceToDuration(plannedTransaction.Occurrence as Occurrence);
+    var duration = OccurrenceToDuration(plannedTransaction.fields.Occurrence as Occurrence);
     if (duration == null) {
       return [];
     }
     var nextDate = DateTime.now().startOf('day');
-    var transactions: ProjectedTransaction[] = [];
+    var projectedTransactions: ProjectedTransaction[] = [];
     var projectedTransaction: ProjectedTransaction;
     while (nextDate < endingDate) {
-      projectedTransaction = this.createProjectedTransaction(plannedTransaction, nextDate, sortOrder, accounts);
-      transactions.push(projectedTransaction);
+      projectedTransaction = this.createProjectedTransaction(plannedTransaction, nextDate, accounts);
+      projectedTransactions.push(projectedTransaction);
       nextDate = nextDate.plus(duration);
     }
-    return transactions;
+    return projectedTransactions;
   }
 
-  private createProjectedTransaction(plannedTransaction: AirtablePlannedTransaction, datetime: DateTime, sortOrder: number, accounts: Account[]): ProjectedTransaction {
-    sortOrder++;
-    var account = accounts.find(account => account.doesNameRepresent(plannedTransaction.Account[0])) ?? Account.UnknownAccount();
+  private createProjectedTransaction(plannedTransaction: AirtablePlannedTransaction, datetime: DateTime, accounts: Account[]): ProjectedTransaction {
+    var account = accounts.find(account => account.doesNameRepresent(plannedTransaction.fields.Account[0])) ?? Account.UnknownAccount();
     return new ProjectedTransaction(
       datetime,
-      sortOrder,
-      plannedTransaction.Description,
-      plannedTransaction.Category,
-      plannedTransaction.Amount,
-      account,
       0,
+      plannedTransaction.fields.Description,
+      plannedTransaction.fields.Category,
+      plannedTransaction.fields.Amount,
+      account,
+      0, // calculated later when day-to-day balances are created
       plannedTransaction,
     );
   }

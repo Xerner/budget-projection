@@ -20,7 +20,7 @@
     <app-planned-transactions-table [transactions]="plannedTransactionsService.filteredPlannedTransactions()"></app-planned-transactions-table>
   </mat-tab>
   <!-- Balances -->
-  <mat-tab label="Calculated Balance Per Day" [disabled]="balancesService.allBalances().length === 0">
+  <mat-tab label="Calculated Balance Per Day" [disabled]="balancesService.balances().length === 0">
     <app-balances-table [balances]="balancesService.filteredBalances()"></app-balances-table>
   </mat-tab>
 </mat-tab-group>
@@ -42,7 +42,7 @@
     <app-planned-transactions-table [transactions]="plannedTransactionsService.plannedTransactions()"></app-planned-transactions-table>
   </mat-tab>
   <!-- Balances -->
-  <mat-tab label="Calculated Balance Per Day" [disabled]="balancesService.allBalances().length === 0">
-    <app-balances-table [balances]="balancesService.allBalances()"></app-balances-table>
+  <mat-tab label="Calculated Balance Per Day" [disabled]="balancesService.balances().length === 0">
+    <app-balances-table [balances]="balancesService.balances()"></app-balances-table>
   </mat-tab>
 </mat-tab-group>
