@@ -8,8 +8,4 @@ export class BalanceOnDate {
     readonly balance: number,
     readonly transactions: Transaction[],
   ) { }
-
-  hasProjectedTransactions() {
-    return this.transactions.some(transaction => transaction instanceof ProjectedTransaction);
-  }
 }

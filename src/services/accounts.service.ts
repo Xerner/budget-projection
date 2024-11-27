@@ -24,7 +24,7 @@ export class AccountsService {
     var accountSummaries = accounts
       .map<AccountSummary>(account => new AccountSummary(
         account,
-        transactions.filter(transaction => account.doesNameRepresent(transaction.account.name)),
+        transactions.filter(transaction => account.doesRepresent(transaction.account.name)),
       ));
     return accountSummaries;
   }

@@ -38,7 +38,10 @@ export class ProjectedTransactionService {
   }
 
   private createProjectedTransaction(plannedTransaction: AirtablePlannedTransaction, datetime: DateTime, accounts: Account[]): ProjectedTransaction {
-    var account = accounts.find(account => account.doesNameRepresent(plannedTransaction.fields.Account[0])) ?? Account.UnknownAccount();
+    var account = accounts.find(account => account.doesRepresent(plannedTransaction.fields.Account[0]));
+    if (account === undefined) {
+      account = Account.UnknownAccount();
+    }
     return new ProjectedTransaction(
       datetime,
       0,

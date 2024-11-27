@@ -9,11 +9,6 @@
     <td mat-cell *matCellDef="let row"> {{ row[BalanceColumns.balance] | currency }} </td>
   </ng-container>
 
-  <ng-container [matColumnDef]="BalanceColumns.isProjected">
-    <th mat-header-cell *matHeaderCellDef> Has Projected? </th>
-    <td mat-cell *matCellDef="let row"> <div>{{ row.hasProjectedTransactions() | boolean }}</div> </td>
-  </ng-container>
-
   <ng-container [matColumnDef]="BalanceColumns.transactions">
     <th mat-header-cell *matHeaderCellDef> See Transactions </th>
     <td mat-cell *matCellDef="let row">

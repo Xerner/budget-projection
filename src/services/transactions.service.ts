@@ -29,6 +29,9 @@ export class TransactionService {
     );
     return transactions.concat(projectedTransactions);
   });
+  projectedTransactions = computed(() => {
+
+  });
   filteredTransactions = computed(() => {
     var startingDate = this.inputsService.startingDate();
     var endingDate = this.inputsService.endingDate();

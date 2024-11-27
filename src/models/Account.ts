@@ -11,8 +11,8 @@ export class Account {
     readonly type: AccountType,
   ) { }
 
-  doesNameRepresent(accountName: string): boolean {
-    return STRINGS.compare(accountName, this.name, this.aliases) === 0;
+  doesRepresent(accountNameOrId: string): boolean {
+    return STRINGS.compare(accountNameOrId, this.name, this.aliases) === 0 || accountNameOrId === this.id;
   }
 
   static UnknownAccount(): Account {

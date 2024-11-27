@@ -8,7 +8,6 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { BalanceOnDayTableComponent } from '../balance-on-day-table/balance-on-day-table.component';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
 import { BalanceOnDate } from 'models/Balance';
-import { BooleanPipe } from 'pipes/boolean.pipe';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -25,7 +24,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     DateTimePipe,
-    BooleanPipe,
 ],
   templateUrl: './balances-table.component.html',
 })
@@ -48,11 +46,9 @@ export class BalancesTableComponent {
     date: "date",
     balance: "balance",
     transactions: "transactions",
-    isProjected: "Has Projected",
     previousBalance: "previousBalance",
   }
   displayedBalanceColumns = [
-    this.BalanceColumns.isProjected,
     this.BalanceColumns.date,
     this.BalanceColumns.balance,
     this.BalanceColumns.transactions,

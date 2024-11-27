@@ -82,8 +82,7 @@ export class TransactionsChartsService {
 
   getCategoryLabels(): string[] {
     var balances = this.balancesService.balances();
-    var projectedBalances = this.balancesService.balances()
-      .filter(balance => balance.hasProjectedTransactions());
+    var projectedBalances = this.balancesService.projectedBalances()
     if (balances == null || projectedBalances == null) {
       return [];
     }
@@ -95,16 +94,15 @@ export class TransactionsChartsService {
     var chartDataset = this.getChartDataTemplate<(number | null)>();
     var startingDate = this.inputsService.startingDate();
     var endingDate = this.inputsService.endingDate();
-    var balances = this.balancesService.filteredBalances();
-    var projectedBalances = this.balancesService.balances()
-      .filter(balance => balance.hasProjectedTransactions());
+    var balances = this.balancesService.balances();
+    var projectedBalances = this.balancesService.projectedBalances();
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
     }
     var dateLabels = this.dateLabels();
     chartDataset.labels = dateLabels.map(date => date.toISODate()!);
-    var balancesChartData = this.getBalanceAndProjectedBalanceData(balances, dateLabels, true);
-    var projectedBalancesChartData = this.getBalanceAndProjectedBalanceData(projectedBalances, dateLabels);
+    var balancesChartData = this.getBalancesChartData(balances, dateLabels, true);
+    var projectedBalancesChartData = this.getBalancesChartData(projectedBalances, dateLabels);
     chartDataset.datasets.push({
       label: "Balance",
       data: balancesChartData,
@@ -124,15 +122,15 @@ export class TransactionsChartsService {
     return chartDataset;
   }
 
-  private getBalanceAndProjectedBalanceData(balances: BalanceOnDate[], dateLabels: DateTime[], isActualBalance = false) {
-    var now = DateTime.now();
+  private getBalancesChartData(balances: BalanceOnDate[], dateLabels: DateTime[], isActualBalance = false) {
+    var now = DateTime.now().startOf('day');
     var chartData = dateLabels.reduce<(number | null)[]>((accumulator, dateLabel) => {
-      var isAfterNow = dateLabel.diff(now, 'days').days > 0;
-      if (isAfterNow && isActualBalance) {
+      var isOnOrAfterNow = dateLabel.diff(now, 'days').days >= 0;
+      var balanceOnThisDate = balances.find(b => b.date.diff(dateLabel, 'days').days === 0);
+      if (isActualBalance && isOnOrAfterNow) {
         accumulator.push(null);
         return accumulator;
       }
-      var balanceOnThisDate = balances.find(b => b.date.diff(dateLabel, 'days').days === 0);
       if (balanceOnThisDate) {
         accumulator.push(Math.ceil(balanceOnThisDate.balance));
         return accumulator;
@@ -152,8 +150,7 @@ export class TransactionsChartsService {
     var startingDate = this.inputsService.startingDate();
     var endingDate = this.inputsService.endingDate();
     var balances = this.balancesService.balances();
-    var projectedBalances = this.balancesService.balances()
-      .filter(balance => balance.hasProjectedTransactions());
+    var projectedBalances = this.balancesService.projectedBalances()
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
     }
@@ -181,8 +178,7 @@ export class TransactionsChartsService {
     var startingDate = this.inputsService.startingDate();
     var endingDate = this.inputsService.endingDate();
     var balances = this.balancesService.balances();
-    var projectedBalances = this.balancesService.balances()
-      .filter(balance => balance.hasProjectedTransactions());
+    var projectedBalances = this.balancesService.projectedBalances()
     if (balances == null || projectedBalances == null || startingDate == null || endingDate == null) {
       return chartDataset;
     }
@@ -222,8 +218,7 @@ export class TransactionsChartsService {
   }
 
   getProjectedCategoryTotalsBarChartDataset(): ChartData<keyof ChartTypeRegistry, (number)[], string> {
-    var balances = this.balancesService.balances()
-      .filter(balance => balance.hasProjectedTransactions());
+    var balances = this.balancesService.projectedBalances()
     return this.getTotalsBarChartDataset(balances, "Projected Categories");
   }
 
