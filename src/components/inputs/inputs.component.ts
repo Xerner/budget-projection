@@ -14,19 +14,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HttpCacheStore } from '../../common/angular/services';
 
 @Component({
-  selector: 'app-inputs',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatProgressBarModule,
-    MatDatepickerModule,
-  ],
-  templateUrl: './inputs.component.html',
+    selector: 'app-inputs',
+    imports: [
+        CommonModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatProgressBarModule,
+        MatDatepickerModule,
+    ],
+    templateUrl: './inputs.component.html'
 })
 export class InputsComponent {
   EndPoints = Endpoints;

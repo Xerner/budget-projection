@@ -7,16 +7,17 @@ import { TransactionService } from '../../services/transactions.service';
 import { AccountsSummariesTableComponent } from "./accounts-summaries-table/accounts-summaries-table.component";
 import { PlannedTransactionService } from 'services/planned-transaction.service';
 import { BalancesService } from 'services/balances.service';
+import { TableWithHeaderComponent } from "../generic/table-with-header/table-with-header.component";
 
 @Component({
   selector: 'app-tables',
-  standalone: true,
   imports: [
     MatTabsModule,
     TransactionsTableComponent,
     PlannedTransactionsTableComponent,
     BalancesTableComponent,
-    AccountsSummariesTableComponent
+    AccountsSummariesTableComponent,
+    TableWithHeaderComponent
 ],
   templateUrl: './tables.component.html',
 })

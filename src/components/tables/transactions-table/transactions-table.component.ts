@@ -10,17 +10,16 @@ import { AccountStylesService } from 'services/styles/account-styles';
 import { MatSortModule } from '@angular/material/sort';
 
 @Component({
-  selector: 'app-transactions-table',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    CurrencyPipe,
-    DateTimePipe,
-    MatSortModule,
-  ],
-  templateUrl: './transactions-table.component.html',
+    selector: 'app-transactions-table',
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatPaginatorModule,
+        CurrencyPipe,
+        DateTimePipe,
+        MatSortModule,
+    ],
+    templateUrl: './transactions-table.component.html'
 })
 export class TransactionsTableComponent {
   transactions = input.required<Transaction[]>()

@@ -9,16 +9,15 @@ import { TransactionService } from '../../services/transactions.service';
 import { TransactionsChartsService } from 'services/charts/transactions-charts.service';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    BaseChartDirective,
-  ],
-  templateUrl: './dashboard.component.html',
+    selector: 'app-dashboard',
+    imports: [
+        CommonModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        BaseChartDirective,
+    ],
+    templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
   constructor(

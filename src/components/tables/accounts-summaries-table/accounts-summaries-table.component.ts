@@ -1,6 +1,6 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, computed, viewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Component, computed } from '@angular/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DateTimePipe } from 'common/angular/pipes';
 import { AccountSummary } from 'models/AccountSummary';
@@ -9,7 +9,6 @@ import { AccountStylesService } from 'services/styles/account-styles';
 
 @Component({
   selector: 'app-accounts-summaries-table',
-  standalone: true,
   imports: [
     CommonModule,
     MatTableModule,

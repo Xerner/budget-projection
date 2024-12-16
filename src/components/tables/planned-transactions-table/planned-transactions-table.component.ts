@@ -8,17 +8,16 @@ import { DateTimePipe } from 'common/angular/pipes';
 import { BooleanPipe } from 'pipes/boolean.pipe';
 
 @Component({
-  selector: 'app-planned-transactions-table',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatPaginatorModule,
-    MatTableModule,
-    DateTimePipe,
-    CurrencyPipe,
-    BooleanPipe,
-  ],
-  templateUrl: './planned-transactions-table.component.html',
+    selector: 'app-planned-transactions-table',
+    imports: [
+        CommonModule,
+        MatPaginatorModule,
+        MatTableModule,
+        DateTimePipe,
+        CurrencyPipe,
+        BooleanPipe,
+    ],
+    templateUrl: './planned-transactions-table.component.html'
 })
 export class PlannedTransactionsTableComponent {
   transactions = input.required<PlannedTransaction[]>()

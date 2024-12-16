@@ -11,21 +11,20 @@ import { BalanceOnDate } from 'models/Balance';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-balances-table',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatPaginatorModule,
-    MatTableModule,
-    CurrencyPipe,
-    BalanceOnDayTableComponent,
-    MatMenuModule,
-    MatMenuTrigger,
-    MatButtonModule,
-    MatIconModule,
-    DateTimePipe,
-],
-  templateUrl: './balances-table.component.html',
+    selector: 'app-balances-table',
+    imports: [
+        CommonModule,
+        MatPaginatorModule,
+        MatTableModule,
+        CurrencyPipe,
+        BalanceOnDayTableComponent,
+        MatMenuModule,
+        MatMenuTrigger,
+        MatButtonModule,
+        MatIconModule,
+        DateTimePipe,
+    ],
+    templateUrl: './balances-table.component.html'
 })
 export class BalancesTableComponent {
   balances = input.required<BalanceOnDate[]>()

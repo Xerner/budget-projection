@@ -17,23 +17,22 @@ import { TablesComponent } from '../tables/tables.component';
 import { AirtableService } from 'services/airtable.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    MatProgressBarModule,
-    InputsComponent,
-    DashboardComponent,
-    MatIconModule,
-    MatTooltipModule,
-    MatExpansionModule,
-    CommonModule,
-    TablesComponent,
-  ],
-  host: {
-    class: 'flex flex-col h-full',
-  },
-  templateUrl: './app.component.html',
+    selector: 'app-root',
+    imports: [
+        RouterOutlet,
+        MatProgressBarModule,
+        InputsComponent,
+        DashboardComponent,
+        MatIconModule,
+        MatTooltipModule,
+        MatExpansionModule,
+        CommonModule,
+        TablesComponent,
+    ],
+    host: {
+        class: 'flex flex-col h-full',
+    },
+    templateUrl: './app.component.html'
 })
 export class AppComponent {
   NotificationTypes = NotificationTypes;

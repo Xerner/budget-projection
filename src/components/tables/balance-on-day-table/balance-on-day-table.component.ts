@@ -12,18 +12,17 @@ import { BooleanPipe } from 'pipes/boolean.pipe';
 import { AccountStylesService } from 'services/styles/account-styles';
 
 @Component({
-  selector: 'app-balance-on-day-table',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DateTimePipe,
-    MatMenuModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatTableModule,
-    BooleanPipe,
-  ],
-  templateUrl: './balance-on-day-table.component.html',
+    selector: 'app-balance-on-day-table',
+    imports: [
+        CommonModule,
+        DateTimePipe,
+        MatMenuModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatTableModule,
+        BooleanPipe,
+    ],
+    templateUrl: './balance-on-day-table.component.html'
 })
 export class BalanceOnDayTableComponent {
   balance = input.required<BalanceOnDate | null>();
