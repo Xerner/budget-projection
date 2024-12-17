@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { Account } from "./Account";
-import { Occurrence } from "./Occurences";
+import { Occurrence } from "./Occurrences";
 
 export class PlannedTransaction {
   constructor(

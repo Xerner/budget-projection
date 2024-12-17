@@ -3,7 +3,7 @@ import { AirtableService } from './airtable.service';
 import { PlannedTransaction } from 'models/PlannedTransaction';
 import { AccountsService } from './accounts.service';
 import { Account } from 'models/Account';
-import { Occurrence } from 'models/Occurences';
+import { Occurrence } from 'models/Occurrences';
 import { DateTime } from 'luxon';
 import { InputsService } from './inputs.service';
 
