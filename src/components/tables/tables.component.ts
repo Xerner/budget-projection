@@ -18,10 +18,15 @@ import { TableWithHeaderComponent } from "../generic/table-with-header/table-wit
     BalancesTableComponent,
     AccountsSummariesTableComponent,
     TableWithHeaderComponent
-],
-  templateUrl: './tables.component.html',
+  ],
+  templateUrl: './tables.component.html'
 })
 export class TablesComponent {
+  tabs = [
+    "Transactions",
+    "Planned Transactions",
+    "Balances",
+  ]
   constructor(
     protected transactionsService: TransactionService,
     protected plannedTransactionsService: PlannedTransactionService,

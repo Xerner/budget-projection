@@ -2,6 +2,7 @@
   @apply text-blue-700 font-medium bg-slate-100;
 }
 
-table.table-small tr {
+.table-small table tr, table.table-small tr {
+  @apply text-xs;
   height: 2em;
 }

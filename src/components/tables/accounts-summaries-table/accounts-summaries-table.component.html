@@ -1,4 +1,4 @@
-<table mat-table class="table-small" [dataSource]="accountSummariesDataSource()" matSort>
+<table mat-table [dataSource]="accountSummariesDataSource()" matSort>
   <ng-container [matColumnDef]="AccountSummaryColumns.name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let row"> {{ row.account.name }} </td>
