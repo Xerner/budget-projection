@@ -1,0 +1,40 @@
+<button
+  mat-icon-button
+  aria-label="Select a color mode"
+  matTooltip="Select a color mode"
+  [matMenuTriggerFor]="modeMenu"
+>
+  <mat-icon>
+    @switch (mode()) { @case ("dark") {
+    <mat-icon>dark_mode</mat-icon>
+    } @case ("light") {
+    <mat-icon>light_mode</mat-icon>
+    } @default {
+    <mat-icon>contrast</mat-icon>
+    } }
+  </mat-icon>
+</button>
+
+<mat-menu #modeMenu="matMenu" class="theme-picker-menu">
+  <button mat-menu-item (click)="switchColorMode('light')">
+    <mat-icon>
+      {{ mode() == "light" ? "radio_button_checked" : "radio_button_unchecked" }}
+    </mat-icon>
+    <mat-icon class="">light_mode</mat-icon>
+    <span>Light Mode</span>
+  </button>
+  <button mat-menu-item (click)="switchColorMode('dark')">
+    <mat-icon>
+      {{ mode() == "dark" ? "radio_button_checked" : "radio_button_unchecked" }}
+    </mat-icon>
+    <mat-icon class="">dark_mode</mat-icon>
+    <span>Dark Mode</span>
+  </button>
+  <button mat-menu-item (click)="switchColorMode('auto')">
+    <mat-icon>
+      {{ mode() == "auto" ? "radio_button_checked" : "radio_button_unchecked" }}
+    </mat-icon>
+    <mat-icon class="">contrast</mat-icon>
+    <span>Auto</span>
+  </button>
+</mat-menu>
