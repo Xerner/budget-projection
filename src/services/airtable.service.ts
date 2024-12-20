@@ -1,23 +1,24 @@
-import { Inject, Injectable, signal } from '@angular/core';
+import { Inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { RecordsApiService } from './api/records.api.service';
 import { BasesApiService } from './api/bases.api.service';
 import { InputsService } from './inputs.service';
 import { IGlobalQueryParams } from '../models/GlobalQueryParams';
 import { TOKEN_SERVICE, ITokenService } from '../common/angular/interceptors';
 import { FormControl } from '@angular/forms';
-import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction } from '../models/airtable/api';
+import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction, IField, IFields, IRecord, IRecords } from '../models/airtable/api';
 import { AirtableAccount } from 'models/airtable/api/Accounts';
+import { AirtablePlannedTransactionDateFilter } from 'models/airtable/api/PlannedTransactionDateFilters';
 
 @Injectable({ providedIn: 'root' })
 export class AirtableService {
   bases = signal<AirtableBase[]>([]);
   baseSchema = signal<AirtableBaseSchemaExt | null>(null);
+  accounts = signal<AirtableAccount[]>([]);
   transactions = signal<AirtableTransaction[]>([]);
   plannedTransactions = signal<AirtablePlannedTransaction[]>([]);
-  accounts = signal<AirtableAccount[]>([]);
+  plannedTransactionDateFilters = signal<AirtablePlannedTransactionDateFilter[]>([]);
 
   onApiControlChanges: Partial<Record<keyof IGlobalQueryParams, (value: any) => void>> = {
-
     token: (token) => {
       this.tokenService.setToken(token);
       this.fetchBases();
@@ -60,6 +61,7 @@ export class AirtableService {
     this.fetchPlannedTransactions(base.id, plannedTransactionsTableName);
     this.fetchTransactions(base.id, transactionsTableName);
     this.fetchAccounts(base.id, accountsTableName);
+    this.fetchPlannedTransactionDateFilters(base.id, accountsTableName);
   }
 
   fetchBases() {
@@ -83,47 +85,32 @@ export class AirtableService {
   }
 
   fetchTransactions(baseId: string, tableName: string) {
-    if (!baseId || !tableName) {
-      return;
-    }
-    var records: AirtableTransaction[] = [];
-    this.recordsApi.getRecords<AirtableTransaction>(baseId, tableName).subscribe({
-      next: recordsResponse => {
-        records = records.concat(recordsResponse.records);
-      },
-      complete: () => {
-        this.transactions.set(records)
-      }
-    });
+    this.fetchRecords<AirtableTransaction>(baseId, tableName, this.transactions);
   }
 
   fetchPlannedTransactions(baseId: string, tableName: string) {
-    if (!baseId || !tableName) {
-      return;
-    }
-    var mappedRecords: AirtablePlannedTransaction[] = [];
-    this.recordsApi.getRecords<AirtablePlannedTransaction>(baseId, tableName).subscribe({
-      next: recordsResponse => {
-        mappedRecords = mappedRecords.concat(recordsResponse.records);
-      },
-      complete: () => {
-        this.plannedTransactions.set(mappedRecords)
-      }
-    });
+    this.fetchRecords<AirtablePlannedTransaction>(baseId, tableName, this.plannedTransactions);
   }
 
   fetchAccounts(baseId: string, tableName: string) {
+    this.fetchRecords<AirtableAccount>(baseId, tableName, this.accounts);
+  }
+
+  fetchPlannedTransactionDateFilters(baseId: string, tableName: string) {
+    this.fetchRecords<AirtablePlannedTransactionDateFilter>(baseId, tableName, this.plannedTransactionDateFilters);
+  }
+
+  fetchRecords<TRecord extends IRecord>(baseId: string, tableName: string, signal: WritableSignal<TRecord[]>) {
     if (!baseId || !tableName) {
       return;
     }
-    var mappedRecords: AirtableAccount[] = [];
-    this.recordsApi.getRecords<AirtableAccount>(baseId, tableName).subscribe({
+    var mappedRecords: TRecord[] = [];
+    this.recordsApi.getRecords<TRecord>(baseId, tableName).subscribe({
       next: recordsResponse => {
-        var records = recordsResponse.records.map(record => record.fields);
         mappedRecords = mappedRecords.concat(recordsResponse.records);
       },
       complete: () => {
-        this.accounts.set(mappedRecords)
+        signal.set(mappedRecords);
       }
     });
   }
