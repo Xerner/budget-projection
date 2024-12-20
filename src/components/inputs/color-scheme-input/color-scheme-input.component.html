@@ -1,0 +1,119 @@
+<button
+  mat-icon-button
+  aria-label="Select a theme"
+  matTooltip="Select a theme"
+  [matMenuTriggerFor]="themeMenu"
+>
+  <mat-icon>format_color_fill</mat-icon>
+</button>
+
+<mat-menu #themeMenu="matMenu" class="theme-picker-menu">
+  <button
+    mat-menu-item
+    (click)="switchColorScheme(ColorTheme.RoseAndRed)"
+  >
+    <mat-icon>
+      {{ selectedTheme() == ColorTheme.RoseAndRed ? 'radio_button_checked' : 'radio_button_unchecked' }}
+    </mat-icon>
+    <svg
+      matMenuItemIcon=""
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
+      class="theme-example-icon"
+    >
+      <path
+        d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z"
+        fill="#fffbff"
+      ></path>
+      <path
+        d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z"
+        fill="#ffd9e1"
+      ></path>
+      <path d="M0 0h80v17.24H0V0z" fill="#ffd9e1"></path>
+    </svg>
+    <span class="mat-mdc-menu-item-text"><span>Rose &amp; Red</span></span>
+    <div matripple="" class="mat-ripple mat-mdc-menu-ripple"></div>
+  </button>
+  <button
+    mat-menu-item
+    (click)="switchColorScheme(ColorTheme.AzureAndBlue)"
+  >
+    <mat-icon>
+      {{ selectedTheme() == ColorTheme.AzureAndBlue ? 'radio_button_checked' : 'radio_button_unchecked' }}
+    </mat-icon>
+    <svg
+      matMenuItemIcon=""
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
+      class="theme-example-icon"
+    >
+      <path
+        d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z"
+        fill="#fdfbff"
+      ></path>
+      <path
+        d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z"
+        fill="#d7e3ff"
+      ></path>
+      <path d="M0 0h80v17.24H0V0z" fill="#d7e3ff"></path>
+    </svg>
+    <span class="mat-mdc-menu-item-text"><span>Azure &amp; Blue</span></span>
+    <div matripple class="mat-ripple mat-mdc-menu-ripple"></div>
+  </button>
+  <button
+    mat-menu-item
+    (click)="switchColorScheme(ColorTheme.MagentaAndViolet)"
+  >
+    <mat-icon>
+      {{ selectedTheme() == ColorTheme.MagentaAndViolet ? 'radio_button_checked' : 'radio_button_unchecked' }}
+    </mat-icon
+    ><svg
+      matMenuItemIcon
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
+      class="theme-example-icon"
+    >
+      <path
+        d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z"
+        fill="#1e1a1d"
+      ></path>
+      <path
+        d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z"
+        fill="#810081"
+      ></path>
+      <path d="M0 0h80v17.24H0V0z" fill="#810081"></path></svg
+    ><span class="mat-mdc-menu-item-text"
+      ><span>Magenta &amp; Violet</span></span
+    >
+    <div matripple="" class="mat-ripple mat-mdc-menu-ripple"></div>
+  </button>
+  <button
+    mat-menu-item
+    (click)="switchColorScheme(ColorTheme.CyanAndOrange)"
+  >
+    <mat-icon>
+      {{ selectedTheme() == ColorTheme.CyanAndOrange ? 'radio_button_checked' : 'radio_button_unchecked' }}
+    </mat-icon>
+    <svg
+      matMenuItemIcon
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
+      class="theme-example-icon"
+    >
+      <path
+        d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z"
+        fill="#191c1c"
+      ></path>
+      <path
+        d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z"
+        fill="#004f4f"
+      ></path>
+      <path d="M0 0h80v17.24H0V0z" fill="#004f4f"></path></svg
+    ><span class="mat-mdc-menu-item-text"><span>Cyan &amp; Orange</span></span>
+    <div matripple="" class="mat-ripple mat-mdc-menu-ripple"></div>
+  </button>
+</mat-menu>

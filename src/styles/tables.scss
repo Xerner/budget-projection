@@ -1,5 +1,5 @@
 .table-header {
-  @apply text-blue-700 font-medium bg-slate-100;
+  @apply font-medium text-[--mat-sys-on-primary-container] bg-[--mat-sys-surface];
 }
 
 .table-small table tr, table.table-small tr {

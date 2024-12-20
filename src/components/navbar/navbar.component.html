@@ -1,0 +1,41 @@
+<mat-toolbar class="gap-3 !bg-[--mat-sys-primary-container] !text-[--mat-sys-on-primary-container]">
+  <div class="flex items-center gap-3 text-xl">
+    <mat-icon svgIcon="airtable" inline class="!h-6"></mat-icon>
+    <div class="text-2xl font-light mt-1">Budget Dashboard</div>
+  </div>
+  <div class="grow"></div>
+  <app-color-mode-input></app-color-mode-input>
+  <app-color-scheme-input></app-color-scheme-input>
+
+  <button mat-icon-button (click)="openInputsDialog()">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  @if (appStore.isLoading()) {
+  <mat-progress-bar
+    mode="query"
+    class="!bg-gradient-to-r from-blue-600 to-purple-600"
+  ></mat-progress-bar>
+  } @if (notifications.get(NotificationTypes.Errors).length > 0) {
+  <div class="flex flex-col gap-3 p-3 bg-red-200 divide-y">
+    @for (error of notifications.get(NotificationTypes.Errors)(); track $index)
+    {
+    <div class="flex justify-between gap-3">
+      <div>
+        @if (error.title !== null && error.title !== "") {
+        <div>Error: {{ error.title }}</div>
+        }
+        <div>
+          {{ error.message }}
+        </div>
+      </div>
+      <div>
+        <button mat-icon-button (click)="notifications.remove(error)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</mat-toolbar>

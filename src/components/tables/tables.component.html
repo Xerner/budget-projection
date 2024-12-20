@@ -1,35 +1,32 @@
 <div class="grid grid-cols-2 divide-x">
   <app-table-with-header header="Summaries">
-    <app-accounts-summaries-table
-      class="table-small"
-    ></app-accounts-summaries-table>
+    <app-accounts-summaries-table></app-accounts-summaries-table>
   </app-table-with-header>
 
   <app-table-with-header [header]="tabs[tabGroup.selectedIndex ?? 0]">
     <mat-tab-group #tabGroup>
       @for (tab of tabs; track $index) {
-      <mat-tab [label]="tab" [disabled]="tab == 'Balances' && balancesService.balances().length === 0">
+      <mat-tab
+        [label]="tab"
+        [disabled]="
+          tab == 'Balances' && balancesService.balances().length === 0
+        "
+      >
         @switch (tab) { @case ("Transactions") {
         <app-transactions-table
-          class="table-small"
           [transactions]="transactionsService.filteredTransactions()"
         ></app-transactions-table>
-        }
-        @case ("Planned Transactions") {
-          <app-planned-transactions-table
-          class="table-small"
+        } @case ("Planned Transactions") {
+        <app-planned-transactions-table
           [transactions]="
             plannedTransactionsService.filteredPlannedTransactions()
           "
         ></app-planned-transactions-table>
-        }
-        @case ("Balances") {
-          <app-balances-table
-          class="table-small"
+        } @case ("Balances") {
+        <app-balances-table
           [balances]="balancesService.allBalances()"
         ></app-balances-table>
-        }
-      }
+        } }
       </mat-tab>
       }
     </mat-tab-group>

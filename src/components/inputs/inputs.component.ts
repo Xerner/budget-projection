@@ -12,19 +12,21 @@ import { Endpoints } from '../../models/Endpoints';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HttpCacheStore } from '../../common/angular/services';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-inputs',
     imports: [
-        CommonModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatProgressBarModule,
-        MatDatepickerModule,
-    ],
+    CommonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    MatDatepickerModule,
+    MatTooltipModule,
+],
     templateUrl: './inputs.component.html'
 })
 export class InputsComponent {
@@ -43,16 +45,4 @@ export class InputsComponent {
     protected loadingService: LoadingService,
     protected httpCache: HttpCacheStore,
   ) { }
-
-  onFetchClicked() {
-    this.airtableService.fetchAll();
-  }
-
-  onLogCacheClicked() {
-    console.log(this.httpCache.serialize());
-  }
-
-  onBustCacheClicked() {
-    this.httpCache.bust();
-  }
 }
