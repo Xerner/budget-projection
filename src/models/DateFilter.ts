@@ -1,9 +1,8 @@
 import { DateFilter } from "./date-filters/abstract-date-filter";
-import { PlannedTransaction } from "./PlannedTransaction";
 
-export class PlannedTransactionDateFilter<T = any> {
+export class DateFilterEntity<TEntity, TFilterType = any> {
   constructor(
-    public transaction: PlannedTransaction,
-    public dateFilter: DateFilter<T>,
+    public transaction: TEntity,
+    public dateFilter: DateFilter<TFilterType>,
   ) { }
 }

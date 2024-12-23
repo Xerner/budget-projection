@@ -25,6 +25,6 @@ export interface AirtablePlannedTransactionFields extends IFields {
   "Account": LinkToAnotherRecordField;
   "Occurrence": StringField;
   "Autopay": BooleanField;
-  "Shared": BooleanField;
-  "Date Of Transaction": DateField;
+  "Bundled In": LinkToAnotherRecordField;
+  "Starting Date": DateField;
 }

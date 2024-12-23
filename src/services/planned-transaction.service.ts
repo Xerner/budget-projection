@@ -4,8 +4,11 @@ import { PlannedTransaction } from 'models/PlannedTransaction';
 import { AccountsService } from './accounts.service';
 import { Account } from 'models/Account';
 import { Occurrence } from 'models/Occurrences';
+import { AirtablePlannedTransactionDateFilter } from 'models/api/airtable/PlannedTransactionDateFilters';
+import { DateFilterEntity } from 'models/DateFilter';
+import { DayOfWeekFilter } from 'models/date-filters/day-of-week-filter';
+import { AirtablePlannedTransaction } from 'models/api/airtable';
 import { DateTime } from 'luxon';
-import { InputsService } from './inputs.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,6 @@ export class PlannedTransactionService {
   constructor(
     private airtableService: AirtableService,
     private accountsService: AccountsService,
-    private inputsService: InputsService,
   ) { }
 
   plannedTransactions = computed<PlannedTransaction[]>(() => {
@@ -24,7 +26,10 @@ export class PlannedTransactionService {
       return [];
     }
     return airtablePlannedTransactions.map(airtablePlannedTransaction => {
-      var account = accounts.find(account => account.id === airtablePlannedTransaction.fields.Account?.[0]) ?? Account.UnknownAccount();
+      var account = accounts
+        .find(account => account.id === airtablePlannedTransaction.fields.Account?.[0]) ?? Account.UnknownAccount();
+      var bundledIn: AirtablePlannedTransaction | null = airtablePlannedTransactions
+        .find(transaction => transaction.id === transaction.fields['BundledIn']?.[0]) ?? null;
       return new PlannedTransaction(
         airtablePlannedTransaction.id,
         airtablePlannedTransaction.fields.Description,
@@ -32,22 +37,34 @@ export class PlannedTransactionService {
         airtablePlannedTransaction.fields.Amount,
         airtablePlannedTransaction.fields.Priority,
         airtablePlannedTransaction.fields.Category,
-        airtablePlannedTransaction.fields['Is Income'],
         account,
         airtablePlannedTransaction.fields.Occurrence as Occurrence,
         airtablePlannedTransaction.fields.Autopay,
-        airtablePlannedTransaction.fields.Shared,
-        DateTime.fromISO(airtablePlannedTransaction.fields['Date Of Transaction']),
-      )
+        DateTime.fromISO(airtablePlannedTransaction.fields['Starting Date']),
+        bundledIn);
     })
   })
-  filteredPlannedTransactions = computed<PlannedTransaction[]>(() => {
-    var startingDate = this.inputsService.startingDate();
-    var endingDate = this.inputsService.endingDate();
-    if (startingDate === null || endingDate === null) {
+  dateFilters = computed<DateFilterEntity<PlannedTransaction>[]>(() => {
+    var dateFilters = this.airtableService.plannedTransactionDateFilters();
+    var plannedTransactions = this.plannedTransactions();
+    if (dateFilters.length === 0 || plannedTransactions.length === 0) {
       return [];
     }
-    return this.plannedTransactions()
-      .filter(plannedTransaction => plannedTransaction.dateOfTransaction >= startingDate! && plannedTransaction.dateOfTransaction <= endingDate!)
+    return this.getPlannedTransactionDateFilters(dateFilters, plannedTransactions);
   });
+
+  getPlannedTransactionDateFilters(dateFilters: AirtablePlannedTransactionDateFilter[], plannedTransactions: PlannedTransaction[]): any[] {
+    // sort by date and then by custom sort order because banks are too stupid to include transaction times
+    return dateFilters.map<DateFilterEntity<PlannedTransaction>>(dateFilter => {
+      var plannedTransaction = plannedTransactions.find(_plannedTransaction => _plannedTransaction.id === dateFilter.fields.Transaction[0]);
+      if (!plannedTransaction) {
+        console.error('Planned Transaction in date filter not found', dateFilter);
+        throw new Error('Planned Transaction in date filter not found');
+      }
+      return new DateFilterEntity<PlannedTransaction>(
+        plannedTransaction,
+        new DayOfWeekFilter(dateFilter.fields["Order"], dateFilter.fields["Input"]),
+      );
+    });
+  }
 }

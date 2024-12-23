@@ -20,7 +20,7 @@
     ></app-transactions-table>
     } @case ("Planned Transactions") {
     <app-planned-transactions-table
-      [transactions]="plannedTransactionsService.filteredPlannedTransactions()"
+      [transactions]="plannedTransactionsService.plannedTransactions()"
     ></app-planned-transactions-table>
     } @case ("Balances") {
     <app-balances-table

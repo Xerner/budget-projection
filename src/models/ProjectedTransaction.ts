@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { Account } from "./Account";
 import { Transaction } from "./Transactions";
-import { AirtablePlannedTransaction } from "./api/airtable";
+import { PlannedTransaction } from "./PlannedTransaction";
 
 export class ProjectedTransaction extends Transaction {
   constructor(
@@ -12,7 +12,7 @@ export class ProjectedTransaction extends Transaction {
     amount: number,
     account: Account,
     startingBalance: number,
-    readonly plannedTransaction: AirtablePlannedTransaction,
+    readonly plannedTransaction: PlannedTransaction,
   ) {
     var id = "";
     super(id, date, sortOrder, description, category, amount, account, startingBalance);

@@ -1,4 +1,6 @@
+import { DateTime } from "luxon";
 import { Account } from "./Account";
+import { AirtablePlannedTransaction } from "./api/airtable";
 import { Occurrence } from "./Occurrences";
 
 export class PlannedTransaction {
@@ -12,6 +14,7 @@ export class PlannedTransaction {
     public account: Account,
     public occurrence: Occurrence,
     public autopay: boolean,
-    public bundledIn: PlannedTransaction,
+    public startingDate: DateTime | null,
+    public bundledIn: AirtablePlannedTransaction | null,
   ) { }
 }

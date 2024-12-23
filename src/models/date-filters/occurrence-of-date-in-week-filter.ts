@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { DateFilter } from "./abstract-date-filter";
 
-export class DayOfWeekFilter extends DateFilter<number> {
+export class OccurrenceOfDateInWeek extends DateFilter<number> {
   override convert(value: string): number {
     return parseInt(value);
   }

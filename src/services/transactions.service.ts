@@ -8,6 +8,7 @@ import { AirtableTransaction } from 'models/api/airtable';
 import { STRINGS } from 'common/library';
 import { Account } from 'models/Account';
 import { ProjectedTransactionService } from './projected-transactions.service';
+import { PlannedTransactionService } from './planned-transaction.service';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
@@ -19,18 +20,16 @@ export class TransactionService {
     if (accounts.length == 0 || transactions.length == 0 || endingDate === null) {
       return [];
     }
-    var plannedTransactions = this.airtableService.plannedTransactions();
+    var plannedTransactions = this.plannedTransactionsService.plannedTransactions();
+    var dateFilters = this.plannedTransactionsService.dateFilters();
     var sortOrder = transactions.length === 0 ? 0 : transactions[transactions.length - 1].sortOrder + 1;
     var projectedTransactions = this.projectedTransactionService.getProjectedPlannedTransactions(
       plannedTransactions,
+      dateFilters,
       endingDate,
       sortOrder,
-      accounts,
     );
     return transactions.concat(projectedTransactions);
-  });
-  projectedTransactions = computed(() => {
-
   });
   filteredTransactions = computed(() => {
     var startingDate = this.inputsService.startingDate();
@@ -45,6 +44,7 @@ export class TransactionService {
     private inputsService: InputsService,
     private airtableService: AirtableService,
     private accountsService: AccountsService,
+    private plannedTransactionsService: PlannedTransactionService,
     private projectedTransactionService: ProjectedTransactionService,
   ) { }
 
@@ -52,8 +52,8 @@ export class TransactionService {
     // sort by date and then by custom sort order because banks are too stupid to include transaction times
     airtableTransactions.sort(this.sortAirtableTransactions);
     return airtableTransactions.map<Transaction>(airtableTransaction => {
-      var account = accounts.find(account => STRINGS.compare(airtableTransaction.fields.Account, account.name, account.aliases) === 0);
-      if (!account) {
+      var accountInTransaction: Account | undefined = accounts.find(account => STRINGS.compare(airtableTransaction.fields.Account, account.name, account.aliases) === 0);
+      if (!accountInTransaction) {
         console.error('Account in transaction not found', airtableTransaction);
         throw new Error('Account in transaction not found');
       }
@@ -64,7 +64,7 @@ export class TransactionService {
         airtableTransaction.fields['Merchant Name'],
         airtableTransaction.fields.Category,
         airtableTransaction.fields.Amount,
-        account,
+        accountInTransaction,
         airtableTransaction.fields['Running Balance'] - airtableTransaction.fields.Amount,
       );
     });
