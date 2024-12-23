@@ -1,4 +1,3 @@
-import { DateTime } from "luxon";
 import { Account } from "./Account";
 import { Occurrence } from "./Occurrences";
 
@@ -10,11 +9,9 @@ export class PlannedTransaction {
     public amount: number,
     public priority: string,
     public category: string,
-    public isIncome: string,
     public account: Account,
     public occurrence: Occurrence,
     public autopay: boolean,
-    public shared: boolean,
-    public dateOfTransaction: DateTime,
+    public bundledIn: PlannedTransaction,
   ) { }
 }
