@@ -1,7 +1,3 @@
-.table-header {
-  @apply font-medium text-[--mat-sys-on-primary-container] bg-[--mat-sys-surface];
-}
-
 .table-small table tr, table.table-small tr {
   @apply text-xs;
   height: 2em;

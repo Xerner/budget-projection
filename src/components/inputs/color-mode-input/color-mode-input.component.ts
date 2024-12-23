@@ -16,10 +16,13 @@ type ColorMode = "light" | "dark" | "auto";
   templateUrl: './color-mode-input.component.html',
 })
 export class ColorModeComponent {
+  storageKey = 'color-scheme';
   mode = signal<ColorMode>("auto");
 
   ngOnInit(): void {
-    this.mode.set(this.getModeFromMediaQuery());
+    const localStorageMode = localStorage.getItem(this.storageKey);
+    const mediaQueryMode = this.getModeFromMediaQuery();
+    this.switchColorMode((localStorageMode ?? mediaQueryMode) as ColorMode);
   }
 
   switchColorMode(mode: ColorMode) {
@@ -27,8 +30,9 @@ export class ColorModeComponent {
     if (html === null) {
       return;
     }
-    this.mode.set(mode);
+    localStorage.setItem(this.storageKey, mode);
     html.style.setProperty("color-scheme", mode === "auto" ? "light dark" : mode);
+    this.mode.set(mode);
   }
 
   getModeFromMediaQuery() {

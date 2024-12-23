@@ -1,11 +1,12 @@
 @use "@angular/material" as mat;
 @use "tables.scss";
+@use "typography.scss";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-$density: -2;
+$density: -1;
 $magenta-and-violet-theme: (
   color: mat.$magenta-palette,
   tertiary: mat.$violet-palette,

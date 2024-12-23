@@ -21,15 +21,29 @@ enum ColorTheme {
   templateUrl: './color-scheme-input.component.html',
 })
 export class ColorSchemeInputComponent {
+  storageKey = 'color-theme';
   selectedTheme = signal<ColorTheme>(ColorTheme.MagentaAndViolet);
   ColorTheme = ColorTheme;
 
+  ngOnInit() {
+    const theme = localStorage.getItem(this.storageKey);
+    this.switchColorScheme(theme as ColorTheme);
+  }
+
+  loadColorSchemeFromLocalStorage() {
+    const theme = localStorage.getItem(this.storageKey);
+    if (theme) {
+      this.switchColorScheme(theme as ColorTheme);
+    }
+  }
+
   switchColorScheme(theme: ColorTheme) {
-    this.selectedTheme.set(theme);
     const html = document.querySelector('html');
     if (html === null) {
       return;
     }
+    this.selectedTheme.set(theme);
+    localStorage.setItem(this.storageKey, theme);
     html.classList.remove(ColorTheme.MagentaAndViolet, ColorTheme.CyanAndOrange, ColorTheme.RoseAndRed, ColorTheme.AzureAndBlue);
     html.classList.add(theme);
   }

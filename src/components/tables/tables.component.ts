@@ -7,7 +7,6 @@ import { TransactionService } from '../../services/transactions.service';
 import { AccountsSummariesTableComponent } from "./accounts-summaries-table/accounts-summaries-table.component";
 import { PlannedTransactionService } from 'services/planned-transaction.service';
 import { BalancesService } from 'services/balances.service';
-import { TableWithHeaderComponent } from "../generic/table-with-header/table-with-header.component";
 
 @Component({
   selector: 'app-tables',
@@ -17,8 +16,7 @@ import { TableWithHeaderComponent } from "../generic/table-with-header/table-wit
     PlannedTransactionsTableComponent,
     BalancesTableComponent,
     AccountsSummariesTableComponent,
-    TableWithHeaderComponent
-  ],
+],
   templateUrl: './tables.component.html'
 })
 export class TablesComponent {

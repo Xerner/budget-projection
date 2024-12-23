@@ -13,6 +13,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HttpCacheStore } from '../../common/angular/services';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
     selector: 'app-inputs',
@@ -26,6 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatProgressBarModule,
     MatDatepickerModule,
     MatTooltipModule,
+    MatFormFieldModule,
 ],
     templateUrl: './inputs.component.html'
 })
