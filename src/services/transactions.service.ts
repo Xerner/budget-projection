@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import { AirtableService } from './airtable.service';
 import { Transaction } from 'models/Transactions';
 import { AccountsService } from './accounts.service';
-import { AirtableTransaction } from 'models/airtable/api';
+import { AirtableTransaction } from 'models/api/airtable';
 import { STRINGS } from 'common/library';
 import { Account } from 'models/Account';
 import { ProjectedTransactionService } from './projected-transactions.service';

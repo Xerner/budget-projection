@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { Account } from "./Account";
 import { Transaction } from "./Transactions";
-import { AirtablePlannedTransaction } from "./airtable/api";
+import { AirtablePlannedTransaction } from "./api/airtable";
 
 export class ProjectedTransaction extends Transaction {
   constructor(

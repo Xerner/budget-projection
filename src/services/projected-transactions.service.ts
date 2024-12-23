@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
 import { Account } from 'models/Account';
-import { AirtablePlannedTransaction } from 'models/airtable/api';
+import { AirtablePlannedTransaction } from 'models/api/airtable';
 import { Occurrence, OccurrenceToDuration } from 'models/Occurrences';
 import { ProjectedTransaction } from 'models/ProjectedTransaction';
 

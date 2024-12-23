@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
-import { AirtablePlannedTransactionDateFilter } from 'models/airtable/api/PlannedTransactionDateFilters';
+import { AirtablePlannedTransactionDateFilter } from 'models/api/airtable/PlannedTransactionDateFilters';
 import { DayOfWeekFilter } from 'models/date-filters/day-of-week-filter';
 import { PlannedTransactionDateFilter } from 'models/DateFilter';
 import { PlannedTransaction } from 'models/PlannedTransaction';

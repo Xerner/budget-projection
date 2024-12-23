@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Endpoints } from '../../models/Endpoints';
 import { STRINGS } from '../../common/library';
 import { ApiHelperService } from './api-helper.service';
-import { IRecord, IRecords, IRecordsExt, IRecordsQueryParams } from '../../models/airtable/api';
+import { IRecord, IRecords, IRecordsExt, IRecordsQueryParams } from '../../models/api/airtable';
 
 @Injectable({ providedIn: 'root' })
 export class RecordsApiService {

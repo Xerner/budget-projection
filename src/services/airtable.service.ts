@@ -5,9 +5,9 @@ import { InputsService } from './inputs.service';
 import { IGlobalQueryParams } from '../models/GlobalQueryParams';
 import { TOKEN_SERVICE, ITokenService } from '../common/angular/interceptors';
 import { FormControl } from '@angular/forms';
-import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction, IField, IFields, IRecord, IRecords } from '../models/airtable/api';
-import { AirtableAccount } from 'models/airtable/api/Accounts';
-import { AirtablePlannedTransactionDateFilter } from 'models/airtable/api/PlannedTransactionDateFilters';
+import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction, IField, IFields, IRecord, IRecords } from '../models/api/airtable';
+import { AirtableAccount } from 'models/api/airtable/Accounts';
+import { AirtablePlannedTransactionDateFilter } from 'models/api/airtable/PlannedTransactionDateFilters';
 
 @Injectable({ providedIn: 'root' })
 export class AirtableService {
