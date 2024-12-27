@@ -7,54 +7,69 @@
 @tailwind utilities;
 
 $density: -1;
-$magenta-and-violet-theme: (
-  color: mat.$magenta-palette,
-  tertiary: mat.$violet-palette,
-  typography: Roboto,
-  density: $density,
+$typography: Roboto;
 
+$themes: (
+  magenta-and-violet-theme: (
+    color: (
+      primary: mat.$magenta-palette,
+      tertiary: mat.$violet-palette,
+    ),
+    typography: $typography,
+    density: $density,
+  ),
+  cyan-and-orange-theme: (
+    color: (
+      primary: mat.$cyan-palette,
+      tertiary: mat.$orange-palette,
+    ),
+    typography: $typography,
+    density: $density,
+  ),
+  rose-and-red-theme: (
+    color: (
+      primary: mat.$rose-palette,
+      tertiary: mat.$red-palette,
+    ),
+    typography: $typography,
+    density: $density,
+  ),
+  azure-and-blue-theme: (
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: $typography,
+    density: $density,
+  ),
 );
+$fallback-theme: rose-and-red-theme;
 
-$cyan-and-orange-theme: (
-  color: mat.$cyan-palette,
-  tertiary: mat.$orange-palette,
-  typography: Roboto,
-  density: $density,
-);
-
-$rose-and-red-theme: (
-  color: mat.$rose-palette,
-  tertiary: mat.$red-palette,
-  typography: Roboto,
-  density: $density,
-);
-
-$azure-and-blue-theme: (
-  color: mat.$azure-palette,
-  tertiary: mat.$blue-palette,
-  typography: Roboto,
-  density: $density,
-);
+@each $name, $theme in $themes {
+  .#{$name} {
+    @include mat.theme((
+      color: (
+        primary: map-get($theme, color, primary),
+        tertiary: map-get($theme, color, tertiary),
+        theme-type: color-scheme,
+      ),
+      typography: map-get($theme, typography),
+      density: map-get($theme, density),
+    ));
+  }
+}
 
 html {
   color-scheme: light dark;
-  @include mat.theme($cyan-and-orange-theme);
-}
-
-.magenta-and-violet-theme {
-  @include mat.theme($magenta-and-violet-theme);
-}
-
-.cyan-and-orange-theme {
-  @include mat.theme($cyan-and-orange-theme);
-}
-
-.rose-and-red-theme {
-  @include mat.theme($rose-and-red-theme);
-}
-
-.azure-and-blue-theme {
-  @include mat.theme($azure-and-blue-theme);
+  @include mat.theme((
+    color: (
+      primary: map-get($themes, $fallback-theme, color, primary),
+      tertiary: map-get($themes, $fallback-theme, color, tertiary),
+      theme-type: color-scheme,
+    ),
+    typography: map-get($themes, $fallback-theme, typography),
+    density: map-get($themes, $fallback-theme, density),
+  ));
 }
 
 html,

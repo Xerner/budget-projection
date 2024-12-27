@@ -11,6 +11,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ColorSchemeInputComponent } from 'components/inputs/color-scheme-input/color-scheme-input.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ColorModeComponent } from "../inputs/color-mode-input/color-mode-input.component";
+import { ColorModeService } from 'services/color-mode.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +23,8 @@ import { ColorModeComponent } from "../inputs/color-mode-input/color-mode-input.
     MatMenuModule,
     MatButtonModule,
     ColorSchemeInputComponent,
-    ColorModeComponent
+    ColorModeComponent,
+    MatTooltipModule,
 ],
   templateUrl: './navbar.component.html',
 })
@@ -32,6 +35,7 @@ export class NavbarComponent {
     protected appStore: AppStore,
     protected notifications: NotificationPoolService<NotificationTypes>,
     protected dialog: MatDialog,
+    protected colorModeService: ColorModeService,
   ) { }
 
   openInputsDialog() {

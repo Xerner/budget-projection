@@ -45,6 +45,14 @@ export class AppComponent {
       'airtable',
       this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/airtable-icon.svg`)
     );
+    this.matIconRegistry.addSvgIcon(
+      'github-dark',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/GitHub_Invertocat_Dark.svg`)
+    );
+    this.matIconRegistry.addSvgIcon(
+      'github-light',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/GitHub_Invertocat_Light.svg`)
+    );
   }
 
   errorToString(httpErrorResponse: HttpErrorResponse): string {

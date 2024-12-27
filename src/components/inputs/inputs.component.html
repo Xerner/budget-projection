@@ -15,6 +15,7 @@
       <mat-form-field>
         <mat-label>Choose base</mat-label>
         <mat-select
+
           [formControl]="this.inputsService.apiForm.controls.baseName"
         >
           <mat-option [value]=""><span class="italic">None</span></mat-option>
