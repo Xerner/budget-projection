@@ -13,6 +13,7 @@ export class InputsService {
     transactionTableName: new QueryParamControl<string>('', null, null, Validators.required),
     plannedTransactionTableName: new QueryParamControl<string>('', null, null, Validators.required),
     accountsTableName: new QueryParamControl<string>('', null, null, Validators.required),
+    dateFiltersTableName: new QueryParamControl<string>('', null, null, Validators.required),
     startingDate: new QueryParamControl<DateTime | null>(null, null, DateTime.fromISO, Validators.required),
     endingDate: new QueryParamControl<DateTime | null>(null, null, DateTime.fromISO, Validators.required),
   });

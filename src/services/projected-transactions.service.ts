@@ -6,6 +6,8 @@ import { Occurrence, OccurrenceToDuration } from 'models/Occurrences';
 import { PlannedTransaction } from 'models/PlannedTransaction';
 import { ProjectedTransaction } from 'models/ProjectedTransaction';
 import { DateFilterService } from './date-filters.service';
+import { INode } from 'common/library/graphs/types/INode';
+import { KahnSorter } from 'common/library/graphs/kahn-sorter';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectedTransactionService {
@@ -21,21 +23,19 @@ export class ProjectedTransactionService {
       dates.push(nextDate);
       nextDate = nextDate.plus({ "days": 1 });
     }
-    var transactions = plannedTransactions
-    .filter(plannedTransaction => plannedTransaction.active)
-    .filter(plannedTransaction => plannedTransaction.bundledIn == null)
-    .flatMap(plannedTransaction => {
-      return this.createProjectedTransactions(plannedTransaction, dateFilters, dates, null)
-    })
-    var bundledTransactions = plannedTransactions
+    var transactions = this.sortByBundledIn(plannedTransactions)
       .filter(plannedTransaction => plannedTransaction.active)
-      .filter(plannedTransaction => plannedTransaction.bundledIn != null)
       .flatMap(plannedTransaction => {
-        var bundledTransactions = plannedTransactions.filter(transaction => transaction.bundledIn?.id == plannedTransaction.id);
-        return this.createProjectedTransactions(plannedTransaction, dateFilters, dates, bundledTransactions);
-      });
+        return this.createProjectedTransactions(plannedTransaction, dateFilters, dates, null)
+      })
     transactions.forEach(transaction => transaction.sortOrder = sortOrder++);
     return transactions;
+  }
+
+  sortByBundledIn(plannedTransactions: PlannedTransaction[]): PlannedTransaction[] {
+    return KahnSorter
+      .kahnSort(plannedTransactions.map<INode<PlannedTransaction>>(plannedTransaction => plannedTransaction.toNode(plannedTransactions)))
+      .map(node => node.body);
   }
 
   private createProjectedTransactions(plannedTransaction: PlannedTransaction, dateFilters: DateFilterEntity<PlannedTransaction>[], dates: DateTime[], bundledTransactions: PlannedTransaction[] | null): ProjectedTransaction[] {
@@ -51,6 +51,10 @@ export class ProjectedTransactionService {
     var dateFiltersForPlannedTransaction = dateFilters.filter(dateFilter => dateFilter.transaction.id == plannedTransaction.id);
     var intervalCountdown = interval!.days;
     var datesToCreateTransactionsOn: DateTime[] = this.dateFilterService.filterDates(dateFiltersForPlannedTransaction, dates);
+    if (datesToCreateTransactionsOn.length == 0 && plannedTransaction.bundledIn == null) {
+      console.error("Planned transaction must have at least one date filter or be bundled in with another transaction", plannedTransaction);
+      throw new Error("Planned transaction must have at least one date filter or be bundled in with another transaction");
+    }
     var projectedTransactions: ProjectedTransaction[] = [];
     datesToCreateTransactionsOn.forEach(date => {
       var dateDiff = Math.abs(date.diff(nextDate, 'days').days);

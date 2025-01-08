@@ -6,9 +6,10 @@ import { Account } from 'models/Account';
 import { Occurrence } from 'models/Occurrences';
 import { AirtablePlannedTransactionDateFilter } from 'models/api/airtable/PlannedTransactionDateFilters';
 import { DateFilterEntity } from 'models/DateFilter';
-import { DayOfWeekFilter } from 'models/date-filters/day-of-week-filter';
 import { AirtablePlannedTransaction } from 'models/api/airtable';
 import { DateTime } from 'luxon';
+import { DateFilterService } from './date-filters.service';
+import { DateFilter } from './date-filters/abstract-date-filter';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class PlannedTransactionService {
   constructor(
     private airtableService: AirtableService,
     private accountsService: AccountsService,
+    private dateFilterService: DateFilterService,
   ) { }
 
   plannedTransactions = computed<PlannedTransaction[]>(() => {
@@ -53,17 +55,18 @@ export class PlannedTransactionService {
     return this.getPlannedTransactionDateFilters(dateFilters, plannedTransactions);
   });
 
-  getPlannedTransactionDateFilters(dateFilters: AirtablePlannedTransactionDateFilter[], plannedTransactions: PlannedTransaction[]): any[] {
+  getPlannedTransactionDateFilters(dateFilters: AirtablePlannedTransactionDateFilter[], plannedTransactions: PlannedTransaction[]): DateFilterEntity<PlannedTransaction>[] {
     // sort by date and then by custom sort order because banks are too stupid to include transaction times
     return dateFilters.map<DateFilterEntity<PlannedTransaction>>(dateFilter => {
-      var plannedTransaction = plannedTransactions.find(_plannedTransaction => _plannedTransaction.id === dateFilter.fields.Transaction[0]);
+      var plannedTransaction = plannedTransactions.find(_plannedTransaction => _plannedTransaction.id === dateFilter.fields.Transaction?.[0]);
       if (!plannedTransaction) {
         console.error('Planned Transaction in date filter not found', dateFilter);
         throw new Error('Planned Transaction in date filter not found');
       }
+      var dateFilterClass = this.dateFilterService.filterNameToClass[dateFilter.fields["Date Filter Type"]];
       return new DateFilterEntity<PlannedTransaction>(
         plannedTransaction,
-        new DayOfWeekFilter(dateFilter.fields["Order"], dateFilter.fields["Input"]),
+        new dateFilterClass(dateFilter.fields["Order"], dateFilter.fields["Input"]),
       );
     });
   }

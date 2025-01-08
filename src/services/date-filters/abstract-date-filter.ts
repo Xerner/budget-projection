@@ -4,8 +4,8 @@ export abstract class DateFilter<T> {
   public get order() {
     return this._order;
   }
-  public get filterValue() {
-    return this._filterValue;
+  public get filterValue(): T {
+    return this._filterValue as T;
   }
 
   constructor(
@@ -17,6 +17,8 @@ export abstract class DateFilter<T> {
     }
   }
 
-  abstract convert(value: string): T;
-  abstract filter(date: DateTime): boolean;
+  convert(value: string) {
+    return value as unknown as T;
+  }
+  abstract filter(dates: DateTime[]): DateTime[];
 }

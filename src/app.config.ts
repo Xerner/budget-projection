@@ -8,10 +8,10 @@ import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { provideHttpCacheClient, provideQueryParams } from './common/angular/services';
 import { QueryParams } from './models/GlobalQueryParams';
 import { provideBearerTokenAuth } from './common/angular/interceptors';
-import { LoadingService, provideLoadingTracking } from './common/angular/services/loading';
+import { LoadingService, provideLoadingTracking, withInterceptor } from './common/angular/services/loading';
 import { provideNotificationPools } from './common/angular/services/notifications';
 import { NotificationTypes } from './models/NotificationTypes';
-import { cacheSettings, preloadedCache } from './cache.settings';
+import { cacheSettings, preloadedCache } from './cache/cache.settings';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideBearerTokenAuth(),
     provideLuxonDateAdapter(),
     provideQueryParams(QueryParams),
-    provideLoadingTracking(LoadingService),
+    provideLoadingTracking(LoadingService, withInterceptor()),
     provideNotificationPools(NotificationTypes.Errors),
     // provideHttpCacheClient(cacheSettings, withInterceptorsFromDi()),
     provideHttpCacheClient(cacheSettings, preloadedCache, withInterceptorsFromDi()),

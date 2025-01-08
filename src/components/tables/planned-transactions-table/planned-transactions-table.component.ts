@@ -38,6 +38,7 @@ export class PlannedTransactionsTableComponent {
     autopay: "autopay",
     bundledIn: "bundledIn",
     startingDate: "startingDate",
+    toNode: "toNode",
   }
   displayedPlannedTransactionColumns = [
     this.PlannedTransactionColumns.description,

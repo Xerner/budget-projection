@@ -1,4 +1,4 @@
-import { DateFilter } from "./date-filters/abstract-date-filter";
+import { DateFilter } from "../services/date-filters/abstract-date-filter";
 
 export class DateFilterEntity<TEntity, TFilterType = any> {
   constructor(

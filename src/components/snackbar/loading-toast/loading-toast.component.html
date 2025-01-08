@@ -1,0 +1,17 @@
+<span matSnackBarLabel>
+  {{ data.message }}
+</span>
+<span matSnackBarActions>
+  @if (data.progress === undefined || data.progress < 100) {
+    <mat-spinner [mode]="data.mode" [value]="data.progress"></mat-spinner>
+  } @else if (data.progress !== undefined) {
+    <mat-icon>check</mat-icon>
+  }
+  <button mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">
+    @if (data.actionMessage) {
+      {{ data.actionMessage }}
+    } @else {
+      <mat-icon>close</mat-icon>
+    }
+  </button>
+</span>

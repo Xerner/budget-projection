@@ -7,7 +7,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { InputsService } from '../../services/inputs.service';
 import { AirtableService } from '../../services/airtable.service';
-import { LoadingService } from '../../common/angular/services/loading';
 import { Endpoints } from '../../models/Endpoints';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -44,7 +43,6 @@ export class InputsComponent {
   constructor(
     protected inputsService: InputsService,
     protected airtableService: AirtableService,
-    protected loadingService: LoadingService,
     protected httpCache: HttpCacheStore,
   ) { }
 }
