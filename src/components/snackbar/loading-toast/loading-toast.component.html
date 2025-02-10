@@ -1,17 +1,18 @@
-<span matSnackBarLabel>
-  {{ data.message }}
-</span>
-<span matSnackBarActions>
-  @if (data.progress === undefined || data.progress < 100) {
-    <mat-spinner [mode]="data.mode" [value]="data.progress"></mat-spinner>
-  } @else if (data.progress !== undefined) {
-    <mat-icon>check</mat-icon>
+<div class="flex gap-4">
+  <div class="text-[--mat-sys-on-surface] mt-1">
+    {{ message() }}
+  </div>
+  @if (progress() === undefined || (progress() ?? 0) < 100) {
+  <mat-spinner
+    [mode]="mode()"
+    [value]="progress"
+    class="!inline-block shrink-0 m-2"
+    diameter="20"
+  ></mat-spinner>
+  } @else if (progress() === 100) {
+  <mat-icon class="text-green-500 shrink-0 m-2">check</mat-icon>
   }
-  <button mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">
-    @if (data.actionMessage) {
-      {{ data.actionMessage }}
-    } @else {
-      <mat-icon>close</mat-icon>
-    }
+  <button mat-icon-button (click)="toast().hideToast()" class="shrink-0">
+    <mat-icon>close</mat-icon>
   </button>
-</span>
+</div>

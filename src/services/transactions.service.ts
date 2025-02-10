@@ -9,7 +9,6 @@ import { STRINGS } from 'common/library';
 import { Account } from 'models/Account';
 import { ProjectedTransactionService } from './projected-transactions.service';
 import { PlannedTransactionService } from './planned-transaction.service';
-import { SnackbarService } from './snackbar.service';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionService {

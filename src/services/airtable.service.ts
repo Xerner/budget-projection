@@ -31,7 +31,7 @@ export class AirtableService {
         this.baseSchema.set(null);
         return;
       }
-      this.fetchBaseSchema(baseId)
+      this.fetchBaseSchema(baseId)?.subscribe();
     },
   };
 

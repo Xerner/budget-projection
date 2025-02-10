@@ -1,32 +1,21 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule, ProgressSpinnerMode } from '@angular/material/progress-spinner';
-import { MatSnackBarRef } from '@angular/material/snack-bar';
-
-export interface ILoadingToastData {
-  /** Displayed before the action button */
-  message: string;
-  /** Displayed on the action button */
-  actionMessage?: string;
-  /** If trure, then progress has no effect. Other than when it is 100 and the icon turns into a checkmark */
-  mode: ProgressSpinnerMode;
-  /** Expected range is from 0 - 100 */
-  progress?: number;
-}
+import Toastify from 'toastify-js';
 
 @Component({
   selector: 'app-loading-toast',
   imports: [
     MatProgressSpinnerModule,
+    MatButtonModule,
     MatIconModule,
   ],
   templateUrl: './loading-toast.component.html',
 })
 export class LoadingToastComponent {
-  snackBarRef = inject(MatSnackBarRef);
-  data: ILoadingToastData = {
-    message: '',
-    mode: 'indeterminate',
-    progress: 0,
-  };
+  toast = input.required<ReturnType<typeof Toastify>>();
+  message = input.required<string>();
+  mode = input<ProgressSpinnerMode>("indeterminate");
+  progress = input<number>(0);
 }

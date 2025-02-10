@@ -13,6 +13,7 @@ import { NotificationPoolService } from '../../common/angular/services/notificat
 import { NotificationTypes } from '../../models/NotificationTypes';
 import { TablesComponent } from '../tables/tables.component';
 import { NavbarComponent } from "../navbar/navbar.component";
+import { SnackbarService } from 'services/snackbar.service';
 
 @Component({
     selector: 'app-root',
@@ -40,7 +41,9 @@ export class AppComponent {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     protected notifications: NotificationPoolService<NotificationTypes>,
+    private snackbarService: SnackbarService,
   ) {
+    console.log(this.snackbarService);
     this.matIconRegistry.addSvgIcon(
       'airtable',
       this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/airtable-icon.svg`)
