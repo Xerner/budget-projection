@@ -17,5 +17,5 @@ export class LoadingToastComponent {
   toast = input.required<ReturnType<typeof Toastify>>();
   message = input.required<string>();
   mode = input<ProgressSpinnerMode>("indeterminate");
-  progress = input<number>(0);
+  progress = input<number>();
 }

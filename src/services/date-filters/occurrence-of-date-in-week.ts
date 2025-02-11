@@ -9,6 +9,9 @@ export class OccurrenceOfDate extends DateFilter<number> {
     if (this.filterValue < 0) {
       return [dates[dates.length - this.filterValue]];
     }
+    if (this.filterValue >= dates.length || this.filterValue < 0) {
+      return [];
+    }
     return [dates[this.filterValue]];
   }
 }

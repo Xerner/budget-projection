@@ -5,7 +5,7 @@ import { DateFilterEntity } from 'models/DateFilter';
 import { Occurrence, OccurrenceToDuration } from 'models/Occurrences';
 import { PlannedTransaction } from 'models/PlannedTransaction';
 import { ProjectedTransaction } from 'models/ProjectedTransaction';
-import { DateFilterService } from './date-filters.service';
+import { DateFilterService } from '../date-filters/date-filters.service';
 import { INode } from 'common/library/graphs/types/INode';
 import { KahnSorter } from 'common/library/graphs/kahn-sorter';
 
@@ -15,8 +15,7 @@ export class ProjectedTransactionService {
     private dateFilterService: DateFilterService,
   ) { }
 
-  getProjectedPlannedTransactions(plannedTransactions: PlannedTransaction[], dateFilters: DateFilterEntity<PlannedTransaction>[], endingDate: DateTime, sortOrder: number): ProjectedTransaction[] {
-    var startingDate = DateTime.now().startOf('day');
+  getProjectedPlannedTransactions(plannedTransactions: PlannedTransaction[], dateFilters: DateFilterEntity<PlannedTransaction>[], startingDate: DateTime, endingDate: DateTime, sortOrder: number): ProjectedTransaction[] {
     var nextDate = startingDate;
     var dates: DateTime[] = [];
     while (nextDate < endingDate) {
@@ -51,7 +50,7 @@ export class ProjectedTransactionService {
     var dateFiltersForPlannedTransaction = dateFilters.filter(dateFilter => dateFilter.transaction.id == plannedTransaction.id);
     var intervalCountdown = interval!.days;
     var datesToCreateTransactionsOn: DateTime[] = this.dateFilterService.filterDates(dateFiltersForPlannedTransaction, dates);
-    if (datesToCreateTransactionsOn.length == 0 && plannedTransaction.bundledIn == null) {
+    if (datesToCreateTransactionsOn.length == 0 && dates.length !== 0 && plannedTransaction.bundledIn == null) {
       console.error("Planned transaction must have at least one date filter or be bundled in with another transaction", plannedTransaction);
       throw new Error("Planned transaction must have at least one date filter or be bundled in with another transaction");
     }

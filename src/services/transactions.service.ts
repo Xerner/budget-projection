@@ -7,7 +7,7 @@ import { AccountsService } from './accounts.service';
 import { AirtableTransaction } from 'models/api/airtable';
 import { STRINGS } from 'common/library';
 import { Account } from 'models/Account';
-import { ProjectedTransactionService } from './projected-transactions.service';
+import { ProjectedTransactionService } from './projected-transactions/projected-transactions.service';
 import { PlannedTransactionService } from './planned-transaction.service';
 
 @Injectable({ providedIn: 'root' })
@@ -16,8 +16,9 @@ export class TransactionService {
     var accounts = this.accountsService.accounts();
     var airtableTransactions: AirtableTransaction[] = this.airtableService.transactions();
     var transactions = this.getTransactions(airtableTransactions, accounts);
+    var startingDate = this.inputsService.startingDate();
     var endingDate = this.inputsService.endingDate();
-    if (accounts.length == 0 || transactions.length == 0 || endingDate === null) {
+    if (accounts.length == 0 || transactions.length == 0 || endingDate === null || startingDate === null) {
       return [];
     }
     var plannedTransactions = this.plannedTransactionsService.plannedTransactions();
@@ -26,6 +27,7 @@ export class TransactionService {
     var projectedTransactions = this.projectedTransactionService.getProjectedPlannedTransactions(
       plannedTransactions,
       dateFilters,
+      startingDate,
       endingDate,
       sortOrder,
     );

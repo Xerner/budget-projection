@@ -8,8 +8,7 @@ import { AirtablePlannedTransactionDateFilter } from 'models/api/airtable/Planne
 import { DateFilterEntity } from 'models/DateFilter';
 import { AirtablePlannedTransaction } from 'models/api/airtable';
 import { DateTime } from 'luxon';
-import { DateFilterService } from './date-filters.service';
-import { DateFilter } from './date-filters/abstract-date-filter';
+import { DateFilterService } from './date-filters/date-filters.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,7 @@ export class PlannedTransactionService {
       var account = accounts
         .find(account => account.id === airtablePlannedTransaction.fields.Account?.[0]) ?? Account.UnknownAccount();
       var bundledIn: AirtablePlannedTransaction | null = airtablePlannedTransactions
-        .find(transaction => transaction.id === transaction.fields['BundledIn']?.[0]) ?? null;
+        .find(transaction => transaction.id === airtablePlannedTransaction.fields['Bundled In']?.[0]) ?? null;
       return new PlannedTransaction(
         airtablePlannedTransaction.id,
         airtablePlannedTransaction.fields.Description,

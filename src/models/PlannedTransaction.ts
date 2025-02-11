@@ -28,4 +28,20 @@ export class PlannedTransaction {
       getDependents: () => dependents,
     }
   }
+
+  static fromJson(json: any): PlannedTransaction {
+    return new PlannedTransaction(
+      json.id,
+      json.description,
+      json.active,
+      json.amount,
+      json.priority,
+      json.category,
+      json.account,
+      json.occurrence,
+      json.autopay,
+      json.startingDate,
+      json.bundledIn,
+    )
+  }
 }

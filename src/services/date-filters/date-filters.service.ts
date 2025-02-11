@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
 import { DayOfWeekFilter } from 'services/date-filters/day-of-week';
 import { DateFilterEntity } from 'models/DateFilter';
-import { DateFilter } from './date-filters/abstract-date-filter';
-import { OccurrenceOfWeekInMonth } from './date-filters/occurrence-of-week-in-month';
-import { OccurrenceOfDate } from './date-filters/occurrence-of-date-in-week';
+import { DateFilter } from './abstract-date-filter';
+import { OccurrenceOfWeekInMonth } from './occurrence-of-week-in-month';
+import { OccurrenceOfDate } from './occurrence-of-date-in-week';
 
 type DateFilterConstructor = new (...args: ConstructorParameters<typeof DateFilter<any>>) => DateFilter<any>;
 

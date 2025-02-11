@@ -1,0 +1,831 @@
+[
+  {
+    "transaction": {
+      "id": "recT8c7npHnaewFkm",
+      "description": "Car Loan",
+      "active": true,
+      "amount": -540,
+      "priority": "Need",
+      "category": "Loans",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -1
+    }
+  },
+  {
+    "transaction": {
+      "id": "rec3NnB8HihK9VE2u",
+      "description": "HOA",
+      "active": true,
+      "amount": -250,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -1
+    }
+  },
+  {
+    "transaction": {
+      "id": "rec72CuwwvydQ2UXn",
+      "description": "ICloud 50Gb",
+      "active": true,
+      "amount": -0.99,
+      "priority": "Want",
+      "category": "Entertainment",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "reclKYBhcUuG9rccL",
+      "description": "Gasoline",
+      "active": true,
+      "amount": -30,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recxRnEdT2q8Wd1YW",
+        "name": "Spending",
+        "aliases": [
+          "Spending - 7139"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Weekly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "rec2tHkiHrXripfpX",
+      "description": "City Utility (Water)",
+      "active": true,
+      "amount": -100,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "rechscP2vLTD1lRBq",
+        "name": "Alexis",
+        "owner": "Alexis",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recFCJqTV7JsI30eU",
+      "description": "House Mortgage",
+      "active": true,
+      "amount": -2144.67,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recjQf5yPTXt2pMjN",
+      "description": "Ring Protect",
+      "active": true,
+      "amount": -50,
+      "priority": "Want",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Yearly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "rece9FMRoepyGF2qj",
+      "description": "VRV/Crunchyroll",
+      "active": true,
+      "amount": -10.99,
+      "priority": "Want",
+      "category": "Entertainment",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -2
+    }
+  },
+  {
+    "transaction": {
+      "id": "recMckqsCFOtHOGIo",
+      "description": "Pets Insurance",
+      "active": true,
+      "amount": -26.47,
+      "priority": "Need",
+      "category": "Insurance",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -1
+    }
+  },
+  {
+    "transaction": {
+      "id": "recRpZwYaEjU6MXDt",
+      "description": "Phone (Sarah)",
+      "active": true,
+      "amount": -33,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recwOUm8Imd8TIKnT",
+      "description": "Discord Nitro",
+      "active": true,
+      "amount": -9.99,
+      "priority": "Want",
+      "category": "Entertainment",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recRpZwYaEjU6MXDt",
+      "description": "Phone (Sarah)",
+      "active": true,
+      "amount": -33,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -1
+    }
+  },
+  {
+    "transaction": {
+      "id": "recMckqsCFOtHOGIo",
+      "description": "Pets Insurance",
+      "active": true,
+      "amount": -26.47,
+      "priority": "Need",
+      "category": "Insurance",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recVldDT865YCRCuE",
+      "description": "Checkings",
+      "active": true,
+      "amount": 1158.88,
+      "priority": "Need",
+      "category": "Income",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Weekly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": "Friday",
+      "weekdayToNumber": {
+        "Monday": 1,
+        "Tuesday": 2,
+        "Wednesday": 3,
+        "Thursday": 4,
+        "Friday": 5,
+        "Saturday": 6,
+        "Sunday": 7
+      }
+    }
+  },
+  {
+    "transaction": {
+      "id": "recc2cYaRj9p4gsrO",
+      "description": "Natural Gas",
+      "active": true,
+      "amount": -150,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recU4e1flhN2qqtGI",
+      "description": "Student loans",
+      "active": true,
+      "amount": -250,
+      "priority": "Need",
+      "category": "Loans",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -1
+    }
+  },
+  {
+    "transaction": {
+      "id": "rec3NnB8HihK9VE2u",
+      "description": "HOA",
+      "active": true,
+      "amount": -250,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recYAI0LMbAZV2HpM",
+      "description": "Internet",
+      "active": true,
+      "amount": -85,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "rechscP2vLTD1lRBq",
+        "name": "Alexis",
+        "owner": "Alexis",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": -1
+    }
+  },
+  {
+    "transaction": {
+      "id": "recYAI0LMbAZV2HpM",
+      "description": "Internet",
+      "active": true,
+      "amount": -85,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "rechscP2vLTD1lRBq",
+        "name": "Alexis",
+        "owner": "Alexis",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recc2cYaRj9p4gsrO",
+      "description": "Natural Gas",
+      "active": true,
+      "amount": -150,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -1
+    }
+  },
+  {
+    "transaction": {
+      "id": "rece9FMRoepyGF2qj",
+      "description": "VRV/Crunchyroll",
+      "active": true,
+      "amount": -10.99,
+      "priority": "Want",
+      "category": "Entertainment",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recwOUm8Imd8TIKnT",
+      "description": "Discord Nitro",
+      "active": true,
+      "amount": -9.99,
+      "priority": "Want",
+      "category": "Entertainment",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": 2
+    }
+  },
+  {
+    "transaction": {
+      "id": "recTwUVJco7C8rCEs",
+      "description": "Food",
+      "active": true,
+      "amount": -18,
+      "priority": "Want",
+      "category": "Living",
+      "account": {
+        "id": "recxRnEdT2q8Wd1YW",
+        "name": "Spending",
+        "aliases": [
+          "Spending - 7139"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Daily",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recFCJqTV7JsI30eU",
+      "description": "House Mortgage",
+      "active": true,
+      "amount": -2144.67,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recXHPYEGNQYjwwY4",
+      "description": "Electric",
+      "active": true,
+      "amount": -150,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recT8c7npHnaewFkm",
+      "description": "Car Loan",
+      "active": true,
+      "amount": -540,
+      "priority": "Need",
+      "category": "Loans",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recFPfoIDZl4Zf3GQ",
+      "description": "Auto Insurance",
+      "active": true,
+      "amount": -1209,
+      "priority": "Need",
+      "category": "Insurance",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Bi-Yearly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recfFWDcfboFHInlX",
+      "description": "AAA Membership",
+      "active": true,
+      "amount": -32,
+      "priority": "Need",
+      "category": "Insurance",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Bi-Yearly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "recXHPYEGNQYjwwY4",
+      "description": "Electric",
+      "active": true,
+      "amount": -150,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -1
+    }
+  },
+  {
+    "transaction": {
+      "id": "recU4e1flhN2qqtGI",
+      "description": "Student loans",
+      "active": true,
+      "amount": -250,
+      "priority": "Need",
+      "category": "Loans",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 1,
+      "_filterValue": 0
+    }
+  },
+  {
+    "transaction": {
+      "id": "rec72CuwwvydQ2UXn",
+      "description": "ICloud 50Gb",
+      "active": true,
+      "amount": -0.99,
+      "priority": "Want",
+      "category": "Entertainment",
+      "account": {
+        "id": "recnr51XelhfXiCWs",
+        "name": "Checkings",
+        "aliases": [
+          "Primary Checkings - 3102"
+        ],
+        "owner": "Kenny",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -2
+    }
+  },
+  {
+    "transaction": {
+      "id": "rec2tHkiHrXripfpX",
+      "description": "City Utility (Water)",
+      "active": true,
+      "amount": -100,
+      "priority": "Need",
+      "category": "Living",
+      "account": {
+        "id": "rechscP2vLTD1lRBq",
+        "name": "Alexis",
+        "owner": "Alexis",
+        "type": "Debit"
+      },
+      "occurrence": "Monthly",
+      "startingDate": null,
+      "bundledIn": null
+    },
+    "dateFilter": {
+      "_order": 0,
+      "_filterValue": -1
+    }
+  }
+]
