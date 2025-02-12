@@ -5,4 +5,4 @@ export * from './IAirtableResponse';
 export * from './PlannedTransactionDateFilters';
 export * from './Records';
 export * from './Tables';
-export * from './Transaction';
+export * from './Transactions';
