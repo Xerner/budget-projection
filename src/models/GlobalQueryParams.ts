@@ -1,4 +1,4 @@
-import { QueryParamKeys } from "../common/angular/services/query-params/types/QueryParamKeys";
+import { QueryParamKeys } from 'common/angular/services/query-params/types/QueryParamKeys';
 
 export interface IGlobalQueryParams {
   token: string;

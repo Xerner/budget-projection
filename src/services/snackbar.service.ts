@@ -2,7 +2,7 @@ import { ApplicationRef, ComponentRef, createComponent, EnvironmentInjector, Inj
 import { LOADING_SERVICE_TOKEN, LoadingService } from 'common/angular/services/loading';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ILoadingItem } from 'common/angular/services/loading/ILoading';
-import { LoadingToastComponent } from 'components/snackbar/loading-toast/loading-toast.component';
+import { LoadingToastComponent } from 'src/components/snackbar/loading-toast/loading-toast.component';
 import Toastify from 'toastify-js';
 import { HttpRequest } from '@angular/common/http';
 

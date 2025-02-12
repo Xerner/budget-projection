@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpCacheStore } from 'common/angular/services';
-import { AirtableService } from 'services/airtable.service';
+import { AirtableService } from 'src/services/airtable.service';
 
 @Component({
   selector: 'app-input-actions',

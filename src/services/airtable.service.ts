@@ -6,8 +6,8 @@ import { IGlobalQueryParams } from '../models/GlobalQueryParams';
 import { AUTH_TOKEN_SERVICE, IAuthTokenService } from '../common/angular/interceptors';
 import { FormControl } from '@angular/forms';
 import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction, IField, IFields, IRecord, IRecords } from '../models/api/airtable';
-import { AirtableAccount } from 'models/api/airtable/Accounts';
-import { AirtablePlannedTransactionDateFilter } from 'models/api/airtable/PlannedTransactionDateFilters';
+import { AirtableAccount } from 'src/models/api/airtable/Accounts';
+import { AirtablePlannedTransactionDateFilter } from 'src/models/api/airtable/PlannedTransactionDateFilters';
 import { forkJoin, Observable, of } from 'rxjs';
 import { LoadingService } from 'common/angular/services/loading';
 

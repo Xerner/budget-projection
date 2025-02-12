@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { Account } from "./Account";
-import { AirtablePlannedTransaction } from "./api/airtable";
+import { AirtablePlannedTransaction } from "src/models/api/airtable/Transactions";
 import { Occurrence } from "./Occurrences";
 import { INode } from "common/library/graphs/types/INode";
 

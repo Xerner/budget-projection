@@ -1,10 +1,10 @@
 import { computed, Injectable } from '@angular/core';
 import { DateTime } from 'luxon';
-import { BalanceOnDate } from 'models/Balance';
-import { Transaction } from 'models/Transactions';
+import { BalanceOnDate } from 'src/models/BalanceOnDate';
+import { Transaction } from 'src/models/Transaction';
 import { InputsService } from './inputs.service';
-import { TransactionService } from './transactions.service';
-import { ProjectedTransaction } from 'models/ProjectedTransaction';
+import { TransactionsService } from './transactions.service';
+import { ProjectedTransaction } from 'src/models/ProjectedTransaction';
 
 @Injectable({ providedIn: 'root' })
 export class BalancesService {
@@ -41,7 +41,7 @@ export class BalancesService {
 
   constructor(
     private inputsService: InputsService,
-    private transactionService: TransactionService,
+    private transactionService: TransactionsService,
   ) { }
 
   getBalancesOnDates(startingDate: DateTime | null, endingDate: DateTime | null, transactions: Transaction[], previousBalance: BalanceOnDate | null = null): BalanceOnDate[] {

@@ -2,8 +2,8 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed, input, viewChild } from '@angular/core';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { PlannedTransaction } from 'models/PlannedTransaction';
-import { BooleanPipe } from 'pipes/boolean.pipe';
+import { PlannedTransaction } from 'src/models/PlannedTransaction';
+import { BooleanPipe } from 'src/pipes/boolean.pipe';
 
 @Component({
   selector: 'app-planned-transactions-table',

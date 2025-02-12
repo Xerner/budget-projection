@@ -1,9 +1,12 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
-    "baseUrl": "./src",
+    "rootDir": "./",
+    "paths": {
+      "common/*": ["./common/*"],
+      "src/*": ["./src/*"]
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
@@ -15,8 +18,8 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
     "importHelpers": true,
+    "moduleResolution": "node",
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
@@ -31,6 +34,6 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
-    "strictStandalone": true,
+    "strictStandalone": true
   }
 }

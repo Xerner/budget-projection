@@ -1,8 +1,8 @@
 import { computed, Injectable } from '@angular/core';
 import { AirtableService } from './airtable.service';
-import { Account, AccountType } from 'models/Account';
-import { Transaction } from 'models/Transactions';
-import { AccountSummary } from 'models/AccountSummary';
+import { Account, AccountType } from 'src/models/Account';
+import { Transaction } from 'src/models/Transaction';
+import { AccountSummary } from 'src/models/AccountSummary';
 
 @Injectable({
   providedIn: 'root'

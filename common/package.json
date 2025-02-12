@@ -1,0 +1,21 @@
+{
+  "name": "common",
+  "version": "0.0.0",
+  "scripts": {},
+  "author": "Kenneth Mead",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/router": "^19.0.0",
+    "luxon": "^3.4.4"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/common.mjs"
+    }
+  }
+}

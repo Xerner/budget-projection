@@ -1,9 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IGlobalQueryParams } from '../models/GlobalQueryParams';
-import { InterfaceForm } from '../common/angular/types';
+import { InterfaceForm } from 'common/angular/types/InterfaceForm';
 import { DateTime } from 'luxon';
-import { QueryParamControl } from '../common/angular/controls/QueryParamControl';
+import { QueryParamControl } from 'common/angular/controls/QueryParamControl';
 
 @Injectable({ providedIn: 'root' })
 export class InputsService {

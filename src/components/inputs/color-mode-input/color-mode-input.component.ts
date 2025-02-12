@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
-import { ColorModeService } from 'services/color-mode.service';
+import { ColorModeService } from 'src/services/color-mode.service';
 
 @Component({
   selector: 'app-color-mode-input',

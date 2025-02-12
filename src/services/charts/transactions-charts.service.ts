@@ -2,10 +2,10 @@ import { computed, Injectable } from '@angular/core';
 import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { ARRAY } from 'common/library';
 import { DateTime } from 'luxon';
-import { BalanceOnDate } from 'models/Balance';
-import { BalancesService } from 'services/balances.service';
-import { InputsService } from 'services/inputs.service';
-import { TransactionService } from 'services/transactions.service';
+import { BalanceOnDate } from 'src/models/BalanceOnDate';
+import { BalancesService } from 'src/services/balances.service';
+import { InputsService } from 'src/services/inputs.service';
+import { TransactionsService } from 'src/services/transactions.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class TransactionsChartsService {
 
   constructor(
     private inputsService: InputsService,
-    private transactionService: TransactionService,
+    private transactionService: TransactionsService,
     private balancesService: BalancesService,
   ) { }
 

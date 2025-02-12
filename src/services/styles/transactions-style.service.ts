@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AccountType } from 'models/Account';
-import { Transaction } from 'models/Transactions';
+import { Transaction } from 'src/models/Transaction';
 
 @Injectable({
   providedIn: 'root'

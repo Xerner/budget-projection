@@ -3,9 +3,9 @@ import { Component, computed } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DateTimePipe } from 'common/angular/pipes';
-import { AccountSummary } from 'models/AccountSummary';
-import { AccountChartsService } from 'services/charts/accounts-charts.service';
-import { AccountStylesService } from 'services/styles/account-styles';
+import { AccountSummary } from 'src/models/AccountSummary';
+import { AccountChartsService } from 'src/services/charts/accounts-charts.service';
+import { AccountStylesService } from 'src/services/styles/account-styles';
 
 @Component({
   selector: 'app-accounts-summaries-table',

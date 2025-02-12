@@ -1,13 +1,13 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed, input, signal, viewChild } from '@angular/core';
-import { TransactionService } from '../../../services/transactions.service';
+import { TransactionsService } from '../../../services/transactions.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { BalanceOnDayTableComponent } from '../balance-on-day-table/balance-on-day-table.component';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
-import { BalanceOnDate } from 'models/Balance';
+import { BalanceOnDate } from 'src/models/BalanceOnDate';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -38,7 +38,7 @@ export class BalancesTableComponent {
   selectedBalance = signal<BalanceOnDate | null>(null);
 
   constructor(
-    protected transactionsService: TransactionService
+    protected transactionsService: TransactionsService
   ) { }
 
   BalanceColumns = {

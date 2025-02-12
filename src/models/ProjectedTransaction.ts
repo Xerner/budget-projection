@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { Account } from "./Account";
-import { Transaction } from "./Transactions";
+import { Transaction } from "./Transaction";
 import { PlannedTransaction } from "./PlannedTransaction";
 
 export class ProjectedTransaction extends Transaction {

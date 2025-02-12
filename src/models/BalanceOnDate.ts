@@ -1,6 +1,5 @@
 import { DateTime } from "luxon";
-import { ProjectedTransaction } from "models/ProjectedTransaction";
-import { Transaction } from "models/Transactions";
+import { Transaction } from "src/models/Transaction";
 
 export class BalanceOnDate {
   constructor(

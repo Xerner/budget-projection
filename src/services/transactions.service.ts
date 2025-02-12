@@ -2,16 +2,16 @@ import { computed, Injectable } from '@angular/core';
 import { InputsService } from './inputs.service';
 import { DateTime } from 'luxon';
 import { AirtableService } from './airtable.service';
-import { Transaction } from 'models/Transactions';
+import { Transaction } from 'src/models/Transaction';
 import { AccountsService } from './accounts.service';
-import { AirtableTransaction } from 'models/api/airtable';
+import { AirtableTransaction } from 'src/models/api/airtable/Transactions';
 import { STRINGS } from 'common/library';
-import { Account } from 'models/Account';
+import { Account } from 'src/models/Account';
 import { ProjectedTransactionService } from './projected-transactions/projected-transactions.service';
-import { PlannedTransactionService } from './planned-transaction.service';
+import { PlannedTransactionService } from 'src/services/planned-transaction.service';
 
 @Injectable({ providedIn: 'root' })
-export class TransactionService {
+export class TransactionsService {
   transactions = computed(() => {
     var accounts = this.accountsService.accounts();
     var airtableTransactions: AirtableTransaction[] = this.airtableService.transactions();
