@@ -2,22 +2,19 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed, input, viewChild } from '@angular/core';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { PlannedTransaction } from 'models/PlannedTransaction';
-import { PlannedTransactionService } from 'services/planned-transaction.service';
-import { DateTimePipe } from 'common/angular/pipes';
-import { BooleanPipe } from 'pipes/boolean.pipe';
+import { PlannedTransaction } from 'src/models/PlannedTransaction';
+import { BooleanPipe } from 'src/pipes/boolean.pipe';
 
 @Component({
-    selector: 'app-planned-transactions-table',
-    imports: [
-        CommonModule,
-        MatPaginatorModule,
-        MatTableModule,
-        DateTimePipe,
-        CurrencyPipe,
-        BooleanPipe,
-    ],
-    templateUrl: './planned-transactions-table.component.html'
+  selector: 'app-planned-transactions-table',
+  imports: [
+    CommonModule,
+    MatPaginatorModule,
+    MatTableModule,
+    CurrencyPipe,
+    BooleanPipe,
+  ],
+  templateUrl: './planned-transactions-table.component.html'
 })
 export class PlannedTransactionsTableComponent {
   transactions = input.required<PlannedTransaction[]>()
@@ -36,12 +33,12 @@ export class PlannedTransactionsTableComponent {
     amount: "amount",
     priority: "priority",
     category: "category",
-    isIncome: "isIncome",
     account: "account",
     occurrence: "occurrence",
     autopay: "autopay",
-    shared: "shared",
-    dateOfTransaction: "dateOfTransaction",
+    bundledIn: "bundledIn",
+    startingDate: "startingDate",
+    toNode: "toNode",
   }
   displayedPlannedTransactionColumns = [
     this.PlannedTransactionColumns.description,
@@ -49,16 +46,9 @@ export class PlannedTransactionsTableComponent {
     this.PlannedTransactionColumns.amount,
     this.PlannedTransactionColumns.priority,
     this.PlannedTransactionColumns.category,
-    this.PlannedTransactionColumns.isIncome,
     this.PlannedTransactionColumns.account,
     this.PlannedTransactionColumns.occurrence,
     this.PlannedTransactionColumns.autopay,
-    this.PlannedTransactionColumns.shared,
-    this.PlannedTransactionColumns.dateOfTransaction,
+    this.PlannedTransactionColumns.bundledIn,
   ]
-
-  constructor(
-    private plannedTransactionsService: PlannedTransactionService,
-  ) {
-  }
 }

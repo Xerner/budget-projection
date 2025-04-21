@@ -1,9 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IGlobalQueryParams } from '../models/GlobalQueryParams';
-import { InterfaceForm } from '../common/angular/types';
+import { InterfaceForm } from 'common/angular/types/InterfaceForm';
 import { DateTime } from 'luxon';
-import { QueryParamControl } from '../common/angular/controls/QueryParamControl';
+import { QueryParamControl } from 'common/angular/controls/QueryParamControl';
 
 @Injectable({ providedIn: 'root' })
 export class InputsService {
@@ -13,6 +13,7 @@ export class InputsService {
     transactionTableName: new QueryParamControl<string>('', null, null, Validators.required),
     plannedTransactionTableName: new QueryParamControl<string>('', null, null, Validators.required),
     accountsTableName: new QueryParamControl<string>('', null, null, Validators.required),
+    dateFiltersTableName: new QueryParamControl<string>('', null, null, Validators.required),
     startingDate: new QueryParamControl<DateTime | null>(null, null, DateTime.fromISO, Validators.required),
     endingDate: new QueryParamControl<DateTime | null>(null, null, DateTime.fromISO, Validators.required),
   });

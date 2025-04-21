@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { map, Observable, of } from 'rxjs';
 import { Endpoints } from '../../models/Endpoints';
 import { STRINGS } from '../../common/library';
-import { AirtableBasesResponse, AirtableBaseSchemaExt, AirtableBaseSchema } from '../../models/airtable/api';
+import { AirtableBasesResponse, AirtableBaseSchemaExt, AirtableBaseSchema } from '../../models/api/airtable';
 
 @Injectable({ providedIn: 'root' })
 export class BasesApiService {

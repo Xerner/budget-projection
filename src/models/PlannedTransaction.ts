@@ -1,5 +1,8 @@
+import { DateTime } from "luxon";
 import { Account } from "./Account";
+import { AirtablePlannedTransaction } from "src/models/api/airtable/Transactions";
 import { Occurrence } from "./Occurrences";
+import { INode } from "common/library/graphs/types/INode";
 
 export class PlannedTransaction {
   constructor(
@@ -12,6 +15,33 @@ export class PlannedTransaction {
     public account: Account,
     public occurrence: Occurrence,
     public autopay: boolean,
-    public bundledIn: PlannedTransaction,
+    public startingDate: DateTime | null,
+    public bundledIn: AirtablePlannedTransaction | null,
   ) { }
+
+  toNode(allTransactions: PlannedTransaction[]): INode<PlannedTransaction> {
+    var bundledInTransaction = allTransactions.find(transaction => transaction.id === this.bundledIn?.id)
+    var dependents = bundledInTransaction === undefined ? [] : [bundledInTransaction.toNode(allTransactions)]
+    return {
+      body: this,
+      getDependencies: () => [],
+      getDependents: () => dependents,
+    }
+  }
+
+  static fromJson(json: any): PlannedTransaction {
+    return new PlannedTransaction(
+      json.id,
+      json.description,
+      json.active,
+      json.amount,
+      json.priority,
+      json.category,
+      json.account,
+      json.occurrence,
+      json.autopay,
+      json.startingDate,
+      json.bundledIn,
+    )
+  }
 }

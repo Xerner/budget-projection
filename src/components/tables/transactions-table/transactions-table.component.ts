@@ -2,11 +2,11 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, computed, input, viewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Transaction } from 'models/Transactions';
-import { TransactionService } from 'services/transactions.service';
+import { Transaction } from 'src/models/Transaction';
+import { TransactionsService } from 'src/services/transactions.service';
 import { DateTimePipe } from 'common/angular/pipes/datetime.pipe';
-import { TransactionsStyleService } from 'services/styles/transactions-style.service';
-import { AccountStylesService } from 'services/styles/account-styles';
+import { TransactionsStyleService } from 'src/services/styles/transactions-style.service';
+import { AccountStylesService } from 'src/services/styles/account-styles';
 import { MatSortModule } from '@angular/material/sort';
 
 @Component({
@@ -56,7 +56,7 @@ export class TransactionsTableComponent {
   ]
 
   constructor(
-    protected transactionsService: TransactionService,
+    protected transactionsService: TransactionsService,
     protected transactionsStyleService: TransactionsStyleService,
     protected accountStyleService: AccountStylesService,
   ) { }

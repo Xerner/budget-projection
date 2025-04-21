@@ -1,0 +1,850 @@
+[
+  {
+    "id": "rec0wiQXUvRNzeKk5",
+    "description": "Vacation savings",
+    "active": true,
+    "amount": 50,
+    "priority": "Want",
+    "category": "Savings",
+    "account": {
+      "id": "recow9Q1jyGFMUZje",
+      "name": "Vacation",
+      "aliases": [
+        "Vacation Savings - 7344"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recVldDT865YCRCuE",
+      "createdTime": "2023-06-23T14:36:43.000Z",
+      "fields": {
+        "Description": "Checkings",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": 1158.88,
+        "Priority": "Need",
+        "Category": "Income",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Weekly",
+        "Planned Transaction Date Filters": [
+          "recMZFLBelvUKaWTq"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Day of Week=Friday"
+        ]
+      }
+    }
+  },
+  {
+    "id": "rec24UlfpGafM87e4",
+    "description": "Storage Unit",
+    "amount": -200,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "rec2tHkiHrXripfpX",
+    "description": "City Utility (Water)",
+    "active": true,
+    "amount": -100,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "rechscP2vLTD1lRBq",
+      "name": "Alexis",
+      "owner": "Alexis",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "rec3NnB8HihK9VE2u",
+    "description": "HOA",
+    "active": true,
+    "amount": -250,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "rec72CuwwvydQ2UXn",
+    "description": "ICloud 50Gb",
+    "active": true,
+    "amount": -0.99,
+    "priority": "Want",
+    "category": "Entertainment",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recFCJqTV7JsI30eU",
+    "description": "House Mortgage",
+    "active": true,
+    "amount": -2144.67,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recFPfoIDZl4Zf3GQ",
+    "description": "Auto Insurance",
+    "active": true,
+    "amount": -1209,
+    "priority": "Need",
+    "category": "Insurance",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Bi-Yearly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recMckqsCFOtHOGIo",
+    "description": "Pets Insurance",
+    "active": true,
+    "amount": -26.47,
+    "priority": "Need",
+    "category": "Insurance",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recMlp7LQvVz3zHXq",
+    "description": "Video games",
+    "amount": -60,
+    "priority": "Want",
+    "category": "Entertainment",
+    "account": {
+      "id": "recxRnEdT2q8Wd1YW",
+      "name": "Spending",
+      "aliases": [
+        "Spending - 7139"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recNULy3cokKrg1kc",
+    "description": "Medical Insurance",
+    "active": true,
+    "amount": -55,
+    "priority": "Need",
+    "category": "Insurance",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recVldDT865YCRCuE",
+      "createdTime": "2023-06-23T14:36:43.000Z",
+      "fields": {
+        "Description": "Checkings",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": 1158.88,
+        "Priority": "Need",
+        "Category": "Income",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Weekly",
+        "Planned Transaction Date Filters": [
+          "recMZFLBelvUKaWTq"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Day of Week=Friday"
+        ]
+      }
+    }
+  },
+  {
+    "id": "recRpZwYaEjU6MXDt",
+    "description": "Phone (Sarah)",
+    "active": true,
+    "amount": -33,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recSrDgCjhs9OTGRx",
+    "description": "Retirement",
+    "amount": -550,
+    "priority": "Need",
+    "category": "Savings",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recT8c7npHnaewFkm",
+    "description": "Car Loan",
+    "active": true,
+    "amount": -540,
+    "priority": "Need",
+    "category": "Loans",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recTwUVJco7C8rCEs",
+    "description": "Food",
+    "active": true,
+    "amount": -18,
+    "priority": "Want",
+    "category": "Living",
+    "account": {
+      "id": "recxRnEdT2q8Wd1YW",
+      "name": "Spending",
+      "aliases": [
+        "Spending - 7139"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Daily",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recU4e1flhN2qqtGI",
+    "description": "Student loans",
+    "active": true,
+    "amount": -250,
+    "priority": "Need",
+    "category": "Loans",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recVldDT865YCRCuE",
+    "description": "Checkings",
+    "active": true,
+    "amount": 1158.88,
+    "priority": "Need",
+    "category": "Income",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recW6BuPYTUpmTsqD",
+    "description": "Nintendo",
+    "amount": -1.66,
+    "priority": "Want",
+    "category": "Entertainment",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recWBZr1EIoAC304L",
+    "description": "General Spending",
+    "active": true,
+    "amount": 125,
+    "priority": "Want",
+    "category": "Entertainment",
+    "account": {
+      "id": "recxRnEdT2q8Wd1YW",
+      "name": "Spending",
+      "aliases": [
+        "Spending - 7139"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recVldDT865YCRCuE",
+      "createdTime": "2023-06-23T14:36:43.000Z",
+      "fields": {
+        "Description": "Checkings",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": 1158.88,
+        "Priority": "Need",
+        "Category": "Income",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Weekly",
+        "Planned Transaction Date Filters": [
+          "recMZFLBelvUKaWTq"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Day of Week=Friday"
+        ]
+      }
+    }
+  },
+  {
+    "id": "recXHPYEGNQYjwwY4",
+    "description": "Electric",
+    "active": true,
+    "amount": -150,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recYAI0LMbAZV2HpM",
+    "description": "Internet",
+    "active": true,
+    "amount": -85,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "rechscP2vLTD1lRBq",
+      "name": "Alexis",
+      "owner": "Alexis",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recc2cYaRj9p4gsrO",
+    "description": "Natural Gas",
+    "active": true,
+    "amount": -150,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "rece9FMRoepyGF2qj",
+    "description": "VRV/Crunchyroll",
+    "active": true,
+    "amount": -10.99,
+    "priority": "Want",
+    "category": "Entertainment",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recfFWDcfboFHInlX",
+    "description": "AAA Membership",
+    "active": true,
+    "amount": -32,
+    "priority": "Need",
+    "category": "Insurance",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Bi-Yearly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recjQf5yPTXt2pMjN",
+    "description": "Ring Protect",
+    "active": true,
+    "amount": -50,
+    "priority": "Want",
+    "category": "Living",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Yearly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "reclKYBhcUuG9rccL",
+    "description": "Gasoline",
+    "active": true,
+    "amount": -30,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "recxRnEdT2q8Wd1YW",
+      "name": "Spending",
+      "aliases": [
+        "Spending - 7139"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recmnj4Jv8OkGIwma",
+    "description": "Mortgage Insurance",
+    "active": true,
+    "amount": -31.38,
+    "priority": "Need",
+    "category": "Living",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recFCJqTV7JsI30eU",
+      "createdTime": "2023-06-23T16:07:13.000Z",
+      "fields": {
+        "Description": "House Mortgage",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": -2144.67,
+        "Priority": "Need",
+        "Category": "Living",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Monthly",
+        "Planned Transaction Date Filters": [
+          "recjLXDPoE4JWG1Th",
+          "rec67aXFnEO9eicQs"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Occurrence Of Week In Month=0",
+          "Occurrence Of Date=0"
+        ]
+      }
+    }
+  },
+  {
+    "id": "recnrZXQzN9QUHbUx",
+    "description": "Other Life Insurance",
+    "active": true,
+    "amount": -11.55,
+    "priority": "Need",
+    "category": "Insurance",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recVldDT865YCRCuE",
+      "createdTime": "2023-06-23T14:36:43.000Z",
+      "fields": {
+        "Description": "Checkings",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": 1158.88,
+        "Priority": "Need",
+        "Category": "Income",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Weekly",
+        "Planned Transaction Date Filters": [
+          "recMZFLBelvUKaWTq"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Day of Week=Friday"
+        ]
+      }
+    }
+  },
+  {
+    "id": "recoSjzkpOq9TwSlX",
+    "description": "Permanent Life Insurance",
+    "active": true,
+    "amount": -18.75,
+    "priority": "Need",
+    "category": "Insurance",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recVldDT865YCRCuE",
+      "createdTime": "2023-06-23T14:36:43.000Z",
+      "fields": {
+        "Description": "Checkings",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": 1158.88,
+        "Priority": "Need",
+        "Category": "Income",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Weekly",
+        "Planned Transaction Date Filters": [
+          "recMZFLBelvUKaWTq"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Day of Week=Friday"
+        ]
+      }
+    }
+  },
+  {
+    "id": "recou7oMfHhCVFFnQ",
+    "description": "Chek",
+    "account": {
+      "id": "0",
+      "name": "Unknown Account",
+      "owner": "",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recpRnphYtPmTLi71",
+    "description": "House Savings",
+    "amount": -500,
+    "priority": "Need",
+    "category": "Savings",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recpYxvaJqLGLo21M",
+    "description": "Accident Insurance",
+    "active": true,
+    "amount": -9,
+    "priority": "Need",
+    "category": "Insurance",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recVldDT865YCRCuE",
+      "createdTime": "2023-06-23T14:36:43.000Z",
+      "fields": {
+        "Description": "Checkings",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": 1158.88,
+        "Priority": "Need",
+        "Category": "Income",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Weekly",
+        "Planned Transaction Date Filters": [
+          "recMZFLBelvUKaWTq"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Day of Week=Friday"
+        ]
+      }
+    }
+  },
+  {
+    "id": "recv4GqPeASPi7OKY",
+    "description": "General Savings",
+    "active": true,
+    "amount": 125,
+    "priority": "Need",
+    "category": "Savings",
+    "account": {
+      "id": "recjFSzXrWqcjPCgC",
+      "name": "Savings",
+      "aliases": [
+        "General Spending - 9875"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recVldDT865YCRCuE",
+      "createdTime": "2023-06-23T14:36:43.000Z",
+      "fields": {
+        "Description": "Checkings",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": 1158.88,
+        "Priority": "Need",
+        "Category": "Income",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Weekly",
+        "Planned Transaction Date Filters": [
+          "recMZFLBelvUKaWTq"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Day of Week=Friday"
+        ]
+      }
+    }
+  },
+  {
+    "id": "recwOUm8Imd8TIKnT",
+    "description": "Discord Nitro",
+    "active": true,
+    "amount": -9.99,
+    "priority": "Want",
+    "category": "Entertainment",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Monthly",
+    "startingDate": null,
+    "bundledIn": null
+  },
+  {
+    "id": "recyQQjvuKsOSwyWZ",
+    "description": "Dental Insurance",
+    "active": true,
+    "amount": -7,
+    "priority": "Need",
+    "category": "Insurance",
+    "account": {
+      "id": "recnr51XelhfXiCWs",
+      "name": "Checkings",
+      "aliases": [
+        "Primary Checkings - 3102"
+      ],
+      "owner": "Kenny",
+      "type": "Debit"
+    },
+    "occurrence": "Weekly",
+    "startingDate": null,
+    "bundledIn": {
+      "id": "recVldDT865YCRCuE",
+      "createdTime": "2023-06-23T14:36:43.000Z",
+      "fields": {
+        "Description": "Checkings",
+        "Active": true,
+        "Autopay?": true,
+        "Amount": 1158.88,
+        "Priority": "Need",
+        "Category": "Income",
+        "Account": [
+          "recnr51XelhfXiCWs"
+        ],
+        "Occurrence": "Weekly",
+        "Planned Transaction Date Filters": [
+          "recMZFLBelvUKaWTq"
+        ],
+        "Filters To Decide Date Of Payment": [
+          "Day of Week=Friday"
+        ]
+      }
+    }
+  }
+]

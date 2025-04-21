@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { InputsService } from '../../services/inputs.service';
+import { InputsService } from 'src/services/inputs.service';
+// import { InputsService } from 'src/services/inputs.service';
 import { BaseChartDirective } from 'ng2-charts';
-import { TransactionService } from '../../services/transactions.service';
-import { TransactionsChartsService } from 'services/charts/transactions-charts.service';
+import { TransactionsService } from 'src/services/transactions.service';
+import { TransactionsChartsService } from 'src/services/charts/transactions-charts.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -22,7 +23,7 @@ import { TransactionsChartsService } from 'services/charts/transactions-charts.s
 export class DashboardComponent {
   constructor(
     protected inputsService: InputsService,
-    protected transactionsService: TransactionService,
+    protected transactionsService: TransactionsService,
     protected transactionsChartsService: TransactionsChartsService,
   ) { }
 }

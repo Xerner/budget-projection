@@ -1,0 +1,18 @@
+<div class="flex gap-4">
+  <div class="text-[--mat-sys-on-surface] mt-1">
+    {{ message() }}
+  </div>
+  @if (progress() === undefined || (progress() ?? 0) < 100) {
+  <mat-spinner
+    [mode]="mode()"
+    [value]="progress"
+    class="!inline-block shrink-0 m-2"
+    diameter="20"
+  ></mat-spinner>
+  } @else if (progress() === 100) {
+  <mat-icon class="text-green-500 shrink-0 m-2">check</mat-icon>
+  }
+  <button mat-icon-button (click)="toast().hideToast()" class="shrink-0">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

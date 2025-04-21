@@ -3,11 +3,13 @@ import { RecordsApiService } from './api/records.api.service';
 import { BasesApiService } from './api/bases.api.service';
 import { InputsService } from './inputs.service';
 import { IGlobalQueryParams } from '../models/GlobalQueryParams';
-import { TOKEN_SERVICE, ITokenService } from '../common/angular/interceptors';
+import { AUTH_TOKEN_SERVICE, IAuthTokenService } from '../common/angular/interceptors';
 import { FormControl } from '@angular/forms';
-import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction, IField, IFields, IRecord, IRecords } from '../models/airtable/api';
-import { AirtableAccount } from 'models/airtable/api/Accounts';
-import { AirtablePlannedTransactionDateFilter } from 'models/airtable/api/PlannedTransactionDateFilters';
+import { AirtableBase, AirtableBaseSchemaExt, AirtablePlannedTransaction, AirtableTransaction, IField, IFields, IRecord, IRecords } from '../models/api/airtable';
+import { AirtableAccount } from 'src/models/api/airtable/Accounts';
+import { AirtablePlannedTransactionDateFilter } from 'src/models/api/airtable/PlannedTransactionDateFilters';
+import { forkJoin, Observable, of } from 'rxjs';
+import { LoadingService } from 'common/angular/services/loading';
 
 @Injectable({ providedIn: 'root' })
 export class AirtableService {
@@ -29,7 +31,7 @@ export class AirtableService {
         this.baseSchema.set(null);
         return;
       }
-      this.fetchBaseSchema(baseId)
+      this.fetchBaseSchema(baseId)?.subscribe();
     },
   };
 
@@ -37,7 +39,9 @@ export class AirtableService {
     private inputsService: InputsService,
     private basesApi: BasesApiService,
     private recordsApi: RecordsApiService,
-    @Inject(TOKEN_SERVICE) private tokenService: ITokenService,
+    @Inject(AUTH_TOKEN_SERVICE) private tokenService: IAuthTokenService,
+    private loadingService: LoadingService,
+
   ) {
     for (const key in this.inputsService.apiForm.controls) {
       var control = this.inputsService.apiForm.controls[key as keyof typeof this.inputsService.apiForm.controls];
@@ -58,10 +62,18 @@ export class AirtableService {
     var transactionsTableName = this.inputsService.apiForm.controls.transactionTableName.value;
     var plannedTransactionsTableName = this.inputsService.apiForm.controls.plannedTransactionTableName.value;
     var accountsTableName = this.inputsService.apiForm.controls.accountsTableName.value;
-    this.fetchPlannedTransactions(base.id, plannedTransactionsTableName);
-    this.fetchTransactions(base.id, transactionsTableName);
-    this.fetchAccounts(base.id, accountsTableName);
-    this.fetchPlannedTransactionDateFilters(base.id, accountsTableName);
+    var dateFiltersTableName = this.inputsService.apiForm.controls.dateFiltersTableName.value;
+    var loadingItem = this.loadingService.start('Fetching all data');
+    forkJoin([
+      this.fetchPlannedTransactions(base.id, plannedTransactionsTableName),
+      this.fetchTransactions(base.id, transactionsTableName),
+      this.fetchAccounts(base.id, accountsTableName),
+      this.fetchPlannedTransactionDateFilters(base.id, dateFiltersTableName),
+    ]).subscribe({
+      complete: () => {
+        this.loadingService.stop(loadingItem);
+      }
+    });
   }
 
   fetchBases() {
@@ -79,39 +91,43 @@ export class AirtableService {
     if (!baseId) {
       return;
     }
-    this.basesApi.getBaseSchema(baseId).subscribe(schemaResponse => {
+    return new Observable(observer => this.basesApi.getBaseSchema(baseId).subscribe(schemaResponse => {
       this.baseSchema.set(schemaResponse);
-    });
+      observer.next(schemaResponse);
+      observer.complete();
+    }));
   }
 
   fetchTransactions(baseId: string, tableName: string) {
-    this.fetchRecords<AirtableTransaction>(baseId, tableName, this.transactions);
+    return this.fetchRecords<AirtableTransaction>(baseId, tableName, this.transactions);
   }
 
   fetchPlannedTransactions(baseId: string, tableName: string) {
-    this.fetchRecords<AirtablePlannedTransaction>(baseId, tableName, this.plannedTransactions);
+    return this.fetchRecords<AirtablePlannedTransaction>(baseId, tableName, this.plannedTransactions);
   }
 
   fetchAccounts(baseId: string, tableName: string) {
-    this.fetchRecords<AirtableAccount>(baseId, tableName, this.accounts);
+    return this.fetchRecords<AirtableAccount>(baseId, tableName, this.accounts);
   }
 
   fetchPlannedTransactionDateFilters(baseId: string, tableName: string) {
-    this.fetchRecords<AirtablePlannedTransactionDateFilter>(baseId, tableName, this.plannedTransactionDateFilters);
+    return this.fetchRecords<AirtablePlannedTransactionDateFilter>(baseId, tableName, this.plannedTransactionDateFilters);
   }
 
-  fetchRecords<TRecord extends IRecord>(baseId: string, tableName: string, signal: WritableSignal<TRecord[]>) {
+  fetchRecords<TRecord extends IRecord>(baseId: string, tableName: string, signal: WritableSignal<TRecord[]>): Observable<TRecord[]> {
     if (!baseId || !tableName) {
-      return;
+      return of();
     }
     var mappedRecords: TRecord[] = [];
-    this.recordsApi.getRecords<TRecord>(baseId, tableName).subscribe({
+    return new Observable(observer => this.recordsApi.getRecords<TRecord>(baseId, tableName).subscribe({
       next: recordsResponse => {
         mappedRecords = mappedRecords.concat(recordsResponse.records);
+        observer.next(mappedRecords);
       },
       complete: () => {
         signal.set(mappedRecords);
+        observer.complete();
       }
-    });
+    }));
   }
 }

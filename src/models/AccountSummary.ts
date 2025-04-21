@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { Account } from "./Account";
-import { Transaction } from "./Transactions";
+import { Transaction } from "./Transaction";
 
 export class AccountSummary {
   private _transactions: Transaction[] = [];

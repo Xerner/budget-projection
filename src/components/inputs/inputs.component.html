@@ -15,6 +15,7 @@
       <mat-form-field>
         <mat-label>Choose base</mat-label>
         <mat-select
+
           [formControl]="this.inputsService.apiForm.controls.baseName"
         >
           <mat-option [value]=""><span class="italic">None</span></mat-option>
@@ -32,7 +33,7 @@
       Choose tables to source data from
     </div>
 
-    <div class="grid grid-cols-3 gap-3">
+    <div class="grid grid-cols-2 gap-3">
       <!-- Transaction Table -->
       <mat-form-field>
         <mat-label>Transactions</mat-label>
@@ -68,6 +69,19 @@
         <mat-label>Bank Accounts</mat-label>
         <mat-select
           [formControl]="this.inputsService.apiForm.controls.accountsTableName"
+        >
+          <mat-option [value]=""><span class="italic">None</span></mat-option>
+          @for (table of selectedBasesTables(); track $index) {
+          <mat-option [value]="table.name">{{ table.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Date Filters Table -->
+      <mat-form-field>
+        <mat-label>Date Filters</mat-label>
+        <mat-select
+          [formControl]="this.inputsService.apiForm.controls.dateFiltersTableName"
         >
           <mat-option [value]=""><span class="italic">None</span></mat-option>
           @for (table of selectedBasesTables(); track $index) {

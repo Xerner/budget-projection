@@ -1,6 +1,6 @@
 import { computed, Injectable } from '@angular/core';
-import { AccountsService } from 'services/accounts.service';
-import { TransactionService } from 'services/transactions.service';
+import { AccountsService } from 'src/services/accounts.service';
+import { TransactionsService } from 'src/services/transactions.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,6 @@ export class AccountChartsService {
 
   constructor(
     private accountsService: AccountsService,
-    private transactionService: TransactionService,
+    private transactionService: TransactionsService,
   ) { }
 }

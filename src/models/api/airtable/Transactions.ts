@@ -1,0 +1,30 @@
+import { BooleanField, DateField, IFields, LinkToAnotherRecordField, NumberField, StringField } from "./Fields";
+import { IRecord } from "./Records";
+
+export interface AirtableTransaction extends IRecord<AirtableTransactionFields> { }
+
+export interface AirtableTransactionFields extends IFields {
+  "Date": DateField;
+  "Sort Order": NumberField;
+  "Merchant Name": StringField;
+  "Account": StringField;
+  "Category": StringField;
+  "Amount": NumberField;
+  "Running Balance": NumberField;
+}
+
+export interface AirtablePlannedTransaction extends IRecord<AirtablePlannedTransactionFields> { }
+
+export interface AirtablePlannedTransactionFields extends IFields {
+  "Description": StringField;
+  "Active": BooleanField;
+  "Amount": NumberField;
+  "Priority": StringField;
+  "Category": StringField;
+  "Is Income": StringField;
+  "Account": LinkToAnotherRecordField;
+  "Occurrence": StringField;
+  "Autopay": BooleanField;
+  "Bundled In": LinkToAnotherRecordField;
+  "Starting Date": DateField;
+}

@@ -5,11 +5,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
-import { BalanceOnDate } from 'models/Balance';
-import { Transaction } from 'models/Transactions';
-import { ProjectedTransaction } from 'models/ProjectedTransaction';
-import { BooleanPipe } from 'pipes/boolean.pipe';
-import { AccountStylesService } from 'services/styles/account-styles';
+import { BalanceOnDate } from 'src/models/BalanceOnDate';
+import { Transaction } from 'src/models/Transaction';
+import { ProjectedTransaction } from 'src/models/ProjectedTransaction';
+import { BooleanPipe } from 'src/pipes/boolean.pipe';
+import { AccountStylesService } from 'src/services/styles/account-styles';
 
 @Component({
     selector: 'app-balance-on-day-table',

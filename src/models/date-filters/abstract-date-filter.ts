@@ -4,14 +4,21 @@ export abstract class DateFilter<T> {
   public get order() {
     return this._order;
   }
-  public get filterValue() {
-    return this._filterValue;
+  public get filterValue(): T {
+    return this._filterValue as T;
   }
 
   constructor(
     private _order: number,
-    private _filterValue: T,
-  ) { }
+    private _filterValue: T | string,
+  ) {
+    if (typeof _filterValue === 'string') {
+      this._filterValue = this.convert(_filterValue);
+    }
+  }
 
-  abstract filter(date: DateTime): boolean;
+  convert(value: string) {
+    return value as unknown as T;
+  }
+  abstract filter(dates: DateTime[]): DateTime[];
 }

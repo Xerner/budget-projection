@@ -28,11 +28,6 @@
     <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.category]}} </td>
   </ng-container>
 
-  <ng-container [matColumnDef]="PlannedTransactionColumns.isIncome">
-    <th mat-header-cell *matHeaderCellDef> Is Income </th>
-    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.isIncome]}} </td>
-  </ng-container>
-
   <ng-container [matColumnDef]="PlannedTransactionColumns.account">
     <th mat-header-cell *matHeaderCellDef> Account </th>
     <td mat-cell *matCellDef="let row"> {{ row[PlannedTransactionColumns.account]?.name ?? "" }} </td>
@@ -48,14 +43,9 @@
     <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.autopay]}} </td>
   </ng-container>
 
-  <ng-container [matColumnDef]="PlannedTransactionColumns.shared">
-    <th mat-header-cell *matHeaderCellDef> Shared? </th>
-    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.shared]}} </td>
-  </ng-container>
-
-  <ng-container [matColumnDef]="PlannedTransactionColumns.dateOfTransaction">
-    <th mat-header-cell *matHeaderCellDef> Date of Transaction </th>
-    <td mat-cell *matCellDef="let row"> {{ row[PlannedTransactionColumns.dateOfTransaction] | datetime }} </td>
+  <ng-container [matColumnDef]="PlannedTransactionColumns.bundledIn">
+    <th mat-header-cell *matHeaderCellDef> Is Income </th>
+    <td mat-cell *matCellDef="let row"> {{row[PlannedTransactionColumns.bundledIn]}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedPlannedTransactionColumns"></tr>

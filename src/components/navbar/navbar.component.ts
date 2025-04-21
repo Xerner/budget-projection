@@ -3,14 +3,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NotificationPoolService } from 'common/angular/services/notifications';
-import { NotificationTypes } from 'models/NotificationTypes';
-import { AppStore } from 'stores/app.store';
+import { NotificationTypes } from 'src/models/NotificationTypes';
+import { AppStore } from 'src/stores/app.store';
 import { MatDialog } from '@angular/material/dialog';
-import { InputsDialogComponent } from 'components/inputs/inputs-dialog/inputs-dialog.component';
+import { InputsDialogComponent } from 'src/components/inputs/inputs-dialog/inputs-dialog.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { ColorSchemeInputComponent } from 'components/inputs/color-scheme-input/color-scheme-input.component';
+import { ColorSchemeInputComponent } from 'src/components/inputs/color-scheme-input/color-scheme-input.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ColorModeComponent } from "../inputs/color-mode-input/color-mode-input.component";
+import { ColorModeService } from 'src/services/color-mode.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +23,8 @@ import { ColorModeComponent } from "../inputs/color-mode-input/color-mode-input.
     MatMenuModule,
     MatButtonModule,
     ColorSchemeInputComponent,
-    ColorModeComponent
+    ColorModeComponent,
+    MatTooltipModule,
 ],
   templateUrl: './navbar.component.html',
 })
@@ -32,6 +35,7 @@ export class NavbarComponent {
     protected appStore: AppStore,
     protected notifications: NotificationPoolService<NotificationTypes>,
     protected dialog: MatDialog,
+    protected colorModeService: ColorModeService,
   ) { }
 
   openInputsDialog() {

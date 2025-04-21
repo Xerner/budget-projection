@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { Observable, from } from 'rxjs';
-import { IHaveOffset } from '../../models/airtable/IAirtableResponse';
+import { IHaveOffset } from '../../models/api/airtable/IAirtableResponse';
 
 @Injectable({
   providedIn: 'root'
